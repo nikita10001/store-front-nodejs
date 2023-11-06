@@ -1,0 +1,73 @@
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid $borderlight;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    min-height: 70px;
+    justify-content: space-between;
+    gap: 20px;
+    @media (max-width: 768px) {
+      min-height: 60px;
+    }
+  }
+}
+.logo {
+  color: $mainDarkColor;
+  font-weight: 600;
+}
+.menu {
+  &__list {
+    display: flex;
+    align-items: center;
+    column-gap: 50px;
+    @media (max-width: 768px) {
+      column-gap: 28px;
+    }
+  }
+  &__link {
+    color: $mainDarkColor;
+    &.active {
+      // color: rgb(94, 150, 252);
+      color: #5e96fc;
+    }
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.basket-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  &__icon {
+    position: relative;
+    max-width: 25px;
+  }
+  &__text {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  b {
+    font-weight: 400;
+    background-color: $secondary;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 15px;
+    width: 15px;
+    font-size: 12px;
+    line-height: 1;
+    position: absolute;
+    top: -5px;
+    right: -8px;
+  }
+}

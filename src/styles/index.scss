@@ -1,0 +1,78 @@
+@use 'sass:math';
+@import './variables.scss';
+@import './null.scss';
+@import './header.scss';
+@import './devices.scss';
+@import './UI.scss';
+@import './filters.scss';
+@import './admin.scss';
+@import './cart.scss';
+@import 'react-credit-cards-2/dist/lib/styles.scss';
+
+//temp styles
+.error-title {
+  text-align: center;
+  font-size: 18px;
+  margin: 10px 0px;
+  font-weight: 500;
+}
+.error-password {
+  text-align: center;
+  margin: 10px 0px;
+  font-size: 14px;
+  color: red;
+}
+
+.page {
+  padding: 20px 0px;
+}
+.catalog {
+  &__container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    @media (max-width: 1000px) {
+      display: block;
+    }
+  }
+  &__filters {
+    flex: 0 0 310px;
+    @media (max-width: 1000px) {
+      margin: 0px 0px 20px 0px;
+    }
+  }
+  &__body {
+    flex: 0 1 100%;
+  }
+  &__search {
+    margin: 0px 0px 20px 0px;
+  }
+}
+
+.search-devices {
+  &__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    gap: 5px;
+    // border: 1px solid #d5d6dc;
+  }
+  &__input {
+    min-height: 40px;
+  }
+  &__btn {
+    flex: 0 0 100px;
+  }
+}
+
+.form__input {
+  margin: 0px 0px 10px 0px;
+}
+.login__form {
+  max-width: 600px;
+  margin: 0 auto;
+  .btn {
+    width: 100%;
+  }
+}

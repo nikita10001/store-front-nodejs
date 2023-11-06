@@ -1,0 +1,60 @@
+.admin {
+  &__container {
+    max-width: 1000px;
+  }
+  &__item {
+    margin: 0px 0px 10px 0px;
+  }
+  &__btn {
+    margin: 0px 0px 15px 0px;
+    width: 100%;
+  }
+}
+
+.item-admin {
+  border: 1px solid $border;
+  padding: 10px;
+  border-radius: 5px;
+  &__wrapper {
+    display: flex;
+    gap: 10px;
+  }
+  &__image {
+    flex: 0 0 70px;
+    display: flex;
+    justify-content: center;
+    height: 70px;
+  }
+  &__content {
+    flex: 1 1 100%;
+  }
+  &__actions {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+  }
+  &__title {
+    font-weight: 500;
+    margin: 0px 0px 2px 0px;
+    color: $mainDarkColor;
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  &__btn {
+    padding: 5px 8px;
+    width: 100%;
+  }
+}
+.form-admin {
+  .input:not(:last-child) {
+    margin: 0px 0px 5px 0px;
+  }
+  .btn {
+    width: 100%;
+  }
+}

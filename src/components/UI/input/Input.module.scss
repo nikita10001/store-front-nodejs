@@ -1,0 +1,13 @@
+.inputWrapper:not(:last-child) {
+  margin: 0px 0px 8px 0px;
+}
+.input {
+  width: 100%;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #d5d6dc;
+  background: #fff;
+  color: #acadb9;
+}

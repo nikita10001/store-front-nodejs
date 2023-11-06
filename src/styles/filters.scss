@@ -1,0 +1,70 @@
+.filters {
+  background-color: $lightColor;
+  border-radius: 12px;
+  border: 1px solid $borderlight;
+  .btn {
+    width: 100%;
+  }
+  &__wrapper {
+    padding: 20px;
+    @media (max-width: 1000px) {
+      padding: 10px;
+      height: 40px;
+      overflow: hidden;
+      transition: all 0.3s ease 0s;
+      &.active {
+        height: 299px;
+      }
+    }
+  }
+  &__title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1;
+    @media (max-width: 1000px) {
+      font-size: 18px;
+    }
+  }
+  &__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0px 0px 32px 0px;
+    @media (max-width: 1000px) {
+      margin: 0px 0px 25px 0px;
+      cursor: pointer;
+    }
+  }
+  &__body {
+    margin: 0px 0px 20px 0px;
+    transition: all 0.3s ease 0s;
+  }
+
+  &__btn {
+    cursor: pointer;
+    background-color: transparent;
+    color: #acadb9;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+  }
+  &__filter {
+    &:not(:last-child) {
+      margin: 0px 0px 20px 0px;
+      @media (max-width: 1000px) {
+        margin: 0px 0px 15px 0px;
+      }
+    }
+  }
+}
+.filter {
+  &__title {
+    font-weight: 500;
+    margin: 0px 0px 8px 0px;
+  }
+  &__input {
+    &:not(:last-child) {
+      margin: 0px 0px 8px 0px;
+    }
+  }
+}
