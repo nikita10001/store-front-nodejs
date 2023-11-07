@@ -25,7 +25,7 @@ const Header = () => {
             <li className="menu__item">
               {isAuth ? (
                 <NavLink to={ROUTE_PATHS.ADMIN} className="menu__link">
-                  ADMIN
+                  Админ
                 </NavLink>
               ) : (
                 <NavLink className="menu__link" to={ROUTE_PATHS.LOGIN}>
@@ -35,7 +35,7 @@ const Header = () => {
             </li>
             <li className="menu__item">
               <NavLink to={ROUTE_PATHS.MAIN} className="menu__link">
-                Каталог товаров
+                Каталог
               </NavLink>
             </li>
             <li className="menu__item">

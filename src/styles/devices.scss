@@ -172,7 +172,11 @@
       flex: 0 0 320px;
     }
     @media (max-width: 768px) {
-      max-height: 290px;
+      border: none;
+      max-height: 270px;
+    }
+    @media (max-width: 600px) {
+      max-height: 230px;
     }
   }
   &__content {
@@ -211,6 +215,10 @@
     @media (max-width: 1000px) {
       font-size: 19px;
       margin: 0px 0px 10px 0px;
+      line-height: 21px;
+    }
+    @media (max-width: 600px) {
+      font-size: 17px;
     }
   }
   &__descr {
