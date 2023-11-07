@@ -35,7 +35,7 @@ const MainPage = () => {
           ) : (
             <>
               <DevicesList devices={devices} />
-              <Pagination currentPage={currentPage} onChagePage={onChangePage} totalCount={totalCount} />
+              {/* <Pagination currentPage={currentPage} onChagePage={onChangePage} totalCount={totalCount} /> */}
             </>
           )}
         </div>
