@@ -80,10 +80,10 @@ const deviceSlice = createSlice({
       state.devices.push(action.payload);
     },
     removeDevice(state, action) {
-      state.devices = state.devices.filter((device) => device.id !== action.payload);
+      state.devices = state.devices.filter((device) => device._id !== action.payload);
     },
     updateDevice(state, action) {
-      const foundDevice = state.devices.find((device) => device.id == action.payload.id);
+      const foundDevice = state.devices.find((device) => device._id == action.payload.id);
       foundDevice = action.payload;
     },
   },
@@ -91,9 +91,9 @@ const deviceSlice = createSlice({
     builder.addCase(fetchDevices.pending, setStart);
     builder.addCase(fetchDevices.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.devices = action.payload.products;
-      state.totalCount = action.payload.totalCount;
-      state.skip = action.payload.skip;
+      state.devices = action.payload;
+      // state.totalCount = action.payload.totalCount;
+      // state.skip = action.payload.skip;
     });
     builder.addCase(fetchDevices.rejected, setError);
     builder.addCase(fetchSingleDevice.pending, setStart);

@@ -8,6 +8,7 @@ const CartList = ({ items }) => {
       {items.map((item) => (
         <CartItem //
           key={item.id}
+          id={item._id}
           {...item}
         />
       ))}

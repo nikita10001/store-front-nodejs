@@ -20,7 +20,7 @@ const Filters = () => {
     setBrands(data);
   };
   useEffect(() => {
-    fetchBrands();
+    // fetchBrands();
   }, []);
   const options = brands.map((brand, i) => ({
     id: i,

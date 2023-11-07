@@ -6,7 +6,7 @@ export class DeviceService {
     const _to = rangeTo ? `&rangeTo=${rangeTo}` : '';
     const _limit = limit ? `&limit=${limit}` : '';
     const _skip = skip ? `&skip=${skip}` : '';
-    const response = await $host.get(`/devices?query=${query}${_from}${_to}${_limit}${_skip}`);
+    const response = await $host.get(`/devices`);
     return response.data;
   }
   static async getDevice(id) {

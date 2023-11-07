@@ -9,7 +9,7 @@ const DevicesList = ({ devices }) => {
     <div className="devices">
       <div className="devices__wrapper">
         {devices.map((device) => (
-          <DeviceItem key={device.id} {...device} />
+          <DeviceItem key={device._id} id={device._id} {...device} />
         ))}
       </div>
     </div>
