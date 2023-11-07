@@ -18,6 +18,9 @@
   padding: 8px;
   border: 1px solid $secondary;
   transition: all 0.2s ease 0s;
+  @media (max-width: 600px) {
+    padding: 6px;
+  }
   &:hover {
     background-color: transparent;
     color: $secondary;

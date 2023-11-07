@@ -28,9 +28,7 @@ const DevicePage = () => {
       <div className="device-page__container">
         <div className="device-page__block block-device">
           <div className="block-device__images images-device">
-            <div className="images-device__current">
-              <img src={device.img} alt="" />
-            </div>
+            <img src={device.img} alt="" />
             {/* <div className="images-device__list">
               {tempImagesArray.map((image) => (
                 <div //

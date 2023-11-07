@@ -25,6 +25,9 @@
     @media (max-width: 768px) {
       column-gap: 28px;
     }
+    @media (max-width: 450px) {
+      column-gap: 20px;
+    }
   }
   &__link {
     color: $mainDarkColor;

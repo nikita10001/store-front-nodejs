@@ -18,7 +18,7 @@ const Header = () => {
     <header className="header">
       <div className="header__container">
         <NavLink to={ROUTE_PATHS.MAIN}>
-          <h4 className="logo">ONLINE-STORE</h4>
+          <h4 className="logo">1_STORE</h4>
         </NavLink>
         <nav className="header__menu menu">
           <ul className="menu__list">
