@@ -7,7 +7,7 @@ import { selectAuth } from '../store/slices/authSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { isAuth } = useSelector(selectAuth);
+  const { isAuth, user } = useSelector(selectAuth);
   const { cart } = useSelector((state) => state.cart);
 
   useEffect(() => {
@@ -25,7 +25,7 @@ const Header = () => {
             <li className="menu__item">
               {isAuth ? (
                 <NavLink to={ROUTE_PATHS.ADMIN} className="menu__link">
-                  Админ
+                  {user?.name}
                 </NavLink>
               ) : (
                 <NavLink className="menu__link" to={ROUTE_PATHS.LOGIN}>

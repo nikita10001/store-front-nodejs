@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createDevice, updateDevice } from '../../store/slices/deviceSlice';
-import { authAction, selectAuth } from '../../store/slices/authSlice';
+import { authActions, selectAuth } from '../../store/slices/authSlice';
 
 const EMPTY_DEVICE_STATE = {
   name: '',
@@ -32,7 +32,7 @@ const AdminForm = () => {
     e.preventDefault();
     if (Object.values(device).every(Boolean)) {
       dispatch(action(device));
-      dispatch(authAction.setModalVisible(false));
+      dispatch(authActions.setModalVisible(false));
       setDevice(EMPTY_DEVICE_STATE);
     }
   };
@@ -41,7 +41,7 @@ const AdminForm = () => {
   };
   const handleSave = (e) => {
     handleDeviceSubmit(e, updateDevice);
-    dispatch(authAction.setEditingDeviceId(null));
+    dispatch(authActions.setEditingDeviceId(null));
   };
   return (
     <form className="admin__form form-admin" action="">

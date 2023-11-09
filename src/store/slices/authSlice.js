@@ -13,11 +13,23 @@ export const authAction = createAsyncThunk(
   }
 );
 
-export const registerAction = createAsyncThunk('auth/registerAction');
+export const registerAction = createAsyncThunk(
+  'auth/registerAction', //
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await AuthService.register(data);
+      console.log(response);
+      return response;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 const initialState = {
   isAuth: false,
   error: null,
+  user: null,
   editingDeviceId: null,
   modalVisible: false,
 };
@@ -26,6 +38,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setIsAuth(state, action) {
+      console.log(action.payload);
       state.isAuth = action.payload;
     },
     setEditingDeviceId(state, action) {
@@ -45,6 +58,15 @@ const authSlice = createSlice({
     });
     builder.addCase(authAction.rejected, (state, action) => {
       state.isAuth = false;
+      state.error = action.payload;
+    });
+    builder.addCase(registerAction.fulfilled, (state, action) => {
+      state.isAuth = true;
+      state.user = action.payload;
+    });
+    builder.addCase(registerAction.rejected, (state, action) => {
+      state.isAuth = false;
+      state.user = null;
       state.error = action.payload;
     });
   },

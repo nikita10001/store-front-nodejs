@@ -4,7 +4,8 @@ import { NavLink, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { authAction, selectAuth } from '../store/slices/authSlice';
 import { useForm } from 'react-hook-form';
-const Auth = () => {
+
+const LoginPage = () => {
   const dispatch = useDispatch();
   const {
     register,
@@ -60,4 +61,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default LoginPage;
