@@ -1,14 +1,14 @@
 import { useDispatch } from 'react-redux';
 import AppRouter from './components/AppRouter';
 import Header from './components/Header';
-import { adminActions } from './store/slices/adminSlice';
+import { authAction } from './store/slices/authSlice';
 import { useEffect } from 'react';
 
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (localStorage.getItem('auth')) {
-      dispatch(adminActions.setIsAuth(true));
+      dispatch(authAction.setIsAuth(true));
     }
   }, []);
   return (

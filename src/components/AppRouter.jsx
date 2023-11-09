@@ -2,10 +2,10 @@ import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ROUTE_PATHS, privateRoutes, publicRoutes } from '../router';
 import { useSelector } from 'react-redux';
-import { selectAdmin } from '../store/slices/adminSlice';
+import { selectAuth } from '../store/slices/authSlice';
 
 const AppRouter = () => {
-  const { isAuth } = useSelector(selectAdmin);
+  const { isAuth } = useSelector(selectAuth);
 
   return (
     <Routes>

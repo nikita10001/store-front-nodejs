@@ -3,12 +3,14 @@ import DevicePage from '../pages/DevicePage';
 import MainPage from '../pages/MainPage';
 import LoginPage from '../pages/LoginPage';
 import CartPage from '../pages/CartPage';
+import RegistrationPage from '../pages/RegistrationPage';
 
 export const ROUTE_PATHS = {
   MAIN: '/devices',
-  LOGIN: '/login',
+  LOGIN: '/auth/login',
   ADMIN: '/admin',
   CART: '/cart',
+  REGISTRATION: '/auth/registration',
 };
 
 export const publicRoutes = [
@@ -27,6 +29,10 @@ export const publicRoutes = [
   {
     path: ROUTE_PATHS.CART,
     Component: CartPage,
+  },
+  {
+    path: ROUTE_PATHS.REGISTRATION,
+    Component: RegistrationPage,
   },
 ];
 

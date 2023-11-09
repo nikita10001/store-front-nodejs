@@ -13,13 +13,15 @@ export const authAction = createAsyncThunk(
   }
 );
 
+export const registerAction = createAsyncThunk('auth/registerAction');
+
 const initialState = {
   isAuth: false,
   error: null,
   editingDeviceId: null,
   modalVisible: false,
 };
-const adminSlice = createSlice({
+const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
@@ -48,5 +50,5 @@ const adminSlice = createSlice({
   },
 });
 
-export const selectAdmin = (state) => state.admin;
-export const { reducer: adminReducer, actions: adminActions } = adminSlice;
+export const selectAuth = (state) => state.auth;
+export const { reducer: authReducer, actions: authActions } = authSlice;

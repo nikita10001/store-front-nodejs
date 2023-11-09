@@ -2,9 +2,9 @@ import React from 'react';
 import { ROUTE_PATHS } from '../router';
 import { NavLink, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { authAction, selectAuth } from '../store/slices/authSlice';
+import { registerAction, selectAuth } from '../store/slices/authSlice';
 import { useForm } from 'react-hook-form';
-const Auth = () => {
+const RegistrationPage = () => {
   const dispatch = useDispatch();
   const {
     register,
@@ -17,7 +17,7 @@ const Auth = () => {
   const { isAuth, error } = useSelector(selectAuth);
 
   const onSubmit = (data) => {
-    dispatch(authAction(data));
+    dispatch(registerAction(data));
     reset();
   };
 
@@ -32,6 +32,15 @@ const Auth = () => {
       <div className="login__container">
         <div className="login__block">
           <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
+            <input //
+              {...register('name', {
+                required: true,
+              })}
+              add={'add'}
+              className="form__input input"
+              type="text"
+              placeholder="Имя"
+            />
             <input //
               {...register('login', {
                 required: true,
@@ -49,10 +58,10 @@ const Auth = () => {
               type="password"
               placeholder="Пароль"
             />
-            <button className="btn btn-primary login__btn">Войти</button>
+            <button className="btn btn-primary login__btn">Зарегистрироваться</button>
           </form>
           <div className="auth-bottom">
-            Нет аккаунта? <NavLink to={ROUTE_PATHS.REGISTRATION}>Зарегистрироваться</NavLink>
+            Уже есть аккаунт? <NavLink to={ROUTE_PATHS.LOGIN}>Войти</NavLink>
           </div>
         </div>
       </div>
@@ -60,4 +69,4 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+export default RegistrationPage;
