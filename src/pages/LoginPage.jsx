@@ -15,16 +15,15 @@ const LoginPage = () => {
   } = useForm({
     mode: 'onBlur',
   });
-  const { isAuth, error } = useSelector(selectAuth);
+
+  const { user } = useSelector(selectAuth);
 
   const onSubmit = (data) => {
     dispatch(loginAction(data));
     reset();
   };
 
-  //add useEffect in case LOGOUT.
-  if (isAuth) {
-    localStorage.setItem('auth', true);
+  if (user) {
     return <Navigate to={ROUTE_PATHS.ADMIN} />;
   }
 

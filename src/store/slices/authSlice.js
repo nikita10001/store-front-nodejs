@@ -31,7 +31,7 @@ export const checkAuth = createAsyncThunk(
   'auth/checkAuth', //
   async (data, { rejectWithValue }) => {
     try {
-      const user = await AuthService.me();
+      const user = await AuthService.check();
       console.log('Check me action: ', user);
 
       return user;
@@ -59,19 +59,18 @@ const authSlice = createSlice({
       state.editingDeviceId = action.payload;
     },
     setModalVisible(state, action) {
-      // if (!action.payload) {
-      //   state.editingDevice = null;
-      // }
       state.modalVisible = action.payload;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(loginAction.fulfilled, (state, action) => {
-      state.isAuth = action.payload;
+      state.isAuth = true;
+      state.user = action.payload;
       state.error = null;
     });
     builder.addCase(loginAction.rejected, (state, action) => {
       state.isAuth = false;
+      state.user = null;
       state.error = action.payload;
     });
     builder.addCase(registerAction.fulfilled, (state, action) => {
@@ -82,6 +81,14 @@ const authSlice = createSlice({
       state.isAuth = false;
       state.user = null;
       state.error = action.payload;
+    });
+    builder.addCase(checkAuth.fulfilled, (state, action) => {
+      state.user = action.payload;
+      state.isAuth = true;
+    });
+    builder.addCase(checkAuth.rejected, (state, action) => {
+      state.user = null;
+      state.isAuth = false;
     });
   },
 });
