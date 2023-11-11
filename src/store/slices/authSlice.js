@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { AuthService } from '../../api/AuthService';
 
-export const authAction = createAsyncThunk(
-  'auth/authAction', //
+export const loginAction = createAsyncThunk(
+  'auth/loginAction', //
   async (data, { rejectWithValue }) => {
     try {
-      const response = await AuthService.auth(data);
-      return response;
+      const user = await AuthService.login(data);
+      console.log('LoginAction: ', user);
+      return user;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -17,9 +18,9 @@ export const registerAction = createAsyncThunk(
   'auth/registerAction', //
   async (data, { rejectWithValue }) => {
     try {
-      const response = await AuthService.register(data);
-      console.log(response);
-      return response;
+      const user = await AuthService.registration(data);
+      console.log('Registration Action: ', user);
+      return user;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -30,8 +31,10 @@ export const checkAuth = createAsyncThunk(
   'auth/checkAuth', //
   async (data, { rejectWithValue }) => {
     try {
-      const response = await AuthService.me();
-      return response.data;
+      const user = await AuthService.me();
+      console.log('Check me action: ', user);
+
+      return user;
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -63,11 +66,11 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(authAction.fulfilled, (state, action) => {
+    builder.addCase(loginAction.fulfilled, (state, action) => {
       state.isAuth = action.payload;
       state.error = null;
     });
-    builder.addCase(authAction.rejected, (state, action) => {
+    builder.addCase(loginAction.rejected, (state, action) => {
       state.isAuth = false;
       state.error = action.payload;
     });

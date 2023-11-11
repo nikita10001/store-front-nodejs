@@ -2,7 +2,7 @@ import React from 'react';
 import { ROUTE_PATHS } from '../router';
 import { NavLink, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { authAction, selectAuth } from '../store/slices/authSlice';
+import { loginAction, selectAuth } from '../store/slices/authSlice';
 import { useForm } from 'react-hook-form';
 
 const LoginPage = () => {
@@ -18,7 +18,7 @@ const LoginPage = () => {
   const { isAuth, error } = useSelector(selectAuth);
 
   const onSubmit = (data) => {
-    dispatch(authAction(data));
+    dispatch(loginAction(data));
     reset();
   };
 
