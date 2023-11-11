@@ -2,18 +2,25 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
-import { getProductsFromCart } from '../store/slices/cartSlice';
-import { selectAdmin } from '../store/slices/adminSlice';
+import { cartActions, getProductsFromCart } from '../store/slices/cartSlice';
+import { authActions, selectAuth } from '../store/slices/authSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { isAuth } = useSelector(selectAdmin);
+  const { user, isAuth } = useSelector(selectAuth);
   const { cart } = useSelector((state) => state.cart);
-
+  const isAdmin = user?.role === 'admin';
   useEffect(() => {
-    dispatch(getProductsFromCart());
-  }, [cart.length]);
+    if (user) {
+      dispatch(getProductsFromCart(user.id));
+    }
+  }, [user]);
 
+  const logout = () => {
+    dispatch(authActions.setLogout());
+    dispatch(cartActions.clearCart());
+    localStorage.removeItem('token');
+  };
   return (
     <header className="header">
       <div className="header__container">
@@ -24,9 +31,19 @@ const Header = () => {
           <ul className="menu__list">
             <li className="menu__item">
               {isAuth ? (
-                <NavLink to={ROUTE_PATHS.ADMIN} className="menu__link">
-                  Админ
-                </NavLink>
+                <>
+                  {isAdmin ? (
+                    <NavLink to={ROUTE_PATHS.ADMIN} className="menu__link">
+                      Админ
+                    </NavLink>
+                  ) : (
+                    <span>{user?.name}</span>
+                  )}
+
+                  <button onClick={logout} style={{ marginLeft: '10px' }} className="btn outline">
+                    Выйти
+                  </button>
+                </>
               ) : (
                 <NavLink className="menu__link" to={ROUTE_PATHS.LOGIN}>
                   Войти
@@ -61,7 +78,7 @@ const Header = () => {
                       fill="black"
                     />
                   </svg>
-                  <b>{cart.length}</b>
+                  <b>{cart.length || 0}</b>
                 </span>
                 <span className="basket-link__text">Корзина</span>
               </NavLink>

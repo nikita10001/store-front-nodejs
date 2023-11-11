@@ -1,16 +1,20 @@
 import { useDispatch } from 'react-redux';
 import AppRouter from './components/AppRouter';
 import Header from './components/Header';
-import { adminActions } from './store/slices/adminSlice';
-import { useEffect } from 'react';
+import { checkAuth } from './store/slices/authSlice';
+import { useEffect, useState } from 'react';
+import Preloader from './components/UI/Preloader';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (localStorage.getItem('auth')) {
-      dispatch(adminActions.setIsAuth(true));
-    }
+    dispatch(checkAuth());
+    setIsLoading(false);
   }, []);
+  if (isLoading) {
+    return <Preloader />;
+  }
   return (
     <div className="app">
       <Header />

@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { ROUTE_PATHS } from '../../router';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { adminActions } from '../../store/slices/adminSlice';
+import { authActions } from '../../store/slices/authSlice';
 import { removeDevice } from '../../store/slices/deviceSlice';
 
 const AdminItem = ({ id, name, img, price, rating }) => {
@@ -12,8 +12,8 @@ const AdminItem = ({ id, name, img, price, rating }) => {
     dispatch(removeDevice(id));
   };
   const handleEdit = () => {
-    dispatch(adminActions.setModalVisible(true));
-    dispatch(adminActions.setEditingDeviceId(id));
+    dispatch(authActions.setModalVisible(true));
+    dispatch(authActions.setEditingDeviceId(id));
   };
   return (
     <div className="admin__item item-admin">

@@ -7,7 +7,7 @@ const CartList = ({ items }) => {
       {!items.length && <h4 className="error-title">Корзина пуста!</h4>}
       {items.map((item) => (
         <CartItem //
-          key={item.id}
+          key={item._id}
           id={item._id}
           {...item}
         />

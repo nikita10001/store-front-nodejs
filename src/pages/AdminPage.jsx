@@ -7,16 +7,16 @@ import { selectFilter } from '../store/slices/filterSlice';
 import Modal from '../components/UI/modal/Modal';
 import AdminForm from '../components/admin/AdminForm';
 import AdminList from '../components/admin/AdminList';
-import { adminActions, selectAdmin } from '../store/slices/adminSlice';
+import { authActions, selectAuth } from '../store/slices/authSlice';
 
 const AdminPage = () => {
   const dispatch = useDispatch();
   const { devices, isLoading, error } = useSelector(selectDevices);
   const { query } = useSelector(selectFilter);
-  const { modalVisible, editingDeviceId } = useSelector(selectAdmin);
+  const { modalVisible, editingDeviceId } = useSelector(selectAuth);
   const setModalVisible = (flag) => {
-    dispatch(adminActions.setModalVisible(flag));
-    dispatch(adminActions.setEditingDeviceId(null));
+    dispatch(authActions.setModalVisible(flag));
+    dispatch(authActions.setEditingDeviceId(null));
   };
   useEffect(() => {
     dispatch(fetchDevices({ query }));

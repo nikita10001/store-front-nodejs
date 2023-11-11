@@ -1,14 +1,15 @@
 import AdminPage from '../pages/AdminPage';
 import DevicePage from '../pages/DevicePage';
 import MainPage from '../pages/MainPage';
-import LoginPage from '../pages/LoginPage';
+import AuthPage from '../pages/AuthPage';
 import CartPage from '../pages/CartPage';
 
 export const ROUTE_PATHS = {
   MAIN: '/devices',
-  LOGIN: '/login',
+  LOGIN: '/auth/login',
   ADMIN: '/admin',
   CART: '/cart',
+  REGISTRATION: '/auth/registration',
 };
 
 export const publicRoutes = [
@@ -22,15 +23,22 @@ export const publicRoutes = [
   },
   {
     path: ROUTE_PATHS.LOGIN,
-    Component: LoginPage,
+    Component: AuthPage,
   },
+  {
+    path: ROUTE_PATHS.REGISTRATION,
+    Component: AuthPage,
+  },
+];
+
+export const privateRoutes = [
   {
     path: ROUTE_PATHS.CART,
     Component: CartPage,
   },
 ];
 
-export const privateRoutes = [
+export const adminRoutes = [
   {
     path: ROUTE_PATHS.ADMIN,
     Component: AdminPage,

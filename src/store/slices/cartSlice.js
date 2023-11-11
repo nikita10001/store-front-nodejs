@@ -3,9 +3,9 @@ import { CartService } from '../../api/CartService';
 
 export const getProductsFromCart = createAsyncThunk(
   'cart/getProductsFromCart', //
-  async function (_, { rejectWithValue }) {
+  async function (userId, { rejectWithValue }) {
     try {
-      const data = await CartService.getCart();
+      const data = await CartService.getCart(userId);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -15,9 +15,9 @@ export const getProductsFromCart = createAsyncThunk(
 
 export const addProductToCart = createAsyncThunk(
   'cart/addProductToCart', //
-  async function (id, { rejectWithValue, dispatch }) {
+  async function (deviceId, { rejectWithValue, dispatch }) {
     try {
-      const data = await CartService.addToCart(id);
+      const data = await CartService.addToCart(deviceId);
       dispatch(cartActions.addToCart(data));
     } catch (error) {
       return rejectWithValue(error.message);
@@ -55,6 +55,9 @@ const cartSlice = createSlice({
       console.log('from remove from cart');
       console.log(action);
       state.cart = state.cart.filter((device) => device._id !== action.payload);
+    },
+    clearCart(state, action) {
+      state.cart = [];
     },
   },
   extraReducers: (builder) => {
