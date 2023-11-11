@@ -9,6 +9,7 @@ const DeviceItem = ({ id, name, price, rating, img, description }) => {
   const handleAddCart = (e) => {
     dispatch(addProductToCart(id));
   };
+
   return (
     <article className="devices__card device-card">
       <NavLink to={ROUTE_PATHS.MAIN + '/' + id} className="device-card__image">

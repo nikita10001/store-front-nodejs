@@ -6,18 +6,26 @@ import EmptyCart from '../components/cart/EmptyCart';
 import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
 import Order from '../components/Order';
+import { selectAuth } from '../store/slices/authSlice';
+import Preloader from '../components/UI/Preloader';
 
 const CartPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { cart } = useSelector((state) => state.cart);
+  const { isLoading, cart } = useSelector((state) => state.cart);
+
   const [isOrder, setIsOrder] = useState(false);
   const totalPrice = useMemo(() => cart.reduce((sum, item) => sum + item.price, 0));
 
-  useEffect(() => {
-    dispatch(getProductsFromCart());
-  }, []);
+  // useEffect(() => {
+  //   if (user) {
+  //     dispatch(getProductsFromCart(user.id));
+  //   }
+  // }, [user]);
 
+  if (isLoading) {
+    return <Preloader />;
+  }
   return (
     <div className="page__cart cart-page">
       <div className="cart-page__container">

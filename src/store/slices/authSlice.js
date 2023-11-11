@@ -57,7 +57,7 @@ const authSlice = createSlice({
     setModalVisible(state, action) {
       state.modalVisible = action.payload;
     },
-    setLogout(state, action) {
+    setLogout(state) {
       state.isAuth = false;
       state.user = null;
     },

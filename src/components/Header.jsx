@@ -9,9 +9,15 @@ const Header = () => {
   const dispatch = useDispatch();
   const { user, isAuth } = useSelector(selectAuth);
   const { cart } = useSelector((state) => state.cart);
+  // useEffect(() => {
+
+  //   dispatch(getProductsFromCart(user.id));
+  // }, [cart.length]);
   useEffect(() => {
-    dispatch(getProductsFromCart());
-  }, [cart.length]);
+    if (user) {
+      dispatch(getProductsFromCart(user.id));
+    }
+  }, [user]);
   const logout = () => {
     dispatch(authActions.setLogout());
     localStorage.removeItem('token');
@@ -68,7 +74,7 @@ const Header = () => {
                       fill="black"
                     />
                   </svg>
-                  <b>{cart.length}</b>
+                  <b>{cart.length || 0}</b>
                 </span>
                 <span className="basket-link__text">Корзина</span>
               </NavLink>
