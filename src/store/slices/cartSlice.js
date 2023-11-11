@@ -56,6 +56,9 @@ const cartSlice = createSlice({
       console.log(action);
       state.cart = state.cart.filter((device) => device._id !== action.payload);
     },
+    clearCart(state, action) {
+      state.cart = [];
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getProductsFromCart.pending, (state) => {

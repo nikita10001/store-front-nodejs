@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
-import { getProductsFromCart } from '../store/slices/cartSlice';
+import { cartActions, getProductsFromCart } from '../store/slices/cartSlice';
 import { authActions, selectAuth } from '../store/slices/authSlice';
 
 const Header = () => {
@@ -20,6 +20,7 @@ const Header = () => {
   }, [user]);
   const logout = () => {
     dispatch(authActions.setLogout());
+    dispatch(cartActions.clearCart());
     localStorage.removeItem('token');
   };
   return (

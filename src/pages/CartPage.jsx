@@ -23,9 +23,6 @@ const CartPage = () => {
   //   }
   // }, [user]);
 
-  if (isLoading) {
-    return <Preloader />;
-  }
   return (
     <div className="page__cart cart-page">
       <div className="cart-page__container">
@@ -37,7 +34,11 @@ const CartPage = () => {
         </div>
         <div className="cart-page__wrapper">
           {!cart.length ? (
-            <EmptyCart />
+            isLoading ? (
+              <Preloader />
+            ) : (
+              <EmptyCart />
+            )
           ) : (
             <>
               <div className="cart-page__list">
