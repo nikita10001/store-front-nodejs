@@ -3,9 +3,9 @@ import { DeviceService } from '../../api/DeviceService';
 
 export const fetchDevices = createAsyncThunk(
   'devices/fetchDevices', //
-  async function ({ query, currentPage: page, limit }, { rejectWithValue }) {
+  async function ({ query, currentPage: page, limit, rangeFrom, rangeTo }, { rejectWithValue }) {
     try {
-      return await DeviceService.getAllDevices(query, page, limit);
+      return await DeviceService.getAllDevices(query, page, limit, rangeFrom, rangeTo);
     } catch (error) {
       return rejectWithValue(error.message);
     }

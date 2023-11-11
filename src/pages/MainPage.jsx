@@ -20,7 +20,7 @@ const MainPage = () => {
   };
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(fetchDevices({ query, limit, currentPage }));
+    dispatch(fetchDevices({ query, limit, currentPage, rangeFrom: range.from, rangeTo: range.to }));
   }, [query, range, currentPage]);
   return (
     <div className="page__catalog catalog">
