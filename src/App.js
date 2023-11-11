@@ -13,7 +13,7 @@ function App() {
   }, []);
   return (
     <div className="app">
-      {/* <Header /> */}
+      <Header />
       <main className="page">
         <AppRouter />
       </main>

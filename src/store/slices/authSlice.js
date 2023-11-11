@@ -26,6 +26,18 @@ export const registerAction = createAsyncThunk(
   }
 );
 
+export const checkAuth = createAsyncThunk(
+  'auth/checkAuth', //
+  async (data, { rejectWithValue }) => {
+    try {
+      const response = await AuthService.me();
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   isAuth: false,
   error: null,
@@ -38,7 +50,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setIsAuth(state, action) {
-      console.log(action.payload);
       state.isAuth = action.payload;
     },
     setEditingDeviceId(state, action) {

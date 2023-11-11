@@ -9,7 +9,6 @@ const Header = () => {
   const dispatch = useDispatch();
   const { isAuth, user } = useSelector(selectAuth);
   const { cart } = useSelector((state) => state.cart);
-
   useEffect(() => {
     dispatch(getProductsFromCart());
   }, [cart.length]);
