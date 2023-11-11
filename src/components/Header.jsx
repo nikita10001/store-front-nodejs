@@ -10,10 +10,6 @@ const Header = () => {
   const { user, isAuth } = useSelector(selectAuth);
   const { cart } = useSelector((state) => state.cart);
   const isAdmin = user?.role === 'admin';
-  // useEffect(() => {
-
-  //   dispatch(getProductsFromCart(user.id));
-  // }, [cart.length]);
   useEffect(() => {
     if (user) {
       dispatch(getProductsFromCart(user.id));

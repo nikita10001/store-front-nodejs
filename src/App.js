@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import AppRouter from './components/AppRouter';
 import Header from './components/Header';
-import { authActions, checkAuth } from './store/slices/authSlice';
+import { checkAuth } from './store/slices/authSlice';
 import { useEffect, useState } from 'react';
 import Preloader from './components/UI/Preloader';
 

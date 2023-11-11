@@ -1,12 +1,14 @@
 import React from 'react';
 import { ROUTE_PATHS } from '../router';
-import { NavLink, Navigate } from 'react-router-dom';
+import { NavLink, Navigate, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAction, selectAuth } from '../store/slices/authSlice';
+import { loginAction, registerAction, selectAuth } from '../store/slices/authSlice';
 import { useForm } from 'react-hook-form';
 
-const LoginPage = () => {
+const AuthPage = () => {
   const dispatch = useDispatch();
+  const location = useLocation();
+  const isLogin = location.pathname.includes('/login');
   const {
     register,
     handleSubmit,
@@ -19,19 +21,33 @@ const LoginPage = () => {
   const { user } = useSelector(selectAuth);
 
   const onSubmit = (data) => {
-    dispatch(loginAction(data));
+    if (isLogin) {
+      dispatch(loginAction(data));
+    } else {
+      dispatch(registerAction(data));
+    }
     reset();
   };
 
   if (user) {
     return <Navigate to={ROUTE_PATHS.ADMIN} />;
   }
-
   return (
     <div className="login">
       <div className="login__container">
         <div className="login__block">
           <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
+            {!isLogin && (
+              <input //
+                {...register('name', {
+                  required: true,
+                })}
+                add={'add'}
+                className="form__input input"
+                type="text"
+                placeholder="Имя"
+              />
+            )}
             <input //
               {...register('login', {
                 required: true,
@@ -49,10 +65,18 @@ const LoginPage = () => {
               type="password"
               placeholder="Пароль"
             />
-            <button className="btn btn-primary login__btn">Войти</button>
+            <button className="btn btn-primary login__btn">{isLogin ? 'Войти' : 'Зарегистрироваться'}</button>
           </form>
           <div className="auth-bottom">
-            Нет аккаунта? <NavLink to={ROUTE_PATHS.REGISTRATION}>Зарегистрироваться</NavLink>
+            {!isLogin ? (
+              <>
+                Уже есть аккаунт? <NavLink to={ROUTE_PATHS.LOGIN}>Войти</NavLink>
+              </>
+            ) : (
+              <>
+                Нет аккаунта? <NavLink to={ROUTE_PATHS.REGISTRATION}>Зарегистрироваться</NavLink>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -60,4 +84,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default AuthPage;
