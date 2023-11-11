@@ -6,7 +6,6 @@ export const loginAction = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const user = await AuthService.login(data);
-      console.log('LoginAction: ', user);
       return user;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -19,7 +18,6 @@ export const registerAction = createAsyncThunk(
   async (data, { rejectWithValue }) => {
     try {
       const user = await AuthService.registration(data);
-      console.log('Registration Action: ', user);
       return user;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -29,11 +27,9 @@ export const registerAction = createAsyncThunk(
 
 export const checkAuth = createAsyncThunk(
   'auth/checkAuth', //
-  async (data, { rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       const user = await AuthService.check();
-      console.log('Check me action: ', user);
-
       return user;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -60,6 +56,10 @@ const authSlice = createSlice({
     },
     setModalVisible(state, action) {
       state.modalVisible = action.payload;
+    },
+    setLogout(state, action) {
+      state.isAuth = false;
+      state.user = null;
     },
   },
   extraReducers: (builder) => {

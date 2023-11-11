@@ -15,7 +15,6 @@ export class AuthService {
   }
   static async check() {
     const { data } = await $host.get(`/auth/check`);
-    console.log(data.token);
     localStorage.setItem('token', data.token);
     return jwtDecode(data.token);
   }

@@ -3,16 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
 import { getProductsFromCart } from '../store/slices/cartSlice';
-import { selectAuth } from '../store/slices/authSlice';
+import { authActions, selectAuth } from '../store/slices/authSlice';
 
 const Header = () => {
   const dispatch = useDispatch();
-  const { isAuth, user } = useSelector(selectAuth);
+  const { user, isAuth } = useSelector(selectAuth);
   const { cart } = useSelector((state) => state.cart);
   useEffect(() => {
     dispatch(getProductsFromCart());
   }, [cart.length]);
-
+  const logout = () => {
+    dispatch(authActions.setLogout());
+    localStorage.removeItem('token');
+  };
   return (
     <header className="header">
       <div className="header__container">
@@ -23,9 +26,14 @@ const Header = () => {
           <ul className="menu__list">
             <li className="menu__item">
               {isAuth ? (
-                <NavLink to={ROUTE_PATHS.ADMIN} className="menu__link">
-                  {user?.name}
-                </NavLink>
+                <>
+                  <NavLink to={ROUTE_PATHS.ADMIN} className="menu__link">
+                    {user?.name}
+                  </NavLink>
+                  <button onClick={logout} style={{ marginLeft: '10px' }} className="btn outline">
+                    Выйти
+                  </button>
+                </>
               ) : (
                 <NavLink className="menu__link" to={ROUTE_PATHS.LOGIN}>
                   Войти
