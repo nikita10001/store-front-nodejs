@@ -9,6 +9,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const { user, isAuth } = useSelector(selectAuth);
   const { cart } = useSelector((state) => state.cart);
+  const isAdmin = user?.role === 'admin';
   // useEffect(() => {
 
   //   dispatch(getProductsFromCart(user.id));
@@ -18,6 +19,7 @@ const Header = () => {
       dispatch(getProductsFromCart(user.id));
     }
   }, [user]);
+
   const logout = () => {
     dispatch(authActions.setLogout());
     dispatch(cartActions.clearCart());
@@ -34,9 +36,14 @@ const Header = () => {
             <li className="menu__item">
               {isAuth ? (
                 <>
-                  <NavLink to={ROUTE_PATHS.ADMIN} className="menu__link">
-                    {user?.name}
-                  </NavLink>
+                  {isAdmin ? (
+                    <NavLink to={ROUTE_PATHS.ADMIN} className="menu__link">
+                      Админ
+                    </NavLink>
+                  ) : (
+                    <span>{user?.name}</span>
+                  )}
+
                   <button onClick={logout} style={{ marginLeft: '10px' }} className="btn outline">
                     Выйти
                   </button>

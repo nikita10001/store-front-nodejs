@@ -27,7 +27,7 @@ export const registerAction = createAsyncThunk(
 
 export const checkAuth = createAsyncThunk(
   'auth/checkAuth', //
-  async (_, { rejectWithValue }) => {
+  async (data, { rejectWithValue }) => {
     try {
       const user = await AuthService.check();
       return user;

@@ -27,16 +27,19 @@ export const publicRoutes = [
     Component: LoginPage,
   },
   {
-    path: ROUTE_PATHS.CART,
-    Component: CartPage,
-  },
-  {
     path: ROUTE_PATHS.REGISTRATION,
     Component: RegistrationPage,
   },
 ];
 
 export const privateRoutes = [
+  {
+    path: ROUTE_PATHS.CART,
+    Component: CartPage,
+  },
+];
+
+export const adminRoutes = [
   {
     path: ROUTE_PATHS.ADMIN,
     Component: AdminPage,
