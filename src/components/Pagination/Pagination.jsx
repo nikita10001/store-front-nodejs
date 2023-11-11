@@ -10,7 +10,8 @@ const Pagination = ({ currentPage, onChagePage, totalCount, limit }) => {
         breakLabel="..."
         nextLabel=">>>"
         onPageChange={(e) => onChagePage(e.selected + 1)}
-        pageRangeDisplayed={4}
+        pageRangeDisplayed={2}
+        marginPagesDisplayed={2}
         pageCount={Math.ceil(totalCount / limit)}
         forcePage={currentPage - 1}
         previousLabel="<<<"
@@ -20,7 +21,7 @@ const Pagination = ({ currentPage, onChagePage, totalCount, limit }) => {
         previousLinkClassName="page-link"
         nextClassName="page-item"
         nextLinkClassName="page-link"
-        breakClassName="page-item"
+        breakClassName="page-dots"
         breakLinkClassName="page-link"
         containerClassName="pagination"
         activeClassName="active"

@@ -30,7 +30,7 @@ const MainPage = () => {
         </div>
         <div className="catalog__body">
           <SearchDevice />
-          {isLoading || !devices.length ? ( //
+          {isLoading ? ( //
             <Preloader />
           ) : (
             <>
