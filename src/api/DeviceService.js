@@ -1,12 +1,13 @@
 import { $host } from './service';
 
 export class DeviceService {
-  static async getAllDevices(query = '', rangeFrom, rangeTo, limit, skip) {
-    const _from = rangeFrom ? `&rangeFrom=${rangeFrom}` : '';
-    const _to = rangeTo ? `&rangeTo=${rangeTo}` : '';
+  static async getAllDevices(query = '', page, limit) {
+    // const _from = rangeFrom ? `&rangeFrom=${rangeFrom}` : '';
+    // const _to = rangeTo ? `&rangeTo=${rangeTo}` : '';
     const _limit = limit ? `&limit=${limit}` : '';
-    const _skip = skip ? `&skip=${skip}` : '';
-    const response = await $host.get(`/devices?query=${query}`);
+    const _page = limit ? `&page=${page}` : '';
+    // const _skip = skip ? `&skip=${skip}` : '';
+    const response = await $host.get(`/devices?query=${query}${_page}${_limit}`);
     // const response = await $host.get(`/devices`);
     return response.data;
   }

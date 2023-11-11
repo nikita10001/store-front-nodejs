@@ -3,9 +3,9 @@ import { DeviceService } from '../../api/DeviceService';
 
 export const fetchDevices = createAsyncThunk(
   'devices/fetchDevices', //
-  async function ({ query, rangeFrom, rangeTo, limit, skip }, { rejectWithValue }) {
+  async function ({ query, currentPage: page, limit }, { rejectWithValue }) {
     try {
-      return await DeviceService.getAllDevices(query, rangeFrom, rangeTo, limit, skip);
+      return await DeviceService.getAllDevices(query, page, limit);
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -59,10 +59,18 @@ const initialState = {
   devices: [],
   device: {},
   isLoading: false,
-  totalCount: null,
-  skip: 0,
   error: null,
+  totalItems: 0,
+  totalPages: 0,
 };
+
+// currentPage: 1
+// ​​
+// devices: Array(10) [ {…}, {…}, {…}, … ]
+// ​​
+// totalItems: 16
+// ​​
+// totalPages: 2
 const setStart = (state) => {
   state.isLoading = true;
   state.error = null;
@@ -91,7 +99,9 @@ const deviceSlice = createSlice({
     builder.addCase(fetchDevices.pending, setStart);
     builder.addCase(fetchDevices.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.devices = action.payload;
+      state.devices = action.payload.devices;
+      state.totalItems = action.payload.totalItems;
+      state.totalPages = action.payload.totalPages;
       // state.totalCount = action.payload.totalCount;
       // state.skip = action.payload.skip;
     });

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import './Pagination.scss';
-import { useSelector } from 'react-redux';
-import { selectDevices } from '../../store/slices/deviceSlice';
 
-const Pagination = ({ currentPage, onChagePage, totalCount }) => {
+const Pagination = ({ currentPage, onChagePage, totalCount, limit }) => {
   return (
     <>
       {/* <Items currentItems={divices} /> */}
@@ -13,7 +11,7 @@ const Pagination = ({ currentPage, onChagePage, totalCount }) => {
         nextLabel=">>>"
         onPageChange={(e) => onChagePage(e.selected + 1)}
         pageRangeDisplayed={4}
-        pageCount={Math.ceil((totalCount - 5) / 5)}
+        pageCount={Math.ceil(totalCount / limit)}
         forcePage={currentPage - 1}
         previousLabel="<<<"
         pageClassName="page-item"

@@ -10,17 +10,17 @@ import Pagination from '../components/Pagination/Pagination.jsx';
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const { devices, isLoading, totalCount } = useSelector(selectDevices);
+  const { devices, isLoading, totalItems } = useSelector(selectDevices);
   const { query, range } = useSelector(selectFilter);
-
-  const [currentPage, setCurrentPage] = useState(0);
+  const [limit, setLimit] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const onChangePage = (page) => {
     setCurrentPage(page);
   };
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(fetchDevices({ query, rangeFrom: range.from, rangeTo: range.to, limit: 5, skip: currentPage * 5 }));
+    dispatch(fetchDevices({ query, limit, currentPage }));
   }, [query, range, currentPage]);
   return (
     <div className="page__catalog catalog">
@@ -35,7 +35,7 @@ const MainPage = () => {
           ) : (
             <>
               <DevicesList devices={devices} />
-              {/* <Pagination currentPage={currentPage} onChagePage={onChangePage} totalCount={totalCount} /> */}
+              <Pagination currentPage={currentPage} onChagePage={onChangePage} totalCount={totalItems} limit={limit} />
             </>
           )}
         </div>
