@@ -6,21 +6,21 @@ import DevicesList from '../components/DevicesList.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDevices, selectDevices } from '../store/slices/deviceSlice.js';
 import { selectFilter } from '../store/slices/filterSlice.js';
-import Pagination from '../components/Pagination/Pagination.jsx';
+import Pagination from '../components/pagination/Pagination.jsx';
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const { devices, isLoading, totalCount } = useSelector(selectDevices);
+  const { devices, isLoading, totalItems } = useSelector(selectDevices);
   const { query, range } = useSelector(selectFilter);
-
-  const [currentPage, setCurrentPage] = useState(0);
+  const [limit, setLimit] = useState(5);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const onChangePage = (page) => {
     setCurrentPage(page);
   };
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(fetchDevices({ query, rangeFrom: range.from, rangeTo: range.to, limit: 5, skip: currentPage * 5 }));
+    dispatch(fetchDevices({ query, limit, currentPage, rangeFrom: range.from, rangeTo: range.to }));
   }, [query, range, currentPage]);
   return (
     <div className="page__catalog catalog">
@@ -30,12 +30,12 @@ const MainPage = () => {
         </div>
         <div className="catalog__body">
           <SearchDevice />
-          {isLoading || !devices.length ? ( //
+          {isLoading ? ( //
             <Preloader />
           ) : (
             <>
               <DevicesList devices={devices} />
-              {/* <Pagination currentPage={currentPage} onChagePage={onChangePage} totalCount={totalCount} /> */}
+              <Pagination currentPage={currentPage} onChagePage={onChangePage} totalCount={totalItems} limit={limit} />
             </>
           )}
         </div>

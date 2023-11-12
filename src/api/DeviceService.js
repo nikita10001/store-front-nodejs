@@ -1,12 +1,13 @@
 import { $host } from './service';
 
 export class DeviceService {
-  static async getAllDevices(query = '', rangeFrom, rangeTo, limit, skip) {
+  static async getAllDevices(query = '', page, limit, rangeFrom, rangeTo) {
     const _from = rangeFrom ? `&rangeFrom=${rangeFrom}` : '';
     const _to = rangeTo ? `&rangeTo=${rangeTo}` : '';
     const _limit = limit ? `&limit=${limit}` : '';
-    const _skip = skip ? `&skip=${skip}` : '';
-    const response = await $host.get(`/devices?query=${query}`);
+    const _page = limit ? `&page=${page}` : '';
+    // const _skip = skip ? `&skip=${skip}` : '';
+    const response = await $host.get(`/devices?query=${query}${_page}${_limit}${_from}${_to}`);
     // const response = await $host.get(`/devices`);
     return response.data;
   }
@@ -18,6 +19,7 @@ export class DeviceService {
     const response = await $host.delete('/devices/' + id);
     return response.data;
   }
+
   static async addDevice(device) {
     const response = await $host.post('/devices', {
       name: device.name,
