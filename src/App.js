@@ -1,18 +1,17 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import AppRouter from './components/AppRouter';
 import Header from './components/Header';
-import { checkAuth } from './store/slices/authSlice';
+import { checkAuth, selectAuth } from './store/slices/authSlice';
 import { useEffect, useState } from 'react';
 import Preloader from './components/UI/Preloader';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true);
+  const { user } = useSelector(selectAuth);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkAuth());
-    setIsLoading(false);
   }, []);
-  if (isLoading) {
+  if (!user) {
     return <Preloader />;
   }
   return (
