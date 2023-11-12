@@ -129,9 +129,23 @@
 .rating {
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 2px;
+  &__value {
+    display: flex;
+    align-items: flex-start;
+    gap: 4px;
+    font-size: 14px;
+  }
   &__info {
     color: #6a6a6a;
+    gap: 3px;
+    display: flex;
+    align-items: center;
+    svg {
+      max-width: 15px;
+      height: 15px;
+      width: 100%;
+    }
   }
 }
 
@@ -231,6 +245,9 @@
     }
     @media (any-hover: hover) {
       &:hover {
+        &:disabled svg path {
+          fill: $lightColor;
+        }
         svg path {
           fill: $secondary;
         }

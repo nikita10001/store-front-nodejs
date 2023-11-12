@@ -6,6 +6,7 @@ import { removeComment } from '../store/slices/commentSlice';
 
 const CommentItem = ({ comment }) => {
   const { user } = useSelector(selectAuth);
+  const isAdmin = user?.role === 'admin';
   const dispatch = useDispatch();
   const handleRemoveComment = () => {
     dispatch(removeComment(comment._id));
@@ -17,7 +18,7 @@ const CommentItem = ({ comment }) => {
           <h4 className="item-comment__author">{comment.user.name}</h4>
           <p className="item-comment__date">{formatDate(comment.createdAt)}</p>
         </div>
-        {comment.user.id == user?.id && (
+        {(comment.user.id == user?.id || isAdmin) && (
           <button onClick={handleRemoveComment} className="item-comment__delete ">
             ×
           </button>

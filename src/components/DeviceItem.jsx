@@ -1,16 +1,28 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { Rating } from 'react-simple-star-rating';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCart } from '../store/slices/cartSlice';
 import CartIcon from './icons/CartIcon';
-const DeviceItem = ({ id, name, price, rating, img, description }) => {
+import CommentIcon from './icons/CommentIcon';
+import { selectAuth } from '../store/slices/authSlice';
+
+const DeviceItem = React.memo(({ id, name, price, rating, commentsAmount, img, description }) => {
   const dispatch = useDispatch();
-  const handleAddCart = (e) => {
+  const navigate = useNavigate();
+  const { isAuth } = useSelector(selectAuth);
+  const { cart } = useSelector((state) => state.cart);
+  const isInCart = cart?.some((item) => item._id === id);
+  const handleAddCart = useCallback(() => {
+    if (!isAuth) {
+      navigate(ROUTE_PATHS.LOGIN);
+      return;
+    }
     dispatch(addProductToCart(id));
-  };
+  }, [id]);
 
   return (
     <article className="devices__card device-card">
@@ -30,18 +42,23 @@ const DeviceItem = ({ id, name, price, rating, img, description }) => {
             <Rating size="15" readonly allowFraction initialValue={rating} />
             <span className="rating__info">{rating}</span>
           </div>
-          {/* <div className="rating__info">12 отзывов</div> */}
+          {!!commentsAmount && (
+            <div className="rating__info">
+              <CommentIcon />
+              <span>{commentsAmount}</span>
+            </div>
+          )}
         </div>
         <div className="device-card__footer">
           <div className="device-card__price">{price} р.</div>
         </div>
-        <button onClick={handleAddCart} type="submit" className="device-card__cart btn">
+        <button disabled={isInCart} onClick={handleAddCart} type="submit" className="device-card__cart btn">
           <CartIcon />
-          <span> В коризину</span>
+          <span>{isInCart ? 'Добавлено' : 'В коризину'}</span>
         </button>
       </div>
     </article>
   );
-};
+});
 
 export default DeviceItem;

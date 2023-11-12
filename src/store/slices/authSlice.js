@@ -89,6 +89,7 @@ const authSlice = createSlice({
     builder.addCase(checkAuth.rejected, (state, action) => {
       state.user = null;
       state.isAuth = false;
+      state.error = action.payload;
     });
   },
 });

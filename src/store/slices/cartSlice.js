@@ -52,8 +52,6 @@ const cartSlice = createSlice({
       state.cart.push(action.payload);
     },
     removeFromCart(state, action) {
-      console.log('from remove from cart');
-      console.log(action);
       state.cart = state.cart.filter((device) => device._id !== action.payload);
     },
     clearCart(state, action) {
@@ -70,6 +68,11 @@ const cartSlice = createSlice({
       state.cart = action.payload;
     });
     builder.addCase(getProductsFromCart.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
+
+    builder.addCase(addProductToCart.rejected, (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     });

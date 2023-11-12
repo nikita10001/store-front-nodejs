@@ -34,6 +34,16 @@
     }
   }
 }
+
+.btn[disabled] {
+  opacity: 0.6;
+  &:hover {
+    box-shadow: none;
+    cursor: auto;
+    background-color: $secondary;
+    color: #fff;
+  }
+}
 .btn.danger {
   background-color: $danger;
   border-color: $danger;

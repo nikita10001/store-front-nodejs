@@ -7,9 +7,10 @@ import CartPage from '../pages/CartPage';
 export const ROUTE_PATHS = {
   MAIN: '/devices',
   LOGIN: '/auth/login',
-  ADMIN: '/admin',
   CART: '/cart',
   REGISTRATION: '/auth/registration',
+  ADMIN_COMMENTS: '/admin/comments',
+  ADMIN: '/admin/devices',
 };
 
 export const publicRoutes = [
@@ -41,6 +42,10 @@ export const privateRoutes = [
 export const adminRoutes = [
   {
     path: ROUTE_PATHS.ADMIN,
+    Component: AdminPage,
+  },
+  {
+    path: ROUTE_PATHS.ADMIN_COMMENTS,
     Component: AdminPage,
   },
 ];

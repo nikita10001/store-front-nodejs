@@ -59,7 +59,7 @@ const Header = () => {
             <li className="menu__item">
               <NavLink to={ROUTE_PATHS.CART} className="menu__link basket-link">
                 <span className="basket-link__icon">
-                  <CartIcon />
+                  <CartIcon fill={'#000'} />
                   <b>{cart.length || 0}</b>
                 </span>
                 <span className="basket-link__text">Корзина</span>
@@ -68,6 +68,25 @@ const Header = () => {
           </ul>
         </nav>
       </div>
+      {/* вынести в компоненту */}
+      {isAdmin && (
+        <div className="header__admin admin-nav">
+          <div className="admin-nav__container">
+            <ul className="admin-nav__menu">
+              <li className="admin-nav__item">
+                <NavLink to={ROUTE_PATHS.ADMIN_COMMENTS} className="admin-nav__link">
+                  Комментарии
+                </NavLink>
+              </li>
+              <li className="admin-nav__item">
+                <NavLink to={ROUTE_PATHS.ADMIN} className="admin-nav__link">
+                  Товары
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
