@@ -2,17 +2,24 @@ import React from 'react';
 import { useCallback } from 'react';
 import { Rating } from 'react-simple-star-rating';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCart } from '../store/slices/cartSlice';
 import CartIcon from './icons/CartIcon';
+import { selectAuth } from '../store/slices/authSlice';
 
 const DeviceItem = React.memo(({ id, name, price, rating, img, description }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isAuth } = useSelector(selectAuth);
   const { cart } = useSelector((state) => state.cart);
   const isInCart = cart?.some((item) => item._id === id);
   const handleAddCart = useCallback(() => {
+    if (!isAuth) {
+      navigate(ROUTE_PATHS.LOGIN);
+      return;
+    }
     dispatch(addProductToCart(id));
   }, [id]);
 

@@ -4,7 +4,7 @@ import star from '../assets/icons/star.svg';
 import { Rating } from 'react-simple-star-rating';
 
 import Preloader from '../components/UI/Preloader';
-import { useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSingleDevice, selectDevices } from '../store/slices/deviceSlice';
 import { addProductToCart } from '../store/slices/cartSlice';
@@ -13,11 +13,13 @@ import { fetchDevicesComments } from '../store/slices/commentSlice';
 import CommentForm from '../components/CommentForm';
 import CartIcon from '../components/icons/CartIcon';
 import CommentsList from '../components/CommentsList';
+import { ROUTE_PATHS } from '../router';
 
 // const tempImagesArray = [1, 2, 3];
 const DevicePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const navigate = useNavigate();
   const { isLoading: deviceLoading, device } = useSelector(selectDevices);
   const { isLoading: commentsLoading, items } = useSelector((state) => state.comment);
   const { cart } = useSelector((state) => state.cart);
@@ -29,12 +31,17 @@ const DevicePage = () => {
   }, []);
 
   const handleAddCart = (e) => {
+    if (!isAuth) {
+      navigate(ROUTE_PATHS.LOGIN);
+      return;
+    }
     dispatch(addProductToCart(id));
   };
 
   if (deviceLoading) {
     return <Preloader />;
   }
+
   return (
     <div className="page__device device-page">
       <div className="device-page__container">
