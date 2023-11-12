@@ -29,7 +29,7 @@ const DeviceItem = ({ id, name, price, rating, img, description }) => {
             <Rating size="15" readonly allowFraction initialValue={rating} />
             <span className="rating__info">{rating}</span>
           </div>
-          <div className="rating__info">12 отзывов</div>
+          {/* <div className="rating__info">12 отзывов</div> */}
         </div>
         <div className="device-card__footer">
           <div className="device-card__price">{price} р.</div>
