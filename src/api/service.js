@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const $host = axios.create({
-  baseURL: 'http://localhost:5000',
+  // baseURL: 'http://localhost:5000',
+  baseURL: 'https://store-backend-nodejs.onrender.com',
   headers: {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': '*',
