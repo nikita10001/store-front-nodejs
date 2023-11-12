@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import star from '../assets/icons/star.svg';
+import { Rating } from 'react-simple-star-rating';
+
 import { NavLink } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
 import { useDispatch } from 'react-redux';
@@ -25,10 +26,9 @@ const DeviceItem = ({ id, name, price, rating, img, description }) => {
         </h4>
         <div className="device-card__rating rating">
           <div className="rating__value">
-            <img src={star} alt="" />
-            <span>{rating}</span>
+            <Rating size="15" readonly allowFraction initialValue={rating} />
+            <span className="rating__info">{rating}</span>
           </div>
-
           <div className="rating__info">12 отзывов</div>
         </div>
         <div className="device-card__footer">
