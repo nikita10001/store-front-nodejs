@@ -6,7 +6,7 @@ import DevicesList from '../components/DevicesList.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDevices, selectDevices } from '../store/slices/deviceSlice.js';
 import { selectFilter } from '../store/slices/filterSlice.js';
-import Pagination from '../components/Pagination/Pagination.jsx';
+import Pagination from '../components/pagination/Pagination.jsx';
 
 const MainPage = () => {
   const dispatch = useDispatch();
