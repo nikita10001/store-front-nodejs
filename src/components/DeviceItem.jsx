@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Rating } from 'react-simple-star-rating';
 
 import { NavLink } from 'react-router-dom';

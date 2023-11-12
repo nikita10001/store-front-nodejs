@@ -1,4 +1,4 @@
-import { clearAllListeners, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { DeviceService } from '../../api/DeviceService';
 
 export const fetchDevices = createAsyncThunk(
@@ -21,40 +21,6 @@ export const fetchSingleDevice = createAsyncThunk(
     }
   }
 );
-export const fetchDevicesComments = createAsyncThunk(
-  'devices/fetchDevicesComments', //
-  async function (id, { rejectWithValue }) {
-    try {
-      return await DeviceService.getDevicesComments(id);
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
-export const createComment = createAsyncThunk(
-  'devices/addComment', //
-  async function ({ deviceId, text }, { rejectWithValue, dispatch }) {
-    try {
-      const data = await DeviceService.addComment(deviceId, text);
-      dispatch(deviceActions.addComment(data));
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-export const removeComment = createAsyncThunk(
-  'devices/removeComment', //
-  async function (commentId, { rejectWithValue, dispatch }) {
-    try {
-      const data = await DeviceService.removeComment(commentId);
-      dispatch(deviceActions.deleteComment(commentId));
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-
 export const createDevice = createAsyncThunk(
   'devices/createDevice', //
   async function (device, { rejectWithValue, dispatch }) {
@@ -92,11 +58,6 @@ export const removeDevice = createAsyncThunk(
 const initialState = {
   devices: [],
   device: {},
-  comments: {
-    items: [],
-    isLoading: true,
-    error: null,
-  },
   isLoading: false,
   error: null,
   totalItems: 0,
@@ -126,14 +87,6 @@ const deviceSlice = createSlice({
       const foundDevice = state.devices.find((device) => device._id == action.payload.id);
       foundDevice = action.payload;
     },
-    ///////??????????????????????????????????????/
-    addComment(state, action) {
-      state.comments.items = [action.payload, ...state.comments.items];
-      // state.comments.items.push(action.payload);
-    },
-    deleteComment(state, action) {
-      state.comments.items = state.comments.items.filter((comment) => comment._id !== action.payload);
-    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchDevices.pending, setStart);
@@ -150,19 +103,6 @@ const deviceSlice = createSlice({
       state.device = action.payload;
     });
     builder.addCase(fetchSingleDevice.rejected, setError);
-
-    builder.addCase(fetchDevicesComments.pending, (state) => {
-      state.comments.isLoading = true;
-      state.comments.items = null;
-    });
-    builder.addCase(fetchDevicesComments.fulfilled, (state, action) => {
-      state.comments.isLoading = false;
-      state.comments.items = action.payload;
-    });
-    builder.addCase(fetchDevicesComments.rejected, (state, action) => {
-      state.comments.isLoading = false;
-      state.comments.error = action.payload;
-    });
   },
 });
 

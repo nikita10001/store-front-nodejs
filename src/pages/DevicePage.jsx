@@ -6,31 +6,18 @@ import { Rating } from 'react-simple-star-rating';
 import Preloader from '../components/UI/Preloader';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createComment, fetchDevicesComments, fetchSingleDevice, removeComment, selectDevices } from '../store/slices/deviceSlice';
+import { fetchSingleDevice, selectDevices } from '../store/slices/deviceSlice';
 import { addProductToCart } from '../store/slices/cartSlice';
 import { selectAuth } from '../store/slices/authSlice';
-
-function formatDate(dateStr) {
-  const date = new Date(dateStr);
-
-  const options = {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
-  };
-
-  const formattedDate = date.toLocaleDateString('ru-RU', options);
-  return formattedDate;
-}
+import { createComment, fetchDevicesComments, removeComment } from '../store/slices/commentSlice';
+import { formatDate } from '../utils/formatDate';
 
 // const tempImagesArray = [1, 2, 3];
 const DevicePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { isLoading, device, comments } = useSelector(selectDevices);
+  const { isLoading, device } = useSelector(selectDevices);
+  const commentState = useSelector((state) => state.comment);
   const { isAuth, user } = useSelector(selectAuth);
   const [rating, setRating] = useState();
   const [isComment, setIsComment] = useState();
@@ -143,15 +130,15 @@ const DevicePage = () => {
             </div>
           )}
         </div>
-        {comments?.isLoading ? (
+        {commentState?.isLoading ? (
           <Preloader />
         ) : (
-          comments.items.length != 0 && (
+          commentState.items.length != 0 && (
             <div className="device-page__comments comments-device">
               <h4 className="comments-device__title">Отзывы</h4>
               <div className="comments-device__block">
                 <ul className="comments-device__list">
-                  {comments?.items.map((comment) => (
+                  {commentState?.items.map((comment) => (
                     <li key={comment._id} className="comments-device__item item-comment">
                       <div className="item-comment__top">
                         <div className="item-comment__content">
