@@ -17,12 +17,6 @@ const CartPage = () => {
   const [isOrder, setIsOrder] = useState(false);
   const totalPrice = useMemo(() => cart.reduce((sum, item) => sum + item.price, 0));
 
-  // useEffect(() => {
-  //   if (user) {
-  //     dispatch(getProductsFromCart(user.id));
-  //   }
-  // }, [user]);
-
   return (
     <div className="page__cart cart-page">
       <div className="cart-page__container">

@@ -1,16 +1,20 @@
 import React from 'react';
+import { useCallback } from 'react';
 import { Rating } from 'react-simple-star-rating';
 
 import { NavLink } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCart } from '../store/slices/cartSlice';
 import CartIcon from './icons/CartIcon';
-const DeviceItem = ({ id, name, price, rating, img, description }) => {
+
+const DeviceItem = React.memo(({ id, name, price, rating, img, description }) => {
   const dispatch = useDispatch();
-  const handleAddCart = (e) => {
+  const { cart } = useSelector((state) => state.cart);
+  const isInCart = cart?.some((item) => item._id === id);
+  const handleAddCart = useCallback(() => {
     dispatch(addProductToCart(id));
-  };
+  }, [id]);
 
   return (
     <article className="devices__card device-card">
@@ -35,13 +39,13 @@ const DeviceItem = ({ id, name, price, rating, img, description }) => {
         <div className="device-card__footer">
           <div className="device-card__price">{price} р.</div>
         </div>
-        <button onClick={handleAddCart} type="submit" className="device-card__cart btn">
+        <button disabled={isInCart} onClick={handleAddCart} type="submit" className="device-card__cart btn">
           <CartIcon />
-          <span> В коризину</span>
+          <span>{isInCart ? 'Добавлено' : 'В коризину'}</span>
         </button>
       </div>
     </article>
   );
-};
+});
 
 export default DeviceItem;

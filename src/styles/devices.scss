@@ -231,6 +231,9 @@
     }
     @media (any-hover: hover) {
       &:hover {
+        &:disabled svg path {
+          fill: $lightColor;
+        }
         svg path {
           fill: $secondary;
         }

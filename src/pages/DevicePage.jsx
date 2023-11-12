@@ -9,8 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchSingleDevice, selectDevices } from '../store/slices/deviceSlice';
 import { addProductToCart } from '../store/slices/cartSlice';
 import { selectAuth } from '../store/slices/authSlice';
-import { createComment, fetchDevicesComments, removeComment } from '../store/slices/commentSlice';
-import { formatDate } from '../utils/formatDate';
+import { fetchDevicesComments } from '../store/slices/commentSlice';
 import CommentForm from '../components/CommentForm';
 import CartIcon from '../components/icons/CartIcon';
 import CommentsList from '../components/CommentsList';
@@ -21,6 +20,8 @@ const DevicePage = () => {
   const { id } = useParams();
   const { isLoading: deviceLoading, device } = useSelector(selectDevices);
   const { isLoading: commentsLoading, items } = useSelector((state) => state.comment);
+  const { cart } = useSelector((state) => state.cart);
+  const isInCart = cart?.some((item) => item._id === id);
   const { isAuth } = useSelector(selectAuth);
   useEffect(() => {
     dispatch(fetchSingleDevice(id));
@@ -51,9 +52,9 @@ const DevicePage = () => {
             <div className="content-device__footer">
               <div className="content-device__price">{device.price} р.</div>
             </div>
-            <button onClick={handleAddCart} className="content-device__btn btn">
+            <button disabled={isInCart} onClick={handleAddCart} className="content-device__btn btn">
               <CartIcon />
-              <span>Добавить в корзину</span>
+              <span>{isInCart ? 'Добавлено' : 'Добавить в коризину'}</span>
             </button>
           </div>
         </div>

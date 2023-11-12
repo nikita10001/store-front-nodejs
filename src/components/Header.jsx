@@ -59,7 +59,7 @@ const Header = () => {
             <li className="menu__item">
               <NavLink to={ROUTE_PATHS.CART} className="menu__link basket-link">
                 <span className="basket-link__icon">
-                  <CartIcon />
+                  <CartIcon fill={'#000'} />
                   <b>{cart.length || 0}</b>
                 </span>
                 <span className="basket-link__text">Корзина</span>
