@@ -39,4 +39,14 @@ export class DeviceService {
     });
     return response.data;
   }
+
+  static async getDevicesComments(deviceId) {
+    const response = await $host.get('/comment/' + deviceId);
+    return response.data;
+  }
+  static async addComment(deviceId, text) {
+    const response = await $host.post('/comment/' + deviceId, { text });
+    console.log(response);
+    return response.data;
+  }
 }

@@ -21,6 +21,29 @@ export const fetchSingleDevice = createAsyncThunk(
     }
   }
 );
+export const fetchDevicesComments = createAsyncThunk(
+  'devices/fetchDevicesComments', //
+  async function (id, { rejectWithValue }) {
+    try {
+      return await DeviceService.getDevicesComments(id);
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const createComment = createAsyncThunk(
+  'devices/addComment', //
+  async function ({ deviceId, text }, { rejectWithValue, dispatch }) {
+    try {
+      const data = await DeviceService.addComment(deviceId, text);
+      dispatch(deviceActions.addComment(data));
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 export const createDevice = createAsyncThunk(
   'devices/createDevice', //
   async function (device, { rejectWithValue, dispatch }) {
@@ -58,19 +81,17 @@ export const removeDevice = createAsyncThunk(
 const initialState = {
   devices: [],
   device: {},
+  comments: {
+    items: [],
+    isLoading: true,
+    error: null,
+  },
   isLoading: false,
   error: null,
   totalItems: 0,
   totalPages: 0,
 };
 
-// currentPage: 1
-// ​​
-// devices: Array(10) [ {…}, {…}, {…}, … ]
-// ​​
-// totalItems: 16
-// ​​
-// totalPages: 2
 const setStart = (state) => {
   state.isLoading = true;
   state.error = null;
@@ -94,6 +115,11 @@ const deviceSlice = createSlice({
       const foundDevice = state.devices.find((device) => device._id == action.payload.id);
       foundDevice = action.payload;
     },
+    ///////??????????????????????????????????????/
+    addComment(state, action) {
+      state.comments.items = [action.payload, ...state.comments.items];
+      // state.comments.items.push(action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchDevices.pending, setStart);
@@ -102,8 +128,6 @@ const deviceSlice = createSlice({
       state.devices = action.payload.devices;
       state.totalItems = action.payload.totalItems;
       state.totalPages = action.payload.totalPages;
-      // state.totalCount = action.payload.totalCount;
-      // state.skip = action.payload.skip;
     });
     builder.addCase(fetchDevices.rejected, setError);
     builder.addCase(fetchSingleDevice.pending, setStart);
@@ -112,6 +136,19 @@ const deviceSlice = createSlice({
       state.device = action.payload;
     });
     builder.addCase(fetchSingleDevice.rejected, setError);
+
+    builder.addCase(fetchDevicesComments.pending, (state) => {
+      state.comments.isLoading = true;
+      state.comments.items = null;
+    });
+    builder.addCase(fetchDevicesComments.fulfilled, (state, action) => {
+      state.comments.isLoading = false;
+      state.comments.items = action.payload;
+    });
+    builder.addCase(fetchDevicesComments.rejected, (state, action) => {
+      state.comments.isLoading = false;
+      state.comments.error = action.payload;
+    });
   },
 });
 

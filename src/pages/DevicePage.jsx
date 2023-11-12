@@ -1,28 +1,64 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import star from '../assets/icons/star.svg';
+
+import { Rating } from 'react-simple-star-rating';
+
 import Preloader from '../components/UI/Preloader';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSingleDevice, selectDevices } from '../store/slices/deviceSlice';
+import { createComment, fetchDevicesComments, fetchSingleDevice, selectDevices } from '../store/slices/deviceSlice';
 import { addProductToCart } from '../store/slices/cartSlice';
+import { selectAuth } from '../store/slices/authSlice';
+
+function formatDate(dateStr) {
+  const date = new Date(dateStr);
+
+  const options = {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  };
+
+  const formattedDate = date.toLocaleDateString('ru-RU', options);
+  return formattedDate;
+}
 
 // const tempImagesArray = [1, 2, 3];
 const DevicePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { isLoading, device } = useSelector(selectDevices);
+  const { isLoading, device, comments } = useSelector(selectDevices);
+  const { isAuth } = useSelector(selectAuth);
+  const [rating, setRating] = useState();
+  const [isComment, setIsComment] = useState();
+  const [commentText, setCommentText] = useState();
 
   useEffect(() => {
     dispatch(fetchSingleDevice(id));
+    dispatch(fetchDevicesComments(id));
   }, []);
 
   const handleAddCart = (e) => {
     dispatch(addProductToCart(id));
   };
 
+  const handleRating = (rate) => {
+    setRating(rate);
+  };
+  const handleAddComment = (e) => {
+    e.preventDefault();
+    dispatch(createComment({ deviceId: id, text: commentText }));
+    setCommentText('');
+    setIsComment(false);
+  };
+
   if (isLoading) {
     return <Preloader />;
   }
+
   return (
     <div className="page__device device-page">
       <div className="device-page__container">
@@ -44,10 +80,8 @@ const DevicePage = () => {
             <h3 className="content-device__title">{device.name}</h3>
             <p className="content-device__descr">{device.description}</p>
             <div className="content-device__rating rating">
-              <div className="rating__value">
-                <img src={star} alt="" />
-                <span>{device.rating}</span>
-              </div>
+              <Rating size="22" readonly allowFraction initialValue={device.rating} />
+              <span className="rating__info">{device.rating}</span>
             </div>
             <div className="content-device__footer">
               <div className="content-device__price">{device.price} р.</div>
@@ -77,6 +111,59 @@ const DevicePage = () => {
             </button>
           </div>
         </div>
+
+        <div className="device-page__leave leave-comment">
+          {!isComment ? (
+            isAuth && (
+              <button onClick={() => setIsComment(true)} className="btn outline">
+                Оставить отзыв
+              </button>
+            )
+          ) : (
+            <div className="leave-comment__block">
+              <form className="leave-comment__form" action="" onSubmit={handleAddComment}>
+                <p className="leave-comment__subtitle">Отзыв:</p>
+                <textarea
+                  value={commentText}
+                  onChange={(e) => {
+                    setCommentText(e.target.value);
+                  }}
+                  className="leave-comment__textarea input"
+                  placeholder="Введите текст"
+                  rows={10}
+                  type="text"
+                />
+                <div className="leave-comment__rating">
+                  <Rating size="23" allowFraction />
+                </div>
+
+                <button className="btn outline">Отправить</button>
+              </form>
+            </div>
+          )}
+        </div>
+        {comments?.isLoading ? (
+          <Preloader />
+        ) : (
+          comments.items.length != 0 && (
+            <div className="device-page__comments comments-device">
+              <h4 className="comments-device__title">Отзывы</h4>
+              <div className="comments-device__block">
+                <ul className="comments-device__list">
+                  {comments?.items.map((comment) => (
+                    <li key={comment._id} className="comments-device__item item-comment">
+                      <div className="item-comment__top">
+                        <h4 className="item-comment__author">{comment.user.name}</h4>
+                        <p className="item-comment__date">{formatDate(comment.createdAt)}</p>
+                      </div>
+                      <p className="item-comment__text">{comment.text}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          )
+        )}
       </div>
     </div>
   );
