@@ -7,9 +7,10 @@ import { ROUTE_PATHS } from '../router';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCart } from '../store/slices/cartSlice';
 import CartIcon from './icons/CartIcon';
+import CommentIcon from './icons/CommentIcon';
 import { selectAuth } from '../store/slices/authSlice';
 
-const DeviceItem = React.memo(({ id, name, price, rating, img, description }) => {
+const DeviceItem = React.memo(({ id, name, price, rating, commentsAmount, img, description }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuth } = useSelector(selectAuth);
@@ -41,7 +42,12 @@ const DeviceItem = React.memo(({ id, name, price, rating, img, description }) =>
             <Rating size="15" readonly allowFraction initialValue={rating} />
             <span className="rating__info">{rating}</span>
           </div>
-          {/* <div className="rating__info">12 отзывов</div> */}
+          {!!commentsAmount && (
+            <div className="rating__info">
+              <CommentIcon />
+              <span>{commentsAmount}</span>
+            </div>
+          )}
         </div>
         <div className="device-card__footer">
           <div className="device-card__price">{price} р.</div>
