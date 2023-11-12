@@ -312,6 +312,26 @@
   padding: 0px 0px 10px 0px;
   &__top {
     margin: 0px 0px 8px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  &__content {
+  }
+  &__delete {
+    cursor: pointer;
+    background: transparent;
+    font-size: 17px;
+    font-weight: 900;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transition: all 0.3s ease 0s;
+    color: black;
+    opacity: 0.4;
+    &:hover {
+      opacity: 1;
+    }
   }
   &__author {
     font-size: 17px;
@@ -321,7 +341,6 @@
     color: #828282;
     font-size: 12px;
   }
-
   &__image {
     display: flex;
     align-items: center;

@@ -19,6 +19,7 @@ export class DeviceService {
     const response = await $host.delete('/devices/' + id);
     return response.data;
   }
+
   static async addDevice(device) {
     const response = await $host.post('/devices', {
       name: device.name,
@@ -47,6 +48,10 @@ export class DeviceService {
   static async addComment(deviceId, text) {
     const response = await $host.post('/comment/' + deviceId, { text });
     console.log(response);
+    return response.data;
+  }
+  static async removeComment(commentId) {
+    const response = await $host.delete('/comment/' + commentId);
     return response.data;
   }
 }

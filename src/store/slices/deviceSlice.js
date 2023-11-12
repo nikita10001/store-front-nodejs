@@ -43,6 +43,17 @@ export const createComment = createAsyncThunk(
     }
   }
 );
+export const removeComment = createAsyncThunk(
+  'devices/removeComment', //
+  async function (commentId, { rejectWithValue, dispatch }) {
+    try {
+      const data = await DeviceService.removeComment(commentId);
+      dispatch(deviceActions.deleteComment(commentId));
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const createDevice = createAsyncThunk(
   'devices/createDevice', //
@@ -119,6 +130,9 @@ const deviceSlice = createSlice({
     addComment(state, action) {
       state.comments.items = [action.payload, ...state.comments.items];
       // state.comments.items.push(action.payload);
+    },
+    deleteComment(state, action) {
+      state.comments.items = state.comments.items.filter((comment) => comment._id !== action.payload);
     },
   },
   extraReducers: (builder) => {

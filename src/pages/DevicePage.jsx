@@ -6,7 +6,7 @@ import { Rating } from 'react-simple-star-rating';
 import Preloader from '../components/UI/Preloader';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { createComment, fetchDevicesComments, fetchSingleDevice, selectDevices } from '../store/slices/deviceSlice';
+import { createComment, fetchDevicesComments, fetchSingleDevice, removeComment, selectDevices } from '../store/slices/deviceSlice';
 import { addProductToCart } from '../store/slices/cartSlice';
 import { selectAuth } from '../store/slices/authSlice';
 
@@ -31,7 +31,7 @@ const DevicePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { isLoading, device, comments } = useSelector(selectDevices);
-  const { isAuth } = useSelector(selectAuth);
+  const { isAuth, user } = useSelector(selectAuth);
   const [rating, setRating] = useState();
   const [isComment, setIsComment] = useState();
   const [commentText, setCommentText] = useState();
@@ -44,7 +44,9 @@ const DevicePage = () => {
   const handleAddCart = (e) => {
     dispatch(addProductToCart(id));
   };
-
+  const handleRemoveComment = (commentId) => {
+    dispatch(removeComment(commentId));
+  };
   const handleRating = (rate) => {
     setRating(rate);
   };
@@ -75,7 +77,6 @@ const DevicePage = () => {
               ))}
             </div> */}
           </div>
-
           <div className="block-device__content content-device">
             <h3 className="content-device__title">{device.name}</h3>
             <p className="content-device__descr">{device.description}</p>
@@ -153,8 +154,15 @@ const DevicePage = () => {
                   {comments?.items.map((comment) => (
                     <li key={comment._id} className="comments-device__item item-comment">
                       <div className="item-comment__top">
-                        <h4 className="item-comment__author">{comment.user.name}</h4>
-                        <p className="item-comment__date">{formatDate(comment.createdAt)}</p>
+                        <div className="item-comment__content">
+                          <h4 className="item-comment__author">{comment.user.name}</h4>
+                          <p className="item-comment__date">{formatDate(comment.createdAt)}</p>
+                        </div>
+                        {comment.user.id == user?.id && (
+                          <button onClick={() => handleRemoveComment(comment._id)} className="item-comment__delete ">
+                            ×
+                          </button>
+                        )}
                       </div>
                       <p className="item-comment__text">{comment.text}</p>
                     </li>
