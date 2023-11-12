@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import star from '../assets/icons/star.svg';
 
 import { Rating } from 'react-simple-star-rating';
 

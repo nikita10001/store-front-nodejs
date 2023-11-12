@@ -41,6 +41,7 @@ const AuthPage = () => {
               <input //
                 {...register('name', {
                   required: true,
+                  maxLength: 30,
                 })}
                 add={'add'}
                 className="form__input input"
@@ -51,6 +52,7 @@ const AuthPage = () => {
             <input //
               {...register('login', {
                 required: true,
+                maxLength: 30,
               })}
               add={'add'}
               className="form__input input"
@@ -60,6 +62,7 @@ const AuthPage = () => {
             <input //
               {...register('password', {
                 required: true,
+                maxLength: 20,
               })}
               className="form__input input"
               type="password"

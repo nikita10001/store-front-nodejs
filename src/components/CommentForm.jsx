@@ -18,6 +18,11 @@ const CommentForm = ({ deviceId, isAuth }) => {
     setCommentText('');
     setIsComment(false);
   };
+  const handleChangeComment = (e) => {
+    if (e.target.value.length < 1250) {
+      setCommentText(e.target.value);
+    }
+  };
   return (
     <div className="device-page__leave leave-comment">
       {!isComment ? (
@@ -31,10 +36,9 @@ const CommentForm = ({ deviceId, isAuth }) => {
           <form className="leave-comment__form" action="" onSubmit={handleAddComment}>
             <p className="leave-comment__subtitle">Отзыв:</p>
             <textarea
+              maxLength={1200}
               value={commentText}
-              onChange={(e) => {
-                setCommentText(e.target.value);
-              }}
+              onChange={handleChangeComment}
               className="leave-comment__textarea input"
               placeholder="Введите текст"
               rows={10}
