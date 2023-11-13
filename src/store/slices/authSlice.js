@@ -41,6 +41,7 @@ const initialState = {
   isAuth: false,
   error: null,
   user: null,
+  isLoading: true,
   editingDeviceId: null,
   modalVisible: false,
 };
@@ -77,18 +78,18 @@ const authSlice = createSlice({
       state.isAuth = true;
       state.user = action.payload;
     });
-    builder.addCase(registerAction.rejected, (state, action) => {
-      state.isAuth = false;
-      state.user = null;
-      state.error = action.payload;
+    builder.addCase(checkAuth.pending, (state, action) => {
+      state.isLoading = true;
     });
     builder.addCase(checkAuth.fulfilled, (state, action) => {
       state.user = action.payload;
+      state.isLoading = false;
       state.isAuth = true;
     });
     builder.addCase(checkAuth.rejected, (state, action) => {
       state.user = null;
       state.isAuth = false;
+      state.isLoading = false;
       state.error = action.payload;
     });
   },
