@@ -1,6 +1,5 @@
 import React from 'react';
 import AdminItem from './AdminItem';
-import Preloader from '../UI/Preloader';
 
 const AdminList = ({ items }) => {
   return (

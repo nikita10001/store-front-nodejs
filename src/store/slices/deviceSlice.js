@@ -56,21 +56,18 @@ export const removeDevice = createAsyncThunk(
 );
 
 const initialState = {
-  devices: [],
-  device: {},
-  isLoading: false,
-  error: null,
-  totalItems: 0,
-  totalPages: 0,
-};
-
-const setStart = (state) => {
-  state.isLoading = true;
-  state.error = null;
-};
-const setError = (state, action) => {
-  state.isLoading = false;
-  state.error = action.payload;
+  devices: {
+    items: [],
+    isLoading: true,
+    error: null,
+    totalItems: 0,
+    totalPages: 0,
+  },
+  device: {
+    item: {},
+    isLoading: true,
+    error: null,
+  },
 };
 
 const deviceSlice = createSlice({
@@ -78,34 +75,50 @@ const deviceSlice = createSlice({
   initialState,
   reducers: {
     addDevice(state, action) {
-      state.devices.push(action.payload);
+      state.devices.items.push(action.payload);
     },
     removeDevice(state, action) {
-      state.devices = state.devices.filter((device) => device._id !== action.payload);
+      state.devices.items = state.devices.items.filter((device) => device._id !== action.payload);
     },
     updateDevice(state, action) {
-      const foundDevice = state.devices.find((device) => device._id == action.payload.id);
+      const foundDevice = state.devices.items.find((device) => device._id == action.payload.id);
       foundDevice = action.payload;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchDevices.pending, setStart);
+    //fetch all devices
+    builder.addCase(fetchDevices.pending, (state) => {
+      state.isLoading = true;
+      state.error = null;
+    });
     builder.addCase(fetchDevices.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.devices = action.payload.devices;
-      state.totalItems = action.payload.totalItems;
-      state.totalPages = action.payload.totalPages;
+      state.devices.isLoading = false;
+      state.devices.items = action.payload.devices;
+      state.devices.totalItems = action.payload.totalItems;
+      state.devices.totalPages = action.payload.totalPages;
     });
-    builder.addCase(fetchDevices.rejected, setError);
-    builder.addCase(fetchSingleDevice.pending, setStart);
+    builder.addCase(fetchDevices.rejected, (state, action) => {
+      state.devices.isLoading = false;
+      state.devices.error = action.payload;
+    });
+
+    //fetch single device
+    builder.addCase(fetchSingleDevice.pending, (state) => {
+      state.device.isLoading = true;
+      state.device.error = null;
+    });
     builder.addCase(fetchSingleDevice.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.device = action.payload;
+      state.device.isLoading = false;
+      state.device.item = action.payload;
     });
-    builder.addCase(fetchSingleDevice.rejected, setError);
+    builder.addCase(fetchSingleDevice.rejected, (state, action) => {
+      state.device.isLoading = false;
+      state.device.error = action.payload;
+    });
   },
 });
 
-export const selectDevices = (state) => state.devices;
+export const selectAllDevices = (state) => state.devices.devices;
+export const selectSingleDevice = (state) => state.devices.device;
 
 export const { reducer: deviceReducer, actions: deviceActions } = deviceSlice;

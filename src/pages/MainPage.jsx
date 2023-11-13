@@ -4,13 +4,13 @@ import SearchDevice from '../components/SearchDevice.jsx';
 import Filters from '../components/Filters.jsx';
 import DevicesList from '../components/DevicesList.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDevices, selectDevices } from '../store/slices/deviceSlice.js';
+import { fetchDevices, selectAllDevices } from '../store/slices/deviceSlice.js';
 import { selectFilter } from '../store/slices/filterSlice.js';
 import Pagination from '../components/pagination/Pagination.jsx';
 
 const MainPage = () => {
   const dispatch = useDispatch();
-  const { devices, isLoading, totalItems } = useSelector(selectDevices);
+  const { items, isLoading, totalItems } = useSelector(selectAllDevices);
   const { query, range } = useSelector(selectFilter);
   const [limit, setLimit] = useState(5);
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,7 +34,7 @@ const MainPage = () => {
             <Preloader />
           ) : (
             <>
-              <DevicesList devices={devices} />
+              <DevicesList devices={items} />
               <Pagination currentPage={currentPage} onChagePage={onChangePage} totalCount={totalItems} limit={limit} />
             </>
           )}

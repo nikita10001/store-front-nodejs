@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import SearchDevice from '../components/SearchDevice';
 import Preloader from '../components/UI/Preloader';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDevices, selectDevices } from '../store/slices/deviceSlice';
+import { fetchDevices, selectAllDevices } from '../store/slices/deviceSlice';
 import { selectFilter } from '../store/slices/filterSlice';
 import Modal from '../components/UI/modal/Modal';
 import AdminForm from '../components/admin/AdminForm';
@@ -15,7 +15,7 @@ import { CommentService } from '../api/CommentService';
 const AdminPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
-  const { devices, isLoading, error } = useSelector(selectDevices);
+  const { items: devices, isLoading, error } = useSelector(selectAllDevices);
 
   const [commentsLoading, setCommentsLoading] = useState(true);
   const [items, setItems] = useState([]);
