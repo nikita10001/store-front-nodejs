@@ -2,7 +2,6 @@ import React, { memo } from 'react';
 import { ROUTE_PATHS } from '../../router';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { authActions } from '../../store/slices/authSlice';
 import { removeDevice } from '../../store/slices/deviceSlice';
 
 const AdminItem = ({ id, name, img, price, rating }) => {
@@ -10,10 +9,6 @@ const AdminItem = ({ id, name, img, price, rating }) => {
 
   const handleRemove = (e) => {
     dispatch(removeDevice(id));
-  };
-  const handleEdit = () => {
-    dispatch(authActions.setModalVisible(true));
-    dispatch(authActions.setEditingDeviceId(id));
   };
   return (
     <div className="admin__item item-admin">
@@ -32,9 +27,9 @@ const AdminItem = ({ id, name, img, price, rating }) => {
           <button onClick={handleRemove} className="item-admin__btn btn danger">
             Удалить
           </button>
-          <button onClick={handleEdit} className="item-admin__btn btn success">
+          <NavLink to={`edit/${id}`} className="item-admin__btn btn success">
             Редактировать
-          </button>
+          </NavLink>
         </div>
       </div>
     </div>

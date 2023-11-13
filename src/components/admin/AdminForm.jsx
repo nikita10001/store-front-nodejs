@@ -14,7 +14,8 @@ const EMPTY_DEVICE_STATE = {
 const AdminForm = () => {
   const dispatch = useDispatch();
   const { editingDeviceId } = useSelector(selectAuth);
-  const currentDevice = useSelector((state) => state.devices.devices.find((device) => device.id === editingDeviceId));
+  const currentDevice = useSelector((state) => state.devices.devices.items.find((device) => device.id === editingDeviceId));
+
   const [device, setDevice] = useState(EMPTY_DEVICE_STATE);
 
   useEffect(() => {

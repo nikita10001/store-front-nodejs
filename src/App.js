@@ -2,13 +2,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import AppRouter from './components/AppRouter';
 import Header from './components/Header';
 import { checkAuth, selectAuth } from './store/slices/authSlice';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Preloader from './components/UI/Preloader';
+import Footer from './components/Footer';
 
 function App() {
-  // const [isLoading, setIsLoading] = useState(true);
-  const { isLoading } = useSelector(selectAuth);
-  console.log(isLoading);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkAuth());
@@ -22,6 +20,7 @@ function App() {
       <main className="page">
         <AppRouter />
       </main>
+      {/* <Footer /> */}
     </div>
   );
 }

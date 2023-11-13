@@ -5,7 +5,7 @@ import { Rating } from 'react-simple-star-rating';
 import Preloader from '../components/UI/Preloader';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSingleDevice, selectDevices } from '../store/slices/deviceSlice';
+import { fetchSingleDevice, selectSingleDevice } from '../store/slices/deviceSlice';
 import { addProductToCart } from '../store/slices/cartSlice';
 import { selectAuth } from '../store/slices/authSlice';
 import { fetchDevicesComments } from '../store/slices/commentSlice';
@@ -19,8 +19,10 @@ const DevicePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
-  const { isLoading: deviceLoading, device } = useSelector(selectDevices);
+
+  const { isLoading: deviceLoading, item: device } = useSelector(selectSingleDevice);
   const { isLoading: commentsLoading, items } = useSelector((state) => state.comment);
+
   const { cart } = useSelector((state) => state.cart);
   const isInCart = cart?.some((item) => item._id === id);
   const { isAuth } = useSelector(selectAuth);

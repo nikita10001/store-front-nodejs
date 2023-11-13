@@ -42,8 +42,7 @@ const initialState = {
   error: null,
   user: null,
   isLoading: true,
-  editingDeviceId: null,
-  modalVisible: false,
+
 };
 const authSlice = createSlice({
   name: 'auth',
@@ -51,12 +50,6 @@ const authSlice = createSlice({
   reducers: {
     setIsAuth(state, action) {
       state.isAuth = action.payload;
-    },
-    setEditingDeviceId(state, action) {
-      state.editingDeviceId = action.payload;
-    },
-    setModalVisible(state, action) {
-      state.modalVisible = action.payload;
     },
     setLogout(state) {
       state.isAuth = false;
@@ -78,10 +71,8 @@ const authSlice = createSlice({
       state.isAuth = true;
       state.user = action.payload;
     });
-    builder.addCase(registerAction.rejected, (state, action) => {
-      state.isAuth = false;
-      state.user = null;
-      state.error = action.payload;
+    builder.addCase(checkAuth.pending, (state, action) => {
+      state.isLoading = true;
     });
     builder.addCase(checkAuth.pending, (state, action) => {
       state.isLoading = true;

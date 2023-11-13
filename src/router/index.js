@@ -49,3 +49,37 @@ export const adminRoutes = [
     Component: AdminPage,
   },
 ];
+
+// export const adminRoutes = [
+//   {
+//     path: ROUTE_PATHS.ADMIN,
+//     element: AdminPage,
+//     children: [
+//       {
+//         path: 'comments',
+//         element: <AdminCommentsPage />,
+//       },
+//       {
+//         path: 'products',
+//         element: <AdminProductsPage />,
+//         children: [
+//           {
+//             path: 'create',
+//             element: <AdminCreateProductPage />,
+//           },
+//           {
+//             path: 'edit/:id',
+//             element: <AdminEditProductPage />,
+//           },
+//           {
+//             path: '*',
+//             element: <Navigate to="products" />,
+//           },
+//         ],
+//         // другие вложенные маршруты
+//       },
+//       // другие вложенные маршруты
+//     ],
+//   },
+//   // другие маршруты
+// ];
