@@ -11,10 +11,11 @@ const AdminComments = () => {
     try {
       setCommentsLoading(true);
       const fetched = await CommentService.getAllComments();
-      setCommentsLoading(false);
       setItems(fetched);
     } catch (error) {
       console.log(error.message);
+    } finally {
+      setCommentsLoading(false);
     }
   };
   useEffect(() => {

@@ -30,13 +30,13 @@ const AdminDeviceEdit = () => {
   useEffect(() => {
     if (!isCreate && savedDevice) {
       setValues(savedDevice);
-      console.log(savedDevice);
     }
   }, [savedDevice]);
 
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
+
   const handleDeviceSubmit = (e, action) => {
     e.preventDefault();
     if (Object.values(values).every(Boolean)) {

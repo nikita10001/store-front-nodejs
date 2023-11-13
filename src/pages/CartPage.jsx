@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import CartList from '../components/cart/CartList';
 import EmptyCart from '../components/cart/EmptyCart';
 import Order from '../components/Order';
 import Preloader from '../components/UI/Preloader';
 import PageTop from '../components/PageTop';
+import { useSelector } from 'react-redux';
 
 const CartPage = () => {
   const { isLoading, cart } = useSelector((state) => state.cart);
