@@ -28,29 +28,29 @@ const Header = () => {
         <NavLink to={ROUTE_PATHS.MAIN}>
           <h4 className="logo">1_STORE</h4>
         </NavLink>
+        <div className="header__user">
+          {isAuth ? (
+            <>
+              {isAdmin ? (
+                <NavLink to={ROUTE_PATHS.ADMIN} className="menu__link">
+                  Админ
+                </NavLink>
+              ) : (
+                <span>{user?.name}</span>
+              )}
+
+              <button onClick={logout} style={{ marginLeft: '10px' }} className="btn outline">
+                Выйти
+              </button>
+            </>
+          ) : (
+            <NavLink className="menu__link" to={ROUTE_PATHS.LOGIN}>
+              Войти
+            </NavLink>
+          )}
+        </div>
         <nav className="header__menu menu">
           <ul className="menu__list">
-            <li className="menu__item">
-              {isAuth ? (
-                <>
-                  {isAdmin ? (
-                    <NavLink to={ROUTE_PATHS.ADMIN} className="menu__link">
-                      Админ
-                    </NavLink>
-                  ) : (
-                    <span>{user?.name}</span>
-                  )}
-
-                  <button onClick={logout} style={{ marginLeft: '10px' }} className="btn outline">
-                    Выйти
-                  </button>
-                </>
-              ) : (
-                <NavLink className="menu__link" to={ROUTE_PATHS.LOGIN}>
-                  Войти
-                </NavLink>
-              )}
-            </li>
             <li className="menu__item">
               <NavLink to={ROUTE_PATHS.MAIN} className="menu__link">
                 Каталог
