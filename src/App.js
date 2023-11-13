@@ -7,11 +7,13 @@ import Preloader from './components/UI/Preloader';
 
 function App() {
   const { user } = useSelector(selectAuth);
+  const [isLoading, setIsLoading] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkAuth());
+    setIsLoading(false);
   }, []);
-  if (!user) {
+  if (isLoading) {
     return <Preloader />;
   }
   return (
