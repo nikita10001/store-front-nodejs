@@ -42,6 +42,7 @@ const initialState = {
   error: null,
   user: null,
   isLoading: true,
+
 };
 const authSlice = createSlice({
   name: 'auth',
@@ -69,6 +70,9 @@ const authSlice = createSlice({
     builder.addCase(registerAction.fulfilled, (state, action) => {
       state.isAuth = true;
       state.user = action.payload;
+    });
+    builder.addCase(checkAuth.pending, (state, action) => {
+      state.isLoading = true;
     });
     builder.addCase(checkAuth.pending, (state, action) => {
       state.isLoading = true;
