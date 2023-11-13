@@ -41,6 +41,7 @@ const initialState = {
   isAuth: false,
   error: null,
   user: null,
+
   isLoading: true,
 };
 const authSlice = createSlice({
