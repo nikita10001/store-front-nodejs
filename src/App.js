@@ -7,6 +7,8 @@ import Preloader from './components/UI/Preloader';
 import Footer from './components/Footer';
 
 function App() {
+  const { isLoading } = useSelector(selectAuth);
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(checkAuth());
