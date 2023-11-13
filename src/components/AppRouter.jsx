@@ -4,8 +4,10 @@ import { ROUTE_PATHS, adminRoutes, privateRoutes, publicRoutes } from '../router
 import { useSelector } from 'react-redux';
 import { selectAuth } from '../store/slices/authSlice';
 import AdminPage from '../pages/AdminPage';
-import CreateProduct from '../components/admin/CreateProduct';
-import EditProduct from '../components/admin/EditProduct';
+import AdminDeviceCreate from '../pages/AdminDeviceCreate';
+import AdminDeviceEdit from '../pages/AdminDeviceEdit';
+import AdminComments from '../pages/AdminComments';
+import AdminDevices from '../pages/AdminDevices';
 
 const renderRoutes = (routes) => {
   return routes.map(({ path, Component }) => <Route key={path} path={path} element={<Component />} />);
@@ -14,11 +16,11 @@ const renderRoutes = (routes) => {
 const AdminRoutes = () => {
   return (
     <Routes>
-      <Route path="createProduct" element={<CreateProduct />} />
-      <Route path="editProduct" element={<EditProduct />} />
-      <Route path="devices" element={<AdminPage />} />
-      <Route path="comments" element={<AdminPage />} />
-      <Route path="*" element={<Navigate to="/admin/products" />} />
+      <Route path="devices/create" element={<AdminDeviceEdit />} />
+      <Route path="devices/edit/:deviceId" element={<AdminDeviceEdit />} />
+      <Route path="devices" element={<AdminDevices />} />
+      <Route path="comments" element={<AdminComments />} />
+      <Route path="*" element={<Navigate to="/admin/devices" />} />
     </Routes>
   );
 };

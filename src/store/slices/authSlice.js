@@ -42,8 +42,6 @@ const initialState = {
   error: null,
   user: null,
   isLoading: true,
-  editingDeviceId: null,
-  modalVisible: false,
 };
 const authSlice = createSlice({
   name: 'auth',
@@ -51,12 +49,6 @@ const authSlice = createSlice({
   reducers: {
     setIsAuth(state, action) {
       state.isAuth = action.payload;
-    },
-    setEditingDeviceId(state, action) {
-      state.editingDeviceId = action.payload;
-    },
-    setModalVisible(state, action) {
-      state.modalVisible = action.payload;
     },
     setLogout(state) {
       state.isAuth = false;

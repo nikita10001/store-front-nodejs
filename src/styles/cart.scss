@@ -2,18 +2,6 @@
   &__container {
     max-width: 1000px;
   }
-  &__top {
-    display: flex;
-    justify-content: space-between;
-    margin: 0px 0px 20px 0px;
-    button {
-      width: inherit;
-    }
-  }
-  &__title {
-    font-weight: 500;
-    font-size: 20px;
-  }
   &__wrapper {
     margin: 0 auto;
     max-width: 800px;
@@ -27,6 +15,9 @@
   &__checkout {
   }
 }
+// ////////////////////////////////////////////
+
+// ////////////////////////////////////////////
 
 .total-cart {
   border: 1px solid $borderlight;

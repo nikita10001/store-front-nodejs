@@ -88,8 +88,8 @@ const deviceSlice = createSlice({
   extraReducers: (builder) => {
     //fetch all devices
     builder.addCase(fetchDevices.pending, (state) => {
-      state.isLoading = true;
-      state.error = null;
+      state.devices.isLoading = true;
+      state.devices.error = null;
     });
     builder.addCase(fetchDevices.fulfilled, (state, action) => {
       state.devices.isLoading = false;
