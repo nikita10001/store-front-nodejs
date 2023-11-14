@@ -4,8 +4,10 @@ import Card from 'react-credit-cards-2';
 import { formatCreditCardNumber, formatCVC, formatExpirationDate, formatFormData } from '../../utils/utils';
 
 import 'react-credit-cards-2/dist/es/styles.scss';
+import { orderActions } from '../../store/slices/orderSlice';
+import { connect } from 'react-redux';
 
-export default class App extends React.Component {
+class App extends React.Component {
   state = {
     number: '',
     name: '',
@@ -49,14 +51,13 @@ export default class App extends React.Component {
         acc[d.name] = d.value;
         return acc;
       }, {});
-
     this.setState({ formData });
+    this.props.setOrderData(formData);
     this.form.reset();
   };
 
   render() {
     const { name, number, expiry, cvc, focused, issuer, formData } = this.state;
-
     return (
       <div key="Payment">
         <div className="App-payment">
@@ -68,7 +69,8 @@ export default class App extends React.Component {
                 name="number"
                 className="input form-control"
                 placeholder="Номер карты"
-                pattern="[\d| ]{16,22}"
+                maxLength={19}
+                minLength={19}
                 required
                 onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
@@ -113,18 +115,25 @@ export default class App extends React.Component {
             </div>
             <input type="hidden" name="issuer" value={issuer} />
             <div className="form-actions">
-              <button className="btn success">Оплатить</button>
+              <button className="btn success">Сохранить</button>
             </div>
           </form>
-          {formData && (
+          {/* {formData && (
             <div className="App-highlight">
               {formatFormData(formData).map((d, i) => (
                 <div key={i}>{d}</div>
               ))}
             </div>
-          )}
+          )} */}
         </div>
       </div>
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setOrderData: (payload) => dispatch(orderActions.setCardData(payload)),
+  };
+};
+export default connect(null, mapDispatchToProps)(App);

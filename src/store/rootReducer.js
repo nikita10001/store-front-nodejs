@@ -4,6 +4,7 @@ import { cartReducer } from './slices/cartSlice';
 import { filterReducer } from './slices/filterSlice';
 import { authReducer } from './slices/authSlice';
 import { commentReducer } from './slices/commentSlice';
+import { orderReducer } from './slices/orderSlice';
 
 export const rootReducer = combineReducers({
   devices: deviceReducer,
@@ -11,4 +12,5 @@ export const rootReducer = combineReducers({
   auth: authReducer,
   filter: filterReducer,
   comment: commentReducer,
+  order: orderReducer,
 });
