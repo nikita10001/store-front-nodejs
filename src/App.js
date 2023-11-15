@@ -22,7 +22,7 @@ function App() {
       <main className="page">
         <AppRouter />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

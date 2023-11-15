@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CreditCard from './creditCard/CreditCard';
 import { useDispatch, useSelector } from 'react-redux';
-import { orderActions } from '../store/slices/orderSlice';
+import { orderActions, sendOrderData } from '../store/slices/orderSlice';
 
 const EMPTY_USER = {
   name: '',
@@ -14,7 +14,7 @@ const Order = ({ setIsOrder }) => {
   const dispatch = useDispatch();
   const [isCorrect, setIsCorrect] = useState(false);
   const [user, setUser] = useState(EMPTY_USER);
-  const isOk = useSelector((state) => state.order.isOk);
+  const { isOk, ...orderData } = useSelector((state) => state.order);
 
   const handleDataSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +28,7 @@ const Order = ({ setIsOrder }) => {
 
   const handleSendOrder = () => {
     setIsOrder(false);
+    dispatch(sendOrderData(orderData));
   };
 
   return (

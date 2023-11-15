@@ -1,5 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { $host } from '../../api/service';
 
+export const sendOrderData = createAsyncThunk(
+  'auth/sendOrderData', //
+  async (orderData, { rejectWithValue }) => {
+    try {
+      const data = await $host.post('/order', orderData);
+      console.log(data);
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 const initialState = {
   userData: {
     name: '',
