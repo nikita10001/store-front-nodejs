@@ -8,7 +8,7 @@ import AdminDeviceCreate from '../pages/AdminDeviceCreate';
 import AdminDeviceEdit from '../pages/AdminDeviceEdit';
 import AdminComments from '../pages/AdminComments';
 import AdminDevices from '../pages/AdminDevices';
-
+import CheckEmailPage from '../pages/CheckEmailPage';
 const renderRoutes = (routes) => {
   return routes.map(({ path, Component }) => <Route key={path} path={path} element={<Component />} />);
 };
@@ -39,6 +39,7 @@ const AppRouter = () => {
           {isAdmin && <Route path="/admin/*" element={<AdminRoutes />} />}
         </>
       )}
+      <Route path="/order/check/email/:token" element={<CheckEmailPage />} />
       <Route path="*" element={<Navigate to={ROUTE_PATHS.MAIN} />} />
     </Routes>
   );
