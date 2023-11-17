@@ -1,7 +1,6 @@
 .header {
   background-color: #fff;
   border-bottom: 1px solid $borderlight;
-
   &__container {
     display: flex;
     align-items: center;
@@ -29,6 +28,7 @@
     }
   }
 }
+
 .logo {
   color: $mainDarkColor;
   font-weight: 600;
@@ -86,6 +86,33 @@
     position: absolute;
     top: -5px;
     right: -8px;
+  }
+}
+.verify-info {
+  background-color: #fce8e7;
+  padding: 10px 0px;
+  &__container {
+  }
+  &__text {
+    display: flex;
+    color: #6a615e;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+  }
+  &__check {
+    margin: 0px 0px 0px 10px;
+    font-size: 12px;
+    line-height: 19px;
+    text-decoration: underline;
+    background-color: transparent;
+    border: none;
+    color: #76706d;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    &:hover {
+      color: #3d3836;
+    }
   }
 }
 

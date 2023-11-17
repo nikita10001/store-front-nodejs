@@ -79,16 +79,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    .btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      padding: 5px;
-      line-height: 1;
-      font-size: 10px;
-      font-weight: 700;
-    }
   }
   &__title {
     font-weight: 500;
@@ -99,6 +89,17 @@
         text-decoration: underline;
       }
     }
+  }
+  &__delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    line-height: 1;
+    font-size: 10px;
+    width: 21px;
+    height: 21px;
+    font-weight: 700;
   }
 }
 
@@ -157,6 +158,11 @@
   }
   &__col {
     flex: 0 1 50%;
+    .not-verify {
+      border-color: rgb(213, 17, 17);
+      color: rgb(213, 17, 17);
+      cursor: default;
+    }
   }
   &__label {
     display: inline-block;

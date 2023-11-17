@@ -4,10 +4,13 @@ const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__container">
-        Create by <a href="">r_nikita@mail.ru</a>
+        <span>Made by </span>
+        <a className="footer__link" href="https://t.me/r_nikita1 ">
+          @r_nikita1
+        </a>
+        <span>Copyright © 2023</span>
       </div>
     </footer>
   );
 };
-
 export default Footer;
