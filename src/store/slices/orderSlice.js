@@ -5,7 +5,6 @@ export const sendOrderData = createAsyncThunk(
   'auth/sendOrderData', //
   async (orderData, { rejectWithValue }) => {
     try {
-      console.log(orderData);
       const data = await $host.post('/order', orderData);
     } catch (error) {
       return rejectWithValue(error.message);

@@ -103,6 +103,9 @@ const Header = () => {
                 />
               </svg>
               <span>Почта не подтверждена</span>
+              <button onClick={() => window.location.reload()} className="verify-info__check">
+                Проверить
+              </button>
             </p>
           </div>
         </div>

@@ -18,13 +18,34 @@ const CheckEmailPage = () => {
           userId: user?.login,
         })
       );
-      navigate(ROUTE_PATHS.MAIN);
     }
   }, [token]);
 
   return (
-    <div style={{ position: 'absolute', top: 0, left: 0, background: '#fff', width: '100%', height: '100%', zIndex: 10 }}>
-      <h1 style={{ textAlign: 'center', margin: 30, fontSize: 20, fontWeight: 500 }}>Проверка...</h1>
+    <div
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        background: '#fff',
+        width: '100%',
+        height: '100%',
+        zIndex: 10,
+        display: 'flex',
+        justifyContent: 'flex-start',
+        flexDirection: 'column',
+      }}
+    >
+      <h1 style={{ textAlign: 'center', margin: 30, fontSize: 20, fontWeight: 500 }}>Проверка пройдена</h1>
+      <button
+        style={{ margin: '0 auto', maxWidth: 200, left: 0, right: 0, zIndex: 10 }}
+        className="btn success"
+        onClick={() => {
+          navigate(ROUTE_PATHS.MAIN);
+        }}
+      >
+        Перейти на главную
+      </button>
     </div>
   );
 };

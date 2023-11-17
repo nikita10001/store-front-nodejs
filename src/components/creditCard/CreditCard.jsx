@@ -72,7 +72,6 @@ class App extends React.Component {
                 maxLength={19}
                 minLength={19}
                 required
-                value={1234123412341234}
                 onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />
@@ -84,7 +83,7 @@ class App extends React.Component {
                 className="input form-control"
                 placeholder="Имя держателя"
                 required
-                value={'Nikita'}
+                maxLength={30}
                 onChange={this.handleInputChange}
                 onFocus={this.handleInputFocus}
               />

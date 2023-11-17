@@ -25,7 +25,6 @@ export class AuthService {
     if (jwtDecode(token).login == userId) {
       const { data } = await $host.post('/auth/verify', { token });
       localStorage.setItem('token', data.token);
-      console.log('совпадает');
       return jwtDecode(data.token);
     }
     return null;

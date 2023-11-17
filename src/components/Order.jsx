@@ -3,6 +3,7 @@ import CreditCard from './creditCard/CreditCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkConfirm, confirmEmail, orderActions, sendOrderData } from '../store/slices/orderSlice';
 import { checkAuth } from '../store/slices/authSlice';
+import { cartActions } from '../store/slices/cartSlice';
 
 const EMPTY_USER = {
   name: '',
@@ -43,6 +44,7 @@ const Order = ({ setIsOrder }) => {
       })
     );
     dispatch(orderActions.resetData());
+    alert('Проверьте почту');
   };
 
   return (
