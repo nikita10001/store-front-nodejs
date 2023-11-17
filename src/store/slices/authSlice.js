@@ -37,11 +37,22 @@ export const checkAuth = createAsyncThunk(
   }
 );
 
+export const checkEmail = createAsyncThunk(
+  'auth/checkEmail', //
+  async ({ token, userId }, { rejectWithValue }) => {
+    try {
+      const data = await AuthService.checkEmail(token, userId);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   isAuth: false,
   error: null,
   user: null,
-
   isLoading: true,
 };
 const authSlice = createSlice({
@@ -85,6 +96,8 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     });
+
+    builder.addCase(checkEmail.fulfilled, (state, action) => {});
   },
 });
 

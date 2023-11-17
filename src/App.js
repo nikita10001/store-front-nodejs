@@ -14,7 +14,7 @@ function App() {
     dispatch(checkAuth());
   }, []);
   if (isLoading) {
-    return <Preloader />;
+    return <div className="loader-title">Загрузка, жди...</div>;
   }
   return (
     <div className="app">

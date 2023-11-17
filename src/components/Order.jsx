@@ -5,23 +5,22 @@ import { checkConfirm, confirmEmail, orderActions, sendOrderData } from '../stor
 import { checkAuth } from '../store/slices/authSlice';
 
 const EMPTY_USER = {
-  name: 'Никита',
-  lastName: 'Никита',
-  phone: '+375445546559',
-  email: 'n_ryabtsev1@mail.ru',
+  name: '',
+  lastName: '',
+  phone: '',
+  email: '',
 };
 
 const Order = ({ setIsOrder }) => {
   const dispatch = useDispatch();
 
-  const { user: savedUser } = useSelector((state) => state.auth);
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const isEmailVerified = currentUser?.isVerified;
 
   const [isCorrect, setIsCorrect] = useState(false);
   const [user, setUser] = useState(EMPTY_USER);
-  const { isOk, isEmailConfirmed, ...orderData } = useSelector((state) => state.order);
-  const [isOpen, setIsOpen] = useState(false);
+  const orderData = useSelector((state) => state.order);
 
-  const [finalOpen, setFinalOpen] = useState(false);
   const handleDataSubmit = (e) => {
     e.preventDefault();
     dispatch(orderActions.setUserData(user));
@@ -34,22 +33,16 @@ const Order = ({ setIsOrder }) => {
 
   const handleSendOrder = () => {
     setIsOrder(false);
-    dispatch(sendOrderData(orderData));
-  };
-
-  const handleConfirmMail = () => {
     dispatch(
-      confirmEmail({
-        email: user.email,
-        id: savedUser.id,
+      sendOrderData({
+        ...orderData,
+        userData: {
+          ...orderData.userData,
+          email: currentUser?.login,
+        },
       })
     );
-    alert('Проверьте почту!');
-    setIsOpen(true);
-  };
-  const handleCheckConfirm = () => {
-    console.log('isEmailConf', isEmailConfirmed);
-    if (isEmailConfirmed) setFinalOpen(true);
+    dispatch(orderActions.resetData());
   };
 
   return (
@@ -106,36 +99,27 @@ const Order = ({ setIsOrder }) => {
             <div className="form-checkout__col">
               <label className="form-checkout__label">Email</label>
               <input //
-                value={user.email}
+                value={isEmailVerified ? currentUser?.login : 'Подтвердите почту'}
+                disabled
                 onChange={handleChange}
                 name="email"
                 required
                 type="email"
                 maxLength={120}
-                className="input"
+                className={isEmailVerified ? 'input' : 'input  not-verify'}
                 placeholder="example@mail.ru"
               />
             </div>
           </div>
           <button className="btn success">Перейти к оплате</button>
         </form>
-        {isCorrect && (
+        {isCorrect && isEmailVerified && (
           <>
             <h3 className="checkout-cart__title">Введите данные платежной карты</h3>
             <CreditCard />
           </>
         )}
-        {!!isOk &&
-          (!isOpen ? (
-            <button style={{ marginTop: 20 }} className="btn success" onClick={handleConfirmMail}>
-              Подтвердить адресс электронной почты
-            </button>
-          ) : (
-            <button style={{ marginTop: 20 }} className="btn success" onClick={handleCheckConfirm}>
-              Проверить подтверждение
-            </button>
-          ))}
-        {finalOpen && (
+        {orderData?.cardData && (
           <button style={{ marginTop: 20 }} className="btn success" onClick={handleSendOrder}>
             Подтвердить заказ
           </button>

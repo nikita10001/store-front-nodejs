@@ -5,29 +5,8 @@ export const sendOrderData = createAsyncThunk(
   'auth/sendOrderData', //
   async (orderData, { rejectWithValue }) => {
     try {
+      console.log(orderData);
       const data = await $host.post('/order', orderData);
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-export const confirmEmail = createAsyncThunk(
-  'auth/confirmEmail', //
-  async (confirmData, { rejectWithValue }) => {
-    try {
-      const data = await $host.post('/order/confirm', confirmData);
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-export const checkConfirm = createAsyncThunk(
-  'auth/checkConfirm', //
-  async (temp, { rejectWithValue }) => {
-    try {
-      const data = await $host.post('/order/check/confirm', temp);
-      console.log('data from confirmEmail');
-      console.log(data);
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -44,8 +23,6 @@ const initialState = {
   products: [],
   totalPrice: null,
   cardData: null,
-  isOk: false,
-  isEmailConfirmed: false,
 };
 
 const orderSlice = createSlice({
@@ -63,10 +40,12 @@ const orderSlice = createSlice({
     },
     setCardData(state, action) {
       state.cardData = action.payload;
-      state.isOk = true;
     },
-    setConfirmed(state) {
-      state.isEmailConfirmed = true;
+    resetData(state, action) {
+      state.userData = {};
+      state.products = [];
+      state.totalPrice = null;
+      state.cardData = null;
     },
   },
 });

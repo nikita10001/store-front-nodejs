@@ -56,8 +56,8 @@ const AuthPage = () => {
               })}
               add={'add'}
               className="form__input input"
-              type="text"
-              placeholder="Логин"
+              type="email"
+              placeholder="E-mail"
             />
             <input //
               {...register('password', {

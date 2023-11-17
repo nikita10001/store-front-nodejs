@@ -3,8 +3,6 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ROUTE_PATHS, adminRoutes, privateRoutes, publicRoutes } from '../router';
 import { useSelector } from 'react-redux';
 import { selectAuth } from '../store/slices/authSlice';
-import AdminPage from '../pages/AdminPage';
-import AdminDeviceCreate from '../pages/AdminDeviceCreate';
 import AdminDeviceEdit from '../pages/AdminDeviceEdit';
 import AdminComments from '../pages/AdminComments';
 import AdminDevices from '../pages/AdminDevices';
@@ -39,7 +37,7 @@ const AppRouter = () => {
           {isAdmin && <Route path="/admin/*" element={<AdminRoutes />} />}
         </>
       )}
-      <Route path="/order/check/email/:token" element={<CheckEmailPage />} />
+      <Route path="/auth/check/email/:token" element={<CheckEmailPage />} />
       <Route path="*" element={<Navigate to={ROUTE_PATHS.MAIN} />} />
     </Routes>
   );

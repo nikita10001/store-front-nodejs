@@ -25,7 +25,7 @@ const CartItem = ({ id, name, img, price, rating }) => {
           </p>
         </div>
         <div className="item-cart__actions">
-          <button onClick={handleDelete} className="item-cart__delele btn danger">
+          <button onClick={handleDelete} className="item-cart__delete btn danger">
             X
           </button>
         </div>

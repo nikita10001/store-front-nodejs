@@ -28,6 +28,7 @@
     }
   }
 }
+
 .logo {
   color: $mainDarkColor;
   font-weight: 600;
@@ -85,6 +86,19 @@
     position: absolute;
     top: -5px;
     right: -8px;
+  }
+}
+.verify-info {
+  background-color: #fce8e7;
+  padding: 10px 0px;
+  &__container {
+  }
+  &__text {
+    display: flex;
+    color: #6a615e;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
   }
 }
 
