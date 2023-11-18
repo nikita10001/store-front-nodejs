@@ -112,11 +112,13 @@ body,
 .form__input {
   margin: 0px 0px 10px 0px;
 }
-.login__form {
-  max-width: 600px;
-  margin: 0 auto;
-  .btn {
-    width: 100%;
+.login {
+  &__form {
+    max-width: 600px;
+    margin: 0 auto;
+    .btn {
+      width: 100%;
+    }
   }
 }
 .auth-bottom {

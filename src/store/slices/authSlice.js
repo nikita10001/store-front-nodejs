@@ -94,6 +94,18 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     });
+    //check email
+    builder.addCase(checkEmail.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(checkEmail.fulfilled, (state, action) => {
+      state.user.isVerified = true;
+      state.isLoading = false;
+    });
+    builder.addCase(checkEmail.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 

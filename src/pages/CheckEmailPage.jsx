@@ -3,10 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
 import { checkEmail, selectAuth } from '../store/slices/authSlice';
+import Preloader from '../components/UI/Preloader';
 
 const CheckEmailPage = () => {
   const dispatch = useDispatch();
-  const { user } = useSelector(selectAuth);
+  const { user, isLoading, error } = useSelector(selectAuth);
 
   const [confirmationCode, setConfirmationCode] = useState('');
 
@@ -17,6 +18,9 @@ const CheckEmailPage = () => {
     }
     setConfirmationCode('');
   };
+  if (isLoading) {
+    return <Preloader />;
+  }
   if (!user) {
     return <Navigate to={ROUTE_PATHS.LOGIN} />;
   }
@@ -29,6 +33,7 @@ const CheckEmailPage = () => {
         <div className="confirm-email__inner">
           <p className="confirm-email__text">Подтверждение регистрации</p>
           <p className="confirm-email__text">Введите код, отправленный вам на почту</p>
+
           <form onSubmit={handleCheckEmail} className="confirm-email__actions">
             <input //
               onChange={(e) => setConfirmationCode(e.target.value)}
@@ -43,6 +48,7 @@ const CheckEmailPage = () => {
               Проверить
             </button>
           </form>
+          {/* {error && <div style={{ color: 'red', padding: '20px' }}>{error ? 'Неверный код' : ''}</div>} */}
         </div>
       </div>
     </div>
