@@ -37,7 +37,6 @@ const AppRouter = () => {
           {isAdmin && <Route path="/admin/*" element={<AdminRoutes />} />}
         </>
       )}
-      <Route path="/auth/check/email/:token" element={<CheckEmailPage />} />
       <Route path="*" element={<Navigate to={ROUTE_PATHS.MAIN} />} />
     </Routes>
   );

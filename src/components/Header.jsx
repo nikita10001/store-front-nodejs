@@ -103,9 +103,9 @@ const Header = () => {
                 />
               </svg>
               <span>Почта не подтверждена</span>
-              <button onClick={() => window.location.reload()} className="verify-info__check">
-                Проверить
-              </button>
+              <NavLink to={ROUTE_PATHS.CHECKMAIL} className="verify-info__check">
+                Подтвердить
+              </NavLink>
             </p>
           </div>
         </div>

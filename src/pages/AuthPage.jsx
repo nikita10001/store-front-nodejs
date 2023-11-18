@@ -1,32 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ROUTE_PATHS } from '../router';
-import { NavLink, Navigate, useLocation } from 'react-router-dom';
+import { NavLink, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginAction, registerAction, selectAuth } from '../store/slices/authSlice';
-import { useForm } from 'react-hook-form';
+import { checkEmail, loginAction, registerAction, selectAuth } from '../store/slices/authSlice';
 
 const AuthPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
   const isLogin = location.pathname.includes('/login');
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm({
-    mode: 'onBlur',
-  });
 
   const { user } = useSelector(selectAuth);
 
-  const onSubmit = (data) => {
+  const [data, setData] = useState({
+    name: '',
+    login: '',
+    password: '',
+  });
+
+  const onSubmit = (e) => {
+    e.preventDefault();
     if (isLogin) {
       dispatch(loginAction(data));
     } else {
       dispatch(registerAction(data));
+      navigate(ROUTE_PATHS.CHECKMAIL);
     }
-    reset();
+    setData({
+      name: '',
+      login: '',
+      password: '',
+    });
+  };
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
   };
 
   if (user) {
@@ -36,34 +44,35 @@ const AuthPage = () => {
     <div className="login">
       <div className="login__container">
         <div className="login__block">
-          <form className="login__form" onSubmit={handleSubmit(onSubmit)}>
+          <form className="login__form" onSubmit={onSubmit}>
             {!isLogin && (
               <input //
-                {...register('name', {
-                  required: true,
-                  maxLength: 30,
-                })}
-                add={'add'}
+                onChange={handleChange}
+                name="name"
+                value={data.name}
+                required
+                maxLength={30}
                 className="form__input input"
                 type="text"
                 placeholder="Имя"
               />
             )}
             <input //
-              {...register('login', {
-                required: true,
-                maxLength: 30,
-              })}
-              add={'add'}
+              required
+              onChange={handleChange}
+              value={data.login}
+              name="login"
+              maxLength={30}
               className="form__input input"
               type="email"
               placeholder="E-mail"
             />
             <input //
-              {...register('password', {
-                required: true,
-                maxLength: 20,
-              })}
+              required
+              onChange={handleChange}
+              name="password"
+              value={data.password}
+              maxLength={20}
               className="form__input input"
               type="password"
               placeholder="Пароль"

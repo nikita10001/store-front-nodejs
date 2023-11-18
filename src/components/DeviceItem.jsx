@@ -54,7 +54,7 @@ const DeviceItem = React.memo(({ id, name, price, rating, commentsAmount, img, d
         </div>
         <button disabled={isInCart} onClick={handleAddCart} type="submit" className="device-card__cart btn">
           <CartIcon />
-          <span>{isInCart ? 'Добавлено' : 'В коризину'}</span>
+          <span>{isInCart ? 'Добавлено' : 'В корзину'}</span>
         </button>
       </div>
     </article>

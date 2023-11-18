@@ -3,7 +3,6 @@ import AppRouter from './components/AppRouter';
 import Header from './components/Header';
 import { checkAuth, selectAuth } from './store/slices/authSlice';
 import { useEffect } from 'react';
-import Preloader from './components/UI/Preloader';
 import Footer from './components/Footer';
 
 function App() {
