@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import CreditCard from './creditCard/CreditCard';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkConfirm, confirmEmail, orderActions, sendOrderData } from '../store/slices/orderSlice';
-import { checkAuth } from '../store/slices/authSlice';
+import { orderActions, sendOrderData } from '../store/slices/orderSlice';
 import { deleteAllFromCart } from '../store/slices/cartSlice';
 
 const EMPTY_USER = {
