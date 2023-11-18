@@ -62,7 +62,7 @@ const DevicePage = () => {
             </div>
             <button disabled={isInCart} onClick={handleAddCart} className="content-device__btn btn">
               <CartIcon />
-              <span>{isInCart ? 'Добавлено' : 'Добавить в коризину'}</span>
+              <span>{isInCart ? 'Добавлено' : 'Добавить в корзину'}</span>
             </button>
           </div>
         </div>

@@ -13,6 +13,11 @@ export class CartService {
     const response = await $host.delete(`/cart/deleteDevice/${deviceId}`);
     return response.data;
   }
+  static async deleteAllFromCart() {
+    const response = await $host.delete(`/cart/clear`);
+    return response.data;
+  }
+
   // static async getDevice(id) {
   //   const response = await $host.get('/devices/' + id);
   //   return response.data;

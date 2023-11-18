@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import CreditCard from './creditCard/CreditCard';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkConfirm, confirmEmail, orderActions, sendOrderData } from '../store/slices/orderSlice';
-import { checkAuth } from '../store/slices/authSlice';
-import { cartActions } from '../store/slices/cartSlice';
+import { orderActions, sendOrderData } from '../store/slices/orderSlice';
+import { deleteAllFromCart } from '../store/slices/cartSlice';
 
 const EMPTY_USER = {
   name: '',
@@ -44,6 +43,7 @@ const Order = ({ setIsOrder }) => {
       })
     );
     dispatch(orderActions.resetData());
+    dispatch(deleteAllFromCart());
     alert('Проверьте почту');
   };
 
@@ -51,6 +51,7 @@ const Order = ({ setIsOrder }) => {
     <div className="cart-page__checkout checkout-cart">
       <div className="checkout-cart__wrapper">
         <h3 className="checkout-cart__title">Введите данные получателя заказа</h3>
+
         <form onSubmit={handleDataSubmit} action="" className="checkout-cart__form form-checkout">
           <div className="form-checkout__row">
             <div className="form-checkout__col">

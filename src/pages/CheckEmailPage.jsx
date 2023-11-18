@@ -1,51 +1,56 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
-import { checkEmail } from '../store/slices/authSlice';
+import { checkEmail, selectAuth } from '../store/slices/authSlice';
+import Preloader from '../components/UI/Preloader';
 
 const CheckEmailPage = () => {
   const dispatch = useDispatch();
-  const { token } = useParams();
-  const { user } = useSelector((state) => state.auth);
-  const navigate = useNavigate();
+  const { user, isLoading, error } = useSelector(selectAuth);
 
-  useEffect(() => {
-    if (token) {
-      dispatch(
-        checkEmail({
-          token,
-          userId: user?.login,
-        })
-      );
+  const [confirmationCode, setConfirmationCode] = useState('');
+
+  const handleCheckEmail = (e) => {
+    e.preventDefault();
+    if (confirmationCode.length == 6) {
+      dispatch(checkEmail({ login: user?.login, confirmationCode }));
     }
-  }, [token]);
-
+    setConfirmationCode('');
+  };
+  if (isLoading) {
+    return <Preloader />;
+  }
+  if (!user) {
+    return <Navigate to={ROUTE_PATHS.LOGIN} />;
+  }
+  if (user?.isVerified) {
+    return <Navigate to={ROUTE_PATHS.MAIN} />;
+  }
   return (
-    <div
-      style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        background: '#fff',
-        width: '100%',
-        height: '100%',
-        zIndex: 10,
-        display: 'flex',
-        justifyContent: 'flex-start',
-        flexDirection: 'column',
-      }}
-    >
-      <h1 style={{ textAlign: 'center', margin: 30, fontSize: 20, fontWeight: 500 }}>Проверка пройдена</h1>
-      <button
-        style={{ margin: '0 auto', maxWidth: 200, left: 0, right: 0, zIndex: 10 }}
-        className="btn success"
-        onClick={() => {
-          navigate(ROUTE_PATHS.MAIN);
-        }}
-      >
-        Перейти на главную
-      </button>
+    <div className="confirm-email">
+      <div className="confirm-email__container">
+        <div className="confirm-email__inner">
+          <p className="confirm-email__text">Подтверждение регистрации</p>
+          <p className="confirm-email__text">Введите код, отправленный вам на почту</p>
+
+          <form onSubmit={handleCheckEmail} className="confirm-email__actions">
+            <input //
+              onChange={(e) => setConfirmationCode(e.target.value)}
+              value={confirmationCode}
+              maxLength={6}
+              required
+              minLength={6}
+              className="confirm-email__input input"
+              type="text"
+            />
+            <button type="submit" className="confirm-email__btn btn outline">
+              Проверить
+            </button>
+          </form>
+          {/* {error && <div style={{ color: 'red', padding: '20px' }}>{error ? 'Неверный код' : ''}</div>} */}
+        </div>
+      </div>
     </div>
   );
 };

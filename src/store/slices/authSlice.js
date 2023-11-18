@@ -12,7 +12,6 @@ export const loginAction = createAsyncThunk(
     }
   }
 );
-
 export const registerAction = createAsyncThunk(
   'auth/registerAction', //
   async (data, { rejectWithValue }) => {
@@ -24,7 +23,6 @@ export const registerAction = createAsyncThunk(
     }
   }
 );
-
 export const checkAuth = createAsyncThunk(
   'auth/checkAuth', //
   async (data, { rejectWithValue }) => {
@@ -39,9 +37,9 @@ export const checkAuth = createAsyncThunk(
 
 export const checkEmail = createAsyncThunk(
   'auth/checkEmail', //
-  async ({ token, userId }, { rejectWithValue }) => {
+  async ({ login, confirmationCode }, { rejectWithValue }) => {
     try {
-      const data = await AuthService.checkEmail(token, userId);
+      const data = await AuthService.checkEmail(login, confirmationCode);
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -96,8 +94,18 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     });
-
-    builder.addCase(checkEmail.fulfilled, (state, action) => {});
+    //check email
+    builder.addCase(checkEmail.pending, (state, action) => {
+      state.isLoading = true;
+    });
+    builder.addCase(checkEmail.fulfilled, (state, action) => {
+      state.user.isVerified = true;
+      state.isLoading = false;
+    });
+    builder.addCase(checkEmail.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    });
   },
 });
 
