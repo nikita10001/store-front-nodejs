@@ -37,6 +37,18 @@ export const deleteProductFromCart = createAsyncThunk(
   }
 );
 
+export const deleteAllFromCart = createAsyncThunk(
+  'cart/deleteAllFromCart', //
+  async function (id, { rejectWithValue, dispatch }) {
+    try {
+      const data = await CartService.deleteAllFromCart();
+      dispatch(cartActions.clearCart());
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
 const initialState = {
   cart: [],
   error: null,

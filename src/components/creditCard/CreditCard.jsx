@@ -53,7 +53,7 @@ class App extends React.Component {
       }, {});
     this.setState({ formData });
     this.props.setOrderData(formData);
-    this.form.reset();
+    // this.form.reset();
   };
 
   render() {
