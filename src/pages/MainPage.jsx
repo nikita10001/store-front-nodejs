@@ -12,7 +12,7 @@ const MainPage = () => {
   const dispatch = useDispatch();
   const { items, isLoading, totalItems } = useSelector(selectAllDevices);
   const { query, range } = useSelector(selectFilter);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
 
   const onChangePage = (page) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { ROUTE_PATHS, adminRoutes, privateRoutes, publicRoutes } from '../router';
+import { ROUTE_PATHS, privateRoutes, publicRoutes } from '../router';
 import { useSelector } from 'react-redux';
 import { selectAuth } from '../store/slices/authSlice';
 import AdminDeviceEdit from '../pages/AdminDeviceEdit';

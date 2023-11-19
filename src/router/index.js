@@ -1,4 +1,4 @@
-import AdminPage from '../pages/AdminPage';
+// import AdminPage from '../pages/AdminPage';
 import DevicePage from '../pages/DevicePage';
 import MainPage from '../pages/MainPage';
 import AuthPage from '../pages/AuthPage';
@@ -45,16 +45,16 @@ export const privateRoutes = [
   },
 ];
 
-export const adminRoutes = [
-  {
-    path: ROUTE_PATHS.ADMIN,
-    Component: AdminPage,
-  },
-  {
-    path: ROUTE_PATHS.ADMIN_COMMENTS,
-    Component: AdminPage,
-  },
-];
+// export const adminRoutes = [
+//   {
+//     path: ROUTE_PATHS.ADMIN,
+//     Component: AdminPage,
+//   },
+//   {
+//     path: ROUTE_PATHS.ADMIN_COMMENTS,
+//     Component: AdminPage,
+//   },
+// ];
 
 // export const adminRoutes = [
 //   {
