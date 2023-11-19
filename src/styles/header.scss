@@ -7,10 +7,10 @@
     min-height: 70px;
     justify-content: space-between;
     column-gap: 40px;
-    row-gap: 10px;
     align-items: center;
-    padding-top: 6px;
     padding-bottom: 6px;
+    padding-top: 6px;
+    row-gap: 10px;
     //test
     flex-wrap: wrap;
 
@@ -18,13 +18,19 @@
       min-height: 60px;
       column-gap: 30px;
     }
+    @media (max-width: 500px) {
+      padding-top: 10px;
+    }
   }
   &__user {
-    margin-left: auto;
+    order: 2;
   }
   &__menu {
+  }
+  &__logo {
     @media (max-width: 500px) {
       flex: 1 1 100%;
+      text-align: center;
     }
   }
 }
@@ -41,10 +47,6 @@
     @media (max-width: 768px) {
       column-gap: 30px;
     }
-    @media (max-width: 500px) {
-      justify-content: center;
-      column-gap: 50px;
-    }
   }
   &__link {
     color: $mainDarkColor;
@@ -59,14 +61,18 @@
     }
   }
 }
-
+.link-icon {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
 .basket-link {
   display: flex;
   align-items: center;
   gap: 10px;
   &__icon {
     position: relative;
-    max-width: 25px;
+    height: 24px;
   }
   &__text {
   }
