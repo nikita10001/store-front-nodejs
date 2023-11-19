@@ -3,6 +3,9 @@
   display: flex;
   display: flex;
   justify-content: center;
+  @media (max-width: 768px) {
+    padding: 25px 0px 10px 0px;
+  }
 }
 
 .page-item {

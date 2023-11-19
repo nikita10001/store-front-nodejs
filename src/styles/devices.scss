@@ -5,9 +5,15 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     place-items: center;
     gap: 15px;
-
     @media (max-width: 1100px) {
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+    @media (max-width: 600px) {
+      row-gap: 6px;
+    }
+    @media (max-width: 550px) {
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      column-gap: 3px;
     }
   }
 }
@@ -28,10 +34,20 @@
       box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.3);
     }
   }
+  @media (max-width: 550px) {
+    box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.2);
+    }
+  }
 
   // .product-card__image-ibg
   &__image {
     padding: 10px;
+    @media (max-width: 550px) {
+      padding: 5px 0px 5px 0px;
+    }
   }
   &__item-image-ibg {
     display: block;
@@ -48,6 +64,9 @@
     @media (max-width: 1100px) {
       padding: 10px;
     }
+    @media (max-width: 550px) {
+      padding: 5px;
+    }
   }
   // .product-card__title
   &__title {
@@ -62,8 +81,17 @@
         text-decoration: underline;
       }
     }
+    @media (max-width: 768px) {
+      font-weight: 500;
+      font-size: 16px;
+    }
     @media (max-width: 600px) {
       font-size: 15px;
+      line-height: 16px;
+      margin: 0px 0px 5px 0px;
+    }
+    @media (max-width: 600px) {
+      font-weight: 400;
     }
   }
   // .product-card__link-title
@@ -77,6 +105,9 @@
     justify-content: space-between;
     &:not(:last-child) {
       margin-bottom: 7px;
+      @media (max-width: 550px) {
+        margin-bottom: 4px;
+      }
     }
   }
   // .product-card__footer
@@ -86,6 +117,9 @@
     display: flex;
     align-items: center;
     gap: 14px;
+    @media (max-width: 550px) {
+      padding: 5px 0px;
+    }
   }
   // .product-card__price
   &__price {
@@ -96,6 +130,10 @@
     @media (max-width: 1100px) {
       font-size: 18px;
       line-height: 20px;
+    }
+    @media (max-width: 550px) {
+      font-size: 15px;
+      line-height: 17px;
     }
   }
 
@@ -123,6 +161,10 @@
         box-shadow: 0px 1px 10px rgba($secondary, 0.9);
       }
     }
+    @media (max-width: 550px) {
+      padding-bottom: 5px;
+      padding-top: 5px;
+    }
   }
 }
 
@@ -135,6 +177,9 @@
     align-items: flex-start;
     gap: 4px;
     font-size: 14px;
+    @media (max-width: 550px) {
+      font-size: 12px;
+    }
   }
   &__info {
     color: #6a6a6a;
@@ -142,7 +187,7 @@
     display: flex;
     align-items: center;
     svg {
-      max-width: 15px;
+      max-width: 19px;
       height: 15px;
       width: 100%;
     }
