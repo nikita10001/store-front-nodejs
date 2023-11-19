@@ -278,6 +278,7 @@
     }
     @media (max-width: 600px) {
       font-size: 17px;
+      font-weight: 500;
     }
   }
   &__descr {
@@ -325,6 +326,9 @@
     @media (max-width: 1000px) {
       font-size: 18px;
     }
+    @media (max-width: 768px) {
+      font-size: 16px;
+    }
   }
 }
 
@@ -358,9 +362,7 @@
     line-height: 1;
     margin: 0px 0px 15px 0px;
     @media (max-width: 1000px) {
-      .filters__title {
-        font-size: 18px;
-      }
+      font-size: 18px;
     }
   }
   &__block {
@@ -402,6 +404,10 @@
   &__author {
     font-size: 17px;
     margin: 0px 0px 3px 0px;
+
+    @media (max-width: 600px) {
+      font-size: 16px;
+    }
   }
   &__date {
     color: #828282;
@@ -418,5 +424,8 @@
   }
   &__text {
     font-size: 15px;
+    @media (max-width: 600px) {
+      font-size: 14px;
+    }
   }
 }

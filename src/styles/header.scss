@@ -34,9 +34,6 @@
   &__logo {
   }
   &__logout {
-    @media (max-width: 768px) {
-      font-size: 13px;
-    }
   }
 }
 
@@ -82,10 +79,15 @@
     }
     @media (max-width: 550px) {
       flex-direction: column;
-      font-size: 12px;
+      font-size: 13px;
       line-height: 1;
       gap: 0px;
     }
+  }
+}
+.header__user .menu__link {
+  @media (max-width: 550px) {
+    font-size: 15px;
   }
 }
 .link-icon {
