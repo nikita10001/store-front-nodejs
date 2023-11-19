@@ -20,6 +20,9 @@ const AuthPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
+    if (data.name.length > 15 || data.login.length > 30 || data.login.password > 20) {
+      return;
+    }
     if (isLogin) {
       dispatch(loginAction(data));
     } else {
@@ -51,7 +54,7 @@ const AuthPage = () => {
                 name="name"
                 value={data.name}
                 required
-                maxLength={30}
+                maxLength={15}
                 className="form__input input"
                 type="text"
                 placeholder="Имя"
