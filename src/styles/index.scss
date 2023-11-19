@@ -187,12 +187,19 @@ body,
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
+    @media (max-width: 768px) {
+      gap: 10px;
+    }
   }
 
   &__text {
     font-size: 18px;
     font-weight: 500;
     margin: 0px 0px 10px 0px;
+    @media (max-width: 768px) {
+      font-size: 16px;
+      line-height: 1;
+    }
   }
   &__input {
     max-width: 100px;
