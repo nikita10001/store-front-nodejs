@@ -12,6 +12,7 @@ export const ROUTE_PATHS = {
   REGISTRATION: '/auth/registration',
   CHECKMAIL: '/auth/check',
   ADMIN_COMMENTS: '/admin/comments',
+  ADMIN_USERS: '/admin/users',
   ADMIN: '/admin/devices',
 };
 

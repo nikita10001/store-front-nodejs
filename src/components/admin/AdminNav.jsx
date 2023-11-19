@@ -17,6 +17,11 @@ const AdminNav = ({ isAdmin }) => {
               <NavLink to={ROUTE_PATHS.ADMIN} className="admin-nav__link">
                 Товары
               </NavLink>
+            </li>{' '}
+            <li className="admin-nav__item">
+              <NavLink to={ROUTE_PATHS.ADMIN_USERS} className="admin-nav__link">
+                Пользователи
+              </NavLink>
             </li>
           </ul>
         </div>

@@ -7,6 +7,7 @@ import AdminDeviceEdit from '../pages/AdminDeviceEdit';
 import AdminComments from '../pages/AdminComments';
 import AdminDevices from '../pages/AdminDevices';
 import CheckEmailPage from '../pages/CheckEmailPage';
+import AdminUsers from '../pages/AdminUsers';
 const renderRoutes = (routes) => {
   return routes.map(({ path, Component }) => <Route key={path} path={path} element={<Component />} />);
 };
@@ -18,6 +19,7 @@ const AdminRoutes = () => {
       <Route path="devices/edit/:deviceId" element={<AdminDeviceEdit />} />
       <Route path="devices" element={<AdminDevices />} />
       <Route path="comments" element={<AdminComments />} />
+      <Route path="users" element={<AdminUsers />} />
       <Route path="*" element={<Navigate to="/admin/devices" />} />
     </Routes>
   );
