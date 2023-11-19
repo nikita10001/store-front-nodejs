@@ -36,6 +36,7 @@ const CommentForm = ({ deviceId, isAuth }) => {
           <form className="leave-comment__form" action="" onSubmit={handleAddComment}>
             <p className="leave-comment__subtitle">Отзыв:</p>
             <textarea
+              minLength={30}
               maxLength={1200}
               value={commentText}
               onChange={handleChangeComment}
