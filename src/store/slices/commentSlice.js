@@ -13,9 +13,9 @@ export const fetchDevicesComments = createAsyncThunk(
 );
 export const createComment = createAsyncThunk(
   'comment/addComment', //
-  async function ({ deviceId, text }, { rejectWithValue, dispatch }) {
+  async function ({ deviceId, text, rating }, { rejectWithValue, dispatch }) {
     try {
-      const data = await CommentService.addComment(deviceId, text);
+      const data = await CommentService.addComment(deviceId, text, rating);
       dispatch(commenctActions.addComment(data));
     } catch (error) {
       return rejectWithValue(error.message);

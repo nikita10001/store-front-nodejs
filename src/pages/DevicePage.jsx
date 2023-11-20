@@ -38,7 +38,6 @@ const DevicePage = () => {
     }
     dispatch(addProductToCart(id));
   };
-
   if (deviceLoading) {
     return <Preloader />;
   }

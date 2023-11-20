@@ -402,9 +402,12 @@
       opacity: 1;
     }
   }
+  &__rating {
+    margin: 0px 0px 5px 0px;
+  }
   &__author {
     font-size: 17px;
-    margin: 0px 0px 3px 0px;
+    margin: 0px 0px 2px 0px;
 
     @media (max-width: 600px) {
       font-size: 16px;
@@ -425,6 +428,7 @@
   }
   &__text {
     font-size: 15px;
+    word-wrap: break-word;
     @media (max-width: 600px) {
       font-size: 14px;
     }
