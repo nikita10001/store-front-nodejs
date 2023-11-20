@@ -6,15 +6,18 @@ import { createComment } from '../store/slices/commentSlice';
 
 const CommentForm = ({ deviceId, isAuth }) => {
   const dispatch = useDispatch();
-  const [isComment, setIsComment] = useState();
-  const [commentText, setCommentText] = useState();
-  const [rating, setRating] = useState();
+  const [isComment, setIsComment] = useState(false);
+  const [commentText, setCommentText] = useState('');
+  const [rating, setRating] = useState(null);
+
   const handleRating = (rate) => {
     setRating(rate);
   };
   const handleAddComment = (e) => {
     e.preventDefault();
-    dispatch(createComment({ deviceId, text: commentText }));
+    console.log(rating);
+    if (commentText.length < 30) return;
+    dispatch(createComment({ deviceId, text: commentText, rating }));
     setCommentText('');
     setIsComment(false);
   };
@@ -36,6 +39,7 @@ const CommentForm = ({ deviceId, isAuth }) => {
           <form className="leave-comment__form" action="" onSubmit={handleAddComment}>
             <p className="leave-comment__subtitle">Отзыв:</p>
             <textarea
+              minLength={30}
               maxLength={1200}
               value={commentText}
               onChange={handleChangeComment}
@@ -45,7 +49,7 @@ const CommentForm = ({ deviceId, isAuth }) => {
               type="text"
             />
             <div className="leave-comment__rating">
-              <Rating size="23" allowFraction />
+              <Rating onClick={handleRating} size="23" allowFraction />
             </div>
 
             <button className="btn outline">Отправить</button>

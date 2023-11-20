@@ -12,7 +12,7 @@ const MainPage = () => {
   const dispatch = useDispatch();
   const { items, isLoading, totalItems } = useSelector(selectAllDevices);
   const { query, range } = useSelector(selectFilter);
-  const [limit, setLimit] = useState(5);
+  const [limit, setLimit] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
 
   const onChangePage = (page) => {
@@ -21,7 +21,15 @@ const MainPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch(fetchDevices({ query, limit, currentPage, rangeFrom: range.from, rangeTo: range.to }));
-  }, [query, range, currentPage]);
+  }, [range, currentPage]);
+
+  //test use effect only when query
+  useEffect(() => {
+    setCurrentPage(1);
+    window.scrollTo(0, 0);
+    dispatch(fetchDevices({ query, limit, currentPage, rangeFrom: range.from, rangeTo: range.to }));
+  }, [query]);
+
   return (
     <div className="page__catalog catalog">
       <div className="catalog__container">

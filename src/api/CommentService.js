@@ -5,8 +5,8 @@ export class CommentService {
     const response = await $host.get('/comment/' + deviceId);
     return response.data;
   }
-  static async addComment(deviceId, text) {
-    const response = await $host.post('/comment/' + deviceId, { text });
+  static async addComment(deviceId, text, rating) {
+    const response = await $host.post('/comment/' + deviceId, { text, rating });
     return response.data;
   }
   static async removeComment(commentId) {

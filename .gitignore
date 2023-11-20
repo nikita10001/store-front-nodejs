@@ -10,7 +10,8 @@
 
 # production
 /build
-
+/devices-store
+/store-front-nodejs
 # misc
 .DS_Store
 .env.local

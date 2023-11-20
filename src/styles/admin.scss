@@ -75,9 +75,30 @@
     width: 100%;
   }
 }
-
 .admin-edit {
   &__container {
     max-width: 700px;
+  }
+}
+.admin-users {
+  &__container {
+  }
+  &__list {
+  }
+  &__item {
+  }
+}
+.user-admin {
+  &__id {
+  }
+  &__role {
+  }
+  &__name {
+  }
+  &__login {
+  }
+  &__created {
+  }
+  &__updated {
   }
 }

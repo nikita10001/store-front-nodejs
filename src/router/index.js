@@ -1,4 +1,4 @@
-import AdminPage from '../pages/AdminPage';
+// import AdminPage from '../pages/AdminPage';
 import DevicePage from '../pages/DevicePage';
 import MainPage from '../pages/MainPage';
 import AuthPage from '../pages/AuthPage';
@@ -12,6 +12,7 @@ export const ROUTE_PATHS = {
   REGISTRATION: '/auth/registration',
   CHECKMAIL: '/auth/check',
   ADMIN_COMMENTS: '/admin/comments',
+  ADMIN_USERS: '/admin/users',
   ADMIN: '/admin/devices',
 };
 
@@ -45,16 +46,16 @@ export const privateRoutes = [
   },
 ];
 
-export const adminRoutes = [
-  {
-    path: ROUTE_PATHS.ADMIN,
-    Component: AdminPage,
-  },
-  {
-    path: ROUTE_PATHS.ADMIN_COMMENTS,
-    Component: AdminPage,
-  },
-];
+// export const adminRoutes = [
+//   {
+//     path: ROUTE_PATHS.ADMIN,
+//     Component: AdminPage,
+//   },
+//   {
+//     path: ROUTE_PATHS.ADMIN_COMMENTS,
+//     Component: AdminPage,
+//   },
+// ];
 
 // export const adminRoutes = [
 //   {
