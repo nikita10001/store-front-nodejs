@@ -20,7 +20,7 @@ const AuthPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (data.name.length > 15 || data.login.length > 30 || data.login.password > 20) {
+    if (data.name.length > 15 || data.login.length > 60 || data.login.password > 30) {
       return;
     }
     if (isLogin) {

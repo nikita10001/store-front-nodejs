@@ -16,7 +16,7 @@ const CommentForm = ({ deviceId, isAuth }) => {
   const handleAddComment = (e) => {
     e.preventDefault();
     console.log(rating);
-    if (commentText.length < 30) return;
+    if (commentText.length < 20) return;
     dispatch(createComment({ deviceId, text: commentText, rating }));
     setCommentText('');
     setIsComment(false);
