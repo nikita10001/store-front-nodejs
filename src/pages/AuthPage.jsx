@@ -4,6 +4,10 @@ import { NavLink, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkEmail, loginAction, registerAction, selectAuth } from '../store/slices/authSlice';
 
+const MAX_LOGIN_LENGTH = 60;
+const MAX_NAME_LENTGH = 15;
+const MAX_PASSWORD_LENTGH = 30;
+
 const AuthPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
@@ -20,7 +24,7 @@ const AuthPage = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    if (data.name.length > 15 || data.login.length > 60 || data.login.password > 30) {
+    if (data.name.length > MAX_NAME_LENTGH || data.login.length > MAX_LOGIN_LENGTH || data.login.password > MAX_PASSWORD_LENTGH) {
       return;
     }
     if (isLogin) {
@@ -54,7 +58,7 @@ const AuthPage = () => {
                 name="name"
                 value={data.name}
                 required
-                maxLength={15}
+                maxLength={MAX_NAME_LENTGH}
                 className="form__input input"
                 type="text"
                 placeholder="Имя"
@@ -65,7 +69,7 @@ const AuthPage = () => {
               onChange={handleChange}
               value={data.login}
               name="login"
-              maxLength={30}
+              maxLength={MAX_LOGIN_LENGTH}
               className="form__input input"
               type="email"
               placeholder="E-mail"
@@ -75,7 +79,7 @@ const AuthPage = () => {
               onChange={handleChange}
               name="password"
               value={data.password}
-              maxLength={20}
+              maxLength={MAX_PASSWORD_LENTGH}
               className="form__input input"
               type="password"
               placeholder="Пароль"

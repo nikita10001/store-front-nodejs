@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Rating } from 'react-simple-star-rating';
 import { createComment } from '../store/slices/commentSlice';
-
+const MIN_COMMENT_LENGTH = 20;
 const CommentForm = ({ deviceId, isAuth }) => {
   const dispatch = useDispatch();
   const [isComment, setIsComment] = useState(false);
@@ -16,7 +16,7 @@ const CommentForm = ({ deviceId, isAuth }) => {
   const handleAddComment = (e) => {
     e.preventDefault();
     console.log(rating);
-    if (commentText.length < 20) return;
+    if (commentText.length < MIN_COMMENT_LENGTH) return;
     dispatch(createComment({ deviceId, text: commentText, rating }));
     setCommentText('');
     setIsComment(false);
@@ -39,7 +39,7 @@ const CommentForm = ({ deviceId, isAuth }) => {
           <form className="leave-comment__form" action="" onSubmit={handleAddComment}>
             <p className="leave-comment__subtitle">Отзыв:</p>
             <textarea
-              minLength={30}
+              minLength={MIN_COMMENT_LENGTH}
               maxLength={1200}
               value={commentText}
               onChange={handleChangeComment}
