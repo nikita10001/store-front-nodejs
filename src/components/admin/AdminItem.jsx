@@ -21,7 +21,7 @@ const AdminItem = ({ id, name, img, price, rating }) => {
             <h2 className="item-admin__title">{name}</h2>
           </NavLink>
           <p>Цена: {price} р.</p>
-          <p>Рейтинг: {rating}</p>
+          <p>Рейтинг: {rating.toFixed(1)}</p>
         </div>
         <div className="item-admin__actions">
           <button onClick={handleRemove} className="item-admin__btn btn danger">

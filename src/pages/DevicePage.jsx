@@ -14,6 +14,10 @@ import CartIcon from '../components/icons/CartIcon';
 import CommentsList from '../components/CommentsList';
 import { ROUTE_PATHS } from '../router';
 
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import 'react-tabs/style/react-tabs.css';
+import DeviceInfoList from '../components/DeviceInfoList';
+
 // const tempImagesArray = [1, 2, 3];
 const DevicePage = () => {
   const dispatch = useDispatch();
@@ -26,6 +30,54 @@ const DevicePage = () => {
   const { cart } = useSelector((state) => state.cart);
   const isInCart = cart?.some((item) => item._id === id);
   const { isAuth } = useSelector(selectAuth);
+
+  //temp tabs logic
+  const tabsItems = ['Отзывы', 'Характеристики'];
+  const [activeTab, setActiveTab] = useState(0);
+  const infoList = [
+    {
+      id: 1,
+      label: 'Тип',
+      text: 'Телевизор',
+    },
+    {
+      id: 2,
+      label: 'Диагональ',
+      text: '50',
+    },
+    {
+      id: 3,
+      label: 'Соотношение сторон экрана',
+      text: '16:9',
+    },
+    {
+      id: 4,
+      label: 'Цвет корпуса',
+      text: 'серый',
+    },
+    {
+      id: 5,
+      label: 'Интерактивное управление',
+      text: 'голосове',
+    },
+    {
+      id: 6,
+      label: 'Вес',
+      text: '10 кг.',
+    },
+    {
+      id: 7,
+      label: 'Ширина',
+      text: '2 м.',
+    },
+    {
+      id: 7,
+      label: 'Высота',
+      text: '100 см.',
+    },
+  ];
+  ////
+
   useEffect(() => {
     dispatch(fetchSingleDevice(id));
     dispatch(fetchDevicesComments(id));
@@ -54,7 +106,7 @@ const DevicePage = () => {
             <p className="content-device__descr">{device.description}</p>
             <div className="content-device__rating rating">
               <Rating size="22" readonly allowFraction initialValue={device.rating} />
-              <span className="rating__info">{device.rating}</span>
+              <span className="rating__info">{device.rating.toFixed(1)}</span>
             </div>
             <div className="content-device__footer">
               <div className="content-device__price">{device.price} р.</div>
@@ -65,13 +117,31 @@ const DevicePage = () => {
             </button>
           </div>
         </div>
-
-        <CommentForm deviceId={id} isAuth={isAuth} />
-        {commentsLoading ? (
-          <Preloader /> //
-        ) : (
-          <CommentsList comments={items} />
-        )}
+        <div className="device-page__tabs tabs-device">
+          <div className="tabs-device__menu">
+            {tabsItems.map((tab, i) => (
+              <div key={i} onClick={() => setActiveTab(i)} className={`tabs-device__item ${activeTab == i ? 'active' : ''}`}>
+                {tab}
+              </div>
+            ))}
+          </div>
+          {activeTab == 0 ? (
+            <div className="tabs-device__tab">
+              <CommentForm deviceId={id} isAuth={isAuth} />
+              {commentsLoading ? (
+                <Preloader /> //
+              ) : (
+                <CommentsList comments={items} />
+              )}
+            </div>
+          ) : (
+            <div className="tabs-device__tab">
+              <div className="device-page__info info-device">
+                <DeviceInfoList list={infoList} />
+              </div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

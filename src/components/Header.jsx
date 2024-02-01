@@ -72,7 +72,6 @@ const Header = () => {
             </ul>
           </nav>
         </div>
-
         <AdminNav isAdmin={isAdmin} />
       </header>
       {isAuth && !user?.isVerified && <VerifyLine />}

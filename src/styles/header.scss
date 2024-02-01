@@ -69,12 +69,23 @@
   }
   &__link {
     color: $mainDarkColor;
+    transition: all 0.2s ease 0s;
+    path {
+      transition: all 0.2s ease 0s;
+    }
     &.active {
       color: #5e96fc;
+      path {
+        fill: #5e96fc;
+      }
     }
     @media (any-hover: hover) {
       &:hover {
-        text-decoration: underline;
+        // text-decoration: underline;
+        color: #5e96fc;
+        path {
+          fill: #5e96fc;
+        }
       }
     }
     @media (max-width: 550px) {

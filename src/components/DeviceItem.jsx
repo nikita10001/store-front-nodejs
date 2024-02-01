@@ -40,7 +40,7 @@ const DeviceItem = React.memo(({ id, name, price, rating, commentsAmount, img, d
         <div className="device-card__rating rating">
           <div className="rating__value">
             <Rating size="15" readonly allowFraction initialValue={rating} />
-            <span className="rating__info">{rating}</span>
+            <span className="rating__info">{rating.toFixed(1)}</span>
           </div>
           {!!commentsAmount && (
             <div className="rating__info">

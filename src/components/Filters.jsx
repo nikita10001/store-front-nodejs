@@ -14,7 +14,33 @@ const Filters = () => {
     to: '',
   });
   const [value, setValue] = useState('');
-  const [brands, setBrands] = useState([]);
+  const [brands, setBrands] = useState([
+    {
+      id: 1,
+      name: 'Samsung',
+      value: 'samsung',
+    },
+    {
+      id: 2,
+      name: 'LG',
+      value: 'lg',
+    },
+    {
+      id: 3,
+      name: 'Samsung',
+      value: 'samsung',
+    },
+    {
+      id: 4,
+      name: 'Xiaomi',
+      value: 'xiaomi',
+    },
+    {
+      id: 5,
+      name: 'Atlant ',
+      value: 'atlant',
+    },
+  ]);
   const fetchBrands = async () => {
     const data = await BrandService.getAllBrands();
     setBrands(data);
@@ -23,9 +49,9 @@ const Filters = () => {
     // fetchBrands();
   }, []);
   const options = brands.map((brand, i) => ({
-    id: i,
-    name: brand,
-    value: brand.toLowerCase(),
+    id: brand.id,
+    name: brand.name,
+    value: brand.value,
   }));
 
   const onClickApplyFilters = () => {
@@ -37,7 +63,7 @@ const Filters = () => {
     );
   };
 
-  const clearFilters = () => {
+  const clearFilters = (e) => {
     setRange({
       from: '',
       to: '',
@@ -55,7 +81,7 @@ const Filters = () => {
         >
           <h3 className="filters__title">Фильтры</h3>
           {(range.from || range.to) && (
-            <button onClick={() => clearFilters()} className="filters__btn">
+            <button onClick={clearFilters} className="filters__btn">
               Сбросить всё x
             </button>
           )}
@@ -63,7 +89,48 @@ const Filters = () => {
         <div className="filters__body">
           <div className="filters__filter filter">
             <h4 className="filter__title">Производитель</h4>
-            <Select value={value} setValue={setValue} options={options} defaultValue="Выберете производителя" />
+            <Select //
+              value={value}
+              setValue={setValue}
+              options={options}
+              defaultValue="Выберете производителя"
+            />
+          </div>
+
+          <div className="filters__filter filter filter-checkbox">
+            <h4 className="filter__title">Тип</h4>
+            <div>
+              <input
+                onChange={(e) => {
+                  console.log(e.target.id);
+                }}
+                className="filter-checkbox__input"
+                id="fridge"
+                type="checkbox"
+              />
+              <label className="filter-checkbox__label" htmlFor="fridge">
+                Xолодильники
+              </label>
+            </div>
+            <div>
+              <input className="filter-checkbox__input" id="tv" type="checkbox" />
+              <label className="filter-checkbox__label" htmlFor="tv">
+                Телевизоры
+              </label>
+            </div>
+            <div>
+              <input
+                onChange={(e) => {
+                  console.log(e.target);
+                }}
+                className="filter-checkbox__input"
+                id="phones"
+                type="checkbox"
+              />
+              <label className="filter-checkbox__label" htmlFor="phones">
+                Телефоны
+              </label>
+            </div>
           </div>
           <div className="filters__filter filter">
             <h4 className="filter__title">Цена</h4>
@@ -82,6 +149,9 @@ const Filters = () => {
               type="number"
             />
           </div>
+          {/* <div className="filters__filter filter">
+            <h4 className="filter__title">Рейтинг</h4>
+          </div> */}
         </div>
         <button onClick={onClickApplyFilters} className="btn">
           Применить
