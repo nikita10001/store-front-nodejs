@@ -6,7 +6,8 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCart } from '../store/slices/cartSlice';
-import CartIcon from './icons/CartIcon';
+import { ReactComponent as CartIcon } from '../shared/assets/icons/cart-icon.svg';
+
 import CommentIcon from './icons/CommentIcon';
 import { selectAuth } from '../store/slices/authSlice';
 
@@ -53,7 +54,7 @@ const DeviceItem = React.memo(({ id, name, price, rating, commentsAmount, img, d
           <div className="device-card__price">{price} р.</div>
         </div>
         <button disabled={isInCart} onClick={handleAddCart} type="submit" className="device-card__cart btn">
-          <CartIcon />
+          <CartIcon className={'cart-icon'} />
           <span>{isInCart ? 'Добавлено' : 'В корзину'}</span>
         </button>
       </div>

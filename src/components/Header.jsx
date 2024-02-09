@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 import { ROUTE_PATHS } from '../router';
 import { cartActions, getProductsFromCart } from '../store/slices/cartSlice';
 import { authActions, selectAuth } from '../store/slices/authSlice';
-import CartIcon from './icons/CartIcon';
 import AdminNav from './admin/AdminNav';
 import VerifyLine from './VerifyLine';
 import CatalogIcon from './icons/CatalogIcon';
+import { ReactComponent as CartIcon } from '../shared/assets/icons/cart-icon.svg';
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -63,7 +63,7 @@ const Header = () => {
               <li className="menu__item">
                 <NavLink to={ROUTE_PATHS.CART} className="menu__link basket-link">
                   <span className="basket-link__icon">
-                    <CartIcon fill={'#000'} />
+                    <CartIcon />
                     {!!cart.length && <b>{cart.length}</b>}
                   </span>
                   <span className="basket-link__text">Корзина</span>
