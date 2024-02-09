@@ -13,7 +13,7 @@ const Filters = () => {
     from: '',
     to: '',
   });
-  const [value, setValue] = useState('');
+  const [brandValue, setBrandValue] = useState('');
   const [brands, setBrands] = useState([]);
   const fetchBrands = async () => {
     const data = await BrandService.getAllBrands();
@@ -40,6 +40,11 @@ const Filters = () => {
         to: range.to,
       })
     );
+    dispatch(filterActions.setBrand(brandValue));
+  };
+
+  const handleSelectBrand = (value) => {
+    setBrandValue(value);
   };
 
   const clearFilters = (e) => {
@@ -47,6 +52,7 @@ const Filters = () => {
       from: '',
       to: '',
     });
+    setBrandValue('');
   };
 
   return (
@@ -59,7 +65,7 @@ const Filters = () => {
           className="filters__top"
         >
           <h3 className="filters__title">Фильтры</h3>
-          {(range.from || range.to) && (
+          {(range.from || range.to || brandValue) && (
             <button onClick={clearFilters} className="filters__btn">
               Сбросить всё x
             </button>
@@ -69,8 +75,8 @@ const Filters = () => {
           <div className="filters__filter filter">
             <h4 className="filter__title">Производитель</h4>
             <Select //
-              value={value}
-              setValue={setValue}
+              value={brandValue}
+              setValue={handleSelectBrand}
               options={options}
               defaultValue="Выберете производителя"
             />

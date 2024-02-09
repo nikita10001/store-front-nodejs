@@ -20,7 +20,7 @@ const options = [
 const MainPage = () => {
   const dispatch = useDispatch();
   const { items, isLoading, totalItems } = useSelector(selectAllDevices);
-  const { query, range } = useSelector(selectFilter);
+  const { query, range, brand } = useSelector(selectFilter);
   const [limit, setLimit] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -29,10 +29,20 @@ const MainPage = () => {
   const onChangePage = (page) => {
     setCurrentPage(page);
   };
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(fetchDevices({ query, limit, currentPage, rangeFrom: range.from, rangeTo: range.to }));
-  }, [range, currentPage]);
+    dispatch(
+      fetchDevices({
+        query, //
+        limit,
+        currentPage,
+        rangeFrom: range.from,
+        rangeTo: range.to,
+        brand,
+      })
+    );
+  }, [range, currentPage, brand]);
   //test use effect only when query
   useEffect(() => {
     setCurrentPage(1);
