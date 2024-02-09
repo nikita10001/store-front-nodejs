@@ -34,48 +34,48 @@ const DevicePage = () => {
   //temp tabs logic
   const tabsItems = ['Отзывы', 'Характеристики'];
   const [activeTab, setActiveTab] = useState(0);
-  const infoList = [
-    {
-      id: 1,
-      label: 'Тип',
-      text: 'Телевизор',
-    },
-    {
-      id: 2,
-      label: 'Диагональ',
-      text: '50',
-    },
-    {
-      id: 3,
-      label: 'Соотношение сторон экрана',
-      text: '16:9',
-    },
-    {
-      id: 4,
-      label: 'Цвет корпуса',
-      text: 'серый',
-    },
-    {
-      id: 5,
-      label: 'Интерактивное управление',
-      text: 'голосове',
-    },
-    {
-      id: 6,
-      label: 'Вес',
-      text: '10 кг.',
-    },
-    {
-      id: 7,
-      label: 'Ширина',
-      text: '2 м.',
-    },
-    {
-      id: 7,
-      label: 'Высота',
-      text: '100 см.',
-    },
-  ];
+  // const infoList = [
+  //   {
+  //     id: 1,
+  //     label: 'Тип',
+  //     text: 'Телевизор',
+  //   },
+  //   {
+  //     id: 2,
+  //     label: 'Диагональ',
+  //     text: '50',
+  //   },
+  //   {
+  //     id: 3,
+  //     label: 'Соотношение сторон экрана',
+  //     text: '16:9',
+  //   },
+  //   {
+  //     id: 4,
+  //     label: 'Цвет корпуса',
+  //     text: 'серый',
+  //   },
+  //   {
+  //     id: 5,
+  //     label: 'Интерактивное управление',
+  //     text: 'голосове',
+  //   },
+  //   {
+  //     id: 6,
+  //     label: 'Вес',
+  //     text: '10 кг.',
+  //   },
+  //   {
+  //     id: 7,
+  //     label: 'Ширина',
+  //     text: '2 м.',
+  //   },
+  //   {
+  //     id: 7,
+  //     label: 'Высота',
+  //     text: '100 см.',
+  //   },
+  // ];
   ////
 
   useEffect(() => {
@@ -120,7 +120,11 @@ const DevicePage = () => {
         <div className="device-page__tabs tabs-device">
           <div className="tabs-device__menu">
             {tabsItems.map((tab, i) => (
-              <div key={i} onClick={() => setActiveTab(i)} className={`tabs-device__item ${activeTab == i ? 'active' : ''}`}>
+              <div //
+                key={i}
+                onClick={() => setActiveTab(i)}
+                className={`tabs-device__item ${activeTab == i ? 'active' : ''}`}
+              >
                 {tab}
               </div>
             ))}
@@ -137,7 +141,7 @@ const DevicePage = () => {
           ) : (
             <div className="tabs-device__tab">
               <div className="device-page__info info-device">
-                <DeviceInfoList list={infoList} />
+                <DeviceInfoList list={device.characteristics} />
               </div>
             </div>
           )}

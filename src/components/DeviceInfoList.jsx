@@ -1,16 +1,17 @@
 import React from 'react';
+import { memo } from 'react';
 
-const DeviceInfoList = ({ list }) => {
+const DeviceInfoList = memo(({ list }) => {
   return (
     <ul className="info-device__list">
-      {list.map((item) => (
-        <li className="info-device__item">
-          <div className="info-device__label">{item.label}</div>
-          <div className="info-device__text">{item.text}</div>
+      {list.map(({ _id, name, value }) => (
+        <li key={_id} className="info-device__item">
+          <div className="info-device__label">{name}</div>
+          <div className="info-device__text">{value}</div>
         </li>
       ))}
     </ul>
   );
-};
+});
 
 export default DeviceInfoList;
