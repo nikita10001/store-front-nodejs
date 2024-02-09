@@ -6,6 +6,7 @@ const initialState = {
     from: null,
     to: null,
   },
+  brand: '',
 };
 
 const filterSlice = createSlice({
@@ -18,6 +19,14 @@ const filterSlice = createSlice({
     setRange(state, action) {
       state.range.from = Number(action.payload.from);
       state.range.to = Number(action.payload.to);
+    },
+    setBrand(state, action) {
+      state.brand = action.payload;
+    },
+    clearAll(state) {
+      state.query = '';
+      state.range = null;
+      state.brand = '';
     },
   },
 });

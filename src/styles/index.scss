@@ -111,7 +111,7 @@ body,
     }
   }
   &__filters {
-    flex: 0 0 310px;
+    flex: 0 0 300px;
     @media (max-width: 1000px) {
       margin: 0px 0px 20px 0px;
     }
@@ -122,11 +122,20 @@ body,
   &__body {
     flex: 0 1 100%;
   }
-  &__search {
+  &__top {
+    display: flex;
+    flex-direction: column;
     margin: 0px 0px 20px 0px;
+    select {
+      max-width: 200px;
+      align-self: flex-end;
+    }
     @media (max-width: 768px) {
       margin: 0px 0px 10px 0px;
     }
+  }
+  &__search {
+    margin: 0px 0px 6px 0px;
   }
 }
 
@@ -137,13 +146,30 @@ body,
     align-items: center;
     border-radius: 6px;
     gap: 5px;
+    position: relative;
     // border: 1px solid #d5d6dc;
   }
   &__input {
-    min-height: 40px;
+    min-height: 34px;
+    padding: 7px 25px 7px 12px;
   }
   &__btn {
-    flex: 0 0 100px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    right: 7px;
+    position: absolute;
+    cursor: pointer;
+    svg {
+      transition: all 0.3s ease 0s;
+      @media (any-hover: hover) {
+        &:hover {
+          path {
+            fill: $secondary;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -172,6 +198,7 @@ body,
   padding: 30px 0px;
   font-size: 22px;
 }
+
 .confirm-email {
   &__container {
   }

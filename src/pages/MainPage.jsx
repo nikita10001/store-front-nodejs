@@ -7,28 +7,53 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchDevices, selectAllDevices } from '../store/slices/deviceSlice.js';
 import { selectFilter } from '../store/slices/filterSlice.js';
 import Pagination from '../components/pagination/Pagination.jsx';
+import MainSelect from '../components/UI/select/MainSelect.jsx';
+import { useSortedDevices } from '../hooks/useDevices.js';
+
+const options = [
+  { id: 1, value: 'name', name: 'По названию' },
+  { id: 2, value: 'price', name: 'По цене' },
+  { id: 3, value: 'rating', name: 'По рейтингу' },
+  { id: 4, value: 'commentsAmount', name: 'С отзывами' },
+];
 
 const MainPage = () => {
   const dispatch = useDispatch();
   const { items, isLoading, totalItems } = useSelector(selectAllDevices);
-  const { query, range } = useSelector(selectFilter);
+  const { query, range, brand } = useSelector(selectFilter);
   const [limit, setLimit] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const [filterValue, setFilterValue] = useState('');
 
   const onChangePage = (page) => {
     setCurrentPage(page);
   };
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    dispatch(fetchDevices({ query, limit, currentPage, rangeFrom: range.from, rangeTo: range.to }));
-  }, [range, currentPage]);
-
+    dispatch(
+      fetchDevices({
+        query, //
+        limit,
+        currentPage,
+        rangeFrom: range.from,
+        rangeTo: range.to,
+        brand,
+      })
+    );
+  }, [range, currentPage, brand]);
   //test use effect only when query
   useEffect(() => {
     setCurrentPage(1);
     window.scrollTo(0, 0);
     dispatch(fetchDevices({ query, limit, currentPage, rangeFrom: range.from, rangeTo: range.to }));
   }, [query]);
+
+  // temp
+
+  const sortedDevices = useSortedDevices(items, filterValue);
+  //
 
   return (
     <div className="page__catalog catalog">
@@ -37,12 +62,15 @@ const MainPage = () => {
           <Filters />
         </div>
         <div className="catalog__body">
-          <SearchDevice />
+          <div className="catalog__top">
+            <SearchDevice />
+            <MainSelect defaultValue={'По умолчанию'} value={filterValue} setValue={setFilterValue} options={options} />
+          </div>
           {isLoading ? ( //
             <Preloader />
           ) : (
             <>
-              <DevicesList devices={items} />
+              <DevicesList devices={sortedDevices} />
               <Pagination currentPage={currentPage} onChagePage={onChangePage} totalCount={totalItems} limit={limit} />
             </>
           )}

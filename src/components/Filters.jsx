@@ -13,20 +13,25 @@ const Filters = () => {
     from: '',
     to: '',
   });
-  const [value, setValue] = useState('');
+  const [brandValue, setBrandValue] = useState('');
   const [brands, setBrands] = useState([]);
   const fetchBrands = async () => {
     const data = await BrandService.getAllBrands();
     setBrands(data);
   };
   useEffect(() => {
-    // fetchBrands();
+    fetchBrands();
   }, []);
-  const options = brands.map((brand, i) => ({
-    id: i,
-    name: brand,
-    value: brand.toLowerCase(),
-  }));
+
+  const options = useMemo(
+    () =>
+      brands.map((brand, i) => ({
+        id: brand._id,
+        name: brand.name,
+        value: brand.value,
+      })),
+    [brands]
+  );
 
   const onClickApplyFilters = () => {
     dispatch(
@@ -35,13 +40,19 @@ const Filters = () => {
         to: range.to,
       })
     );
+    dispatch(filterActions.setBrand(brandValue));
   };
 
-  const clearFilters = () => {
+  const handleSelectBrand = (value) => {
+    setBrandValue(value);
+  };
+
+  const clearFilters = (e) => {
     setRange({
       from: '',
       to: '',
     });
+    setBrandValue('');
   };
 
   return (
@@ -54,8 +65,8 @@ const Filters = () => {
           className="filters__top"
         >
           <h3 className="filters__title">Фильтры</h3>
-          {(range.from || range.to) && (
-            <button onClick={() => clearFilters()} className="filters__btn">
+          {(range.from || range.to || brandValue) && (
+            <button onClick={clearFilters} className="filters__btn">
               Сбросить всё x
             </button>
           )}
@@ -63,8 +74,14 @@ const Filters = () => {
         <div className="filters__body">
           <div className="filters__filter filter">
             <h4 className="filter__title">Производитель</h4>
-            <Select value={value} setValue={setValue} options={options} defaultValue="Выберете производителя" />
+            <Select //
+              value={brandValue}
+              setValue={handleSelectBrand}
+              options={options}
+              defaultValue="Выберете производителя"
+            />
           </div>
+
           <div className="filters__filter filter">
             <h4 className="filter__title">Цена</h4>
             <input //
@@ -82,6 +99,9 @@ const Filters = () => {
               type="number"
             />
           </div>
+          {/* <div className="filters__filter filter">
+            <h4 className="filter__title">Рейтинг</h4>
+          </div> */}
         </div>
         <button onClick={onClickApplyFilters} className="btn">
           Применить
@@ -92,3 +112,43 @@ const Filters = () => {
 };
 
 export default Filters;
+
+const FilterCheckbox = () => {
+  return (
+    <div className="filters__filter filter filter-checkbox">
+      <h4 className="filter__title">Тип</h4>
+      <div>
+        <input
+          onChange={(e) => {
+            console.log(e.target.id);
+          }}
+          className="filter-checkbox__input"
+          id="fridge"
+          type="checkbox"
+        />
+        <label className="filter-checkbox__label" htmlFor="fridge">
+          Xолодильники
+        </label>
+      </div>
+      <div>
+        <input className="filter-checkbox__input" id="tv" type="checkbox" />
+        <label className="filter-checkbox__label" htmlFor="tv">
+          Телевизоры
+        </label>
+      </div>
+      <div>
+        <input
+          onChange={(e) => {
+            console.log(e.target);
+          }}
+          className="filter-checkbox__input"
+          id="phones"
+          type="checkbox"
+        />
+        <label className="filter-checkbox__label" htmlFor="phones">
+          Телефоны
+        </label>
+      </div>
+    </div>
+  );
+};

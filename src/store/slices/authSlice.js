@@ -110,4 +110,5 @@ const authSlice = createSlice({
 });
 
 export const selectAuth = (state) => state.auth;
+export const selecAuthIsLoading = (state) => state.auth.isLoading;
 export const { reducer: authReducer, actions: authActions } = authSlice;

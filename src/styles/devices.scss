@@ -1,3 +1,6 @@
+//!!!!
+//need to change
+
 .devices {
   &__wrapper {
     display: grid;
@@ -210,6 +213,69 @@
     margin: 0px 0px 30px 0px;
   }
   &__comments {
+  }
+  &__tabs {
+  }
+  &__info {
+  }
+}
+.tabs-device {
+  //temp
+  &__menu {
+    //???????????????????????????
+    display: inline-flex;
+    margin: 0px 0px 20px 0px;
+    // border: 1px solid rgba(20, 20, 20, 0.2);
+  }
+  &__item {
+    min-height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0px 10px;
+    border-bottom: 2px solid transparent;
+
+    @media (any-hover: hover) {
+      &:hover {
+        color: $secondary;
+      }
+    }
+    &.active {
+      border-bottom: 2px solid $secondary;
+      color: $secondary;
+    }
+  }
+  &__tab {
+    &.active {
+      display: none;
+    }
+  }
+}
+.info-device {
+  &__list {
+  }
+  &__item {
+    display: flex;
+    gap: 10px;
+    padding: 5px;
+    transition: all 0.3s ease 0s;
+    cursor: default;
+    @media (any-hover: hover) {
+      &:hover {
+        // background-color: rgba($secondary, 0.1);
+        // background-color: rgba(#000, 0.1);
+        background: #f5f5f5;
+      }
+    }
+  }
+  &__label {
+    ////временные костыли, потом удалить!!!!!!!!!!!!!!
+    flex: 0 1 40%;
+    min-width: 220px;
+  }
+  &__text {
+    flex: 0 1 60%;
   }
 }
 .block-device {

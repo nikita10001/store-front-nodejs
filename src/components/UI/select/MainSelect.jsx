@@ -1,19 +1,19 @@
-import React, { memo } from 'react';
+import React from 'react';
 import s from './Select.module.scss';
 
-const Select = memo(({ value, setValue, options, defaultValue }) => {
+const Select = ({ value, setValue, options, defaultValue }) => {
   return (
     <select className={s.select} value={value} onChange={(e) => setValue(e.target.value)}>
       <option className={s.option} value="" disabled>
         {defaultValue}
       </option>
       {options.map((o) => (
-        <option className={s.option} key={o.id} value={o.name}>
+        <option className={s.option} key={o.id} value={o.value}>
           {o.name}
         </option>
       ))}
     </select>
   );
-});
+};
 
 export default Select;
