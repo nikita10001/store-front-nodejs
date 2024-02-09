@@ -10,9 +10,9 @@ import { addProductToCart } from '../store/slices/cartSlice';
 import { selectAuth } from '../store/slices/authSlice';
 import { fetchDevicesComments } from '../store/slices/commentSlice';
 import CommentForm from '../components/CommentForm';
-import CartIcon from '../components/icons/CartIcon';
 import CommentsList from '../components/CommentsList';
 import { ROUTE_PATHS } from '../router';
+import { ReactComponent as CartIcon } from '../shared/assets/icons/cart-icon.svg';
 
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
@@ -112,7 +112,7 @@ const DevicePage = () => {
               <div className="content-device__price">{device.price} р.</div>
             </div>
             <button disabled={isInCart} onClick={handleAddCart} className="content-device__btn btn">
-              <CartIcon />
+              <CartIcon className={'cart-icon'} />
               <span>{isInCart ? 'Добавлено' : 'Добавить в корзину'}</span>
             </button>
           </div>

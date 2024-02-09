@@ -363,6 +363,9 @@
     svg path {
       transition: all 0.3s ease 0s;
     }
+    .cart-icon {
+      fill: $lightColor;
+    }
     @media (any-hover: hover) {
       &:hover {
         &:disabled svg path {
@@ -374,6 +377,7 @@
       }
     }
   }
+
   &__rating {
     margin: 0px 0px 8px 0px;
   }
