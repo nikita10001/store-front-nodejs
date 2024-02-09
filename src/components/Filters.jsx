@@ -14,45 +14,24 @@ const Filters = () => {
     to: '',
   });
   const [value, setValue] = useState('');
-  const [brands, setBrands] = useState([
-    {
-      id: 1,
-      name: 'Samsung',
-      value: 'samsung',
-    },
-    {
-      id: 2,
-      name: 'LG',
-      value: 'lg',
-    },
-    {
-      id: 3,
-      name: 'Samsung',
-      value: 'samsung',
-    },
-    {
-      id: 4,
-      name: 'Xiaomi',
-      value: 'xiaomi',
-    },
-    {
-      id: 5,
-      name: 'Atlant ',
-      value: 'atlant',
-    },
-  ]);
+  const [brands, setBrands] = useState([]);
   const fetchBrands = async () => {
     const data = await BrandService.getAllBrands();
     setBrands(data);
   };
   useEffect(() => {
-    // fetchBrands();
+    fetchBrands();
   }, []);
-  const options = brands.map((brand, i) => ({
-    id: brand.id,
-    name: brand.name,
-    value: brand.value,
-  }));
+
+  const options = useMemo(
+    () =>
+      brands.map((brand, i) => ({
+        id: brand._id,
+        name: brand.name,
+        value: brand.value,
+      })),
+    [brands]
+  );
 
   const onClickApplyFilters = () => {
     dispatch(
@@ -97,41 +76,6 @@ const Filters = () => {
             />
           </div>
 
-          <div className="filters__filter filter filter-checkbox">
-            <h4 className="filter__title">Тип</h4>
-            <div>
-              <input
-                onChange={(e) => {
-                  console.log(e.target.id);
-                }}
-                className="filter-checkbox__input"
-                id="fridge"
-                type="checkbox"
-              />
-              <label className="filter-checkbox__label" htmlFor="fridge">
-                Xолодильники
-              </label>
-            </div>
-            <div>
-              <input className="filter-checkbox__input" id="tv" type="checkbox" />
-              <label className="filter-checkbox__label" htmlFor="tv">
-                Телевизоры
-              </label>
-            </div>
-            <div>
-              <input
-                onChange={(e) => {
-                  console.log(e.target);
-                }}
-                className="filter-checkbox__input"
-                id="phones"
-                type="checkbox"
-              />
-              <label className="filter-checkbox__label" htmlFor="phones">
-                Телефоны
-              </label>
-            </div>
-          </div>
           <div className="filters__filter filter">
             <h4 className="filter__title">Цена</h4>
             <input //
@@ -162,3 +106,43 @@ const Filters = () => {
 };
 
 export default Filters;
+
+const FilterCheckbox = () => {
+  return (
+    <div className="filters__filter filter filter-checkbox">
+      <h4 className="filter__title">Тип</h4>
+      <div>
+        <input
+          onChange={(e) => {
+            console.log(e.target.id);
+          }}
+          className="filter-checkbox__input"
+          id="fridge"
+          type="checkbox"
+        />
+        <label className="filter-checkbox__label" htmlFor="fridge">
+          Xолодильники
+        </label>
+      </div>
+      <div>
+        <input className="filter-checkbox__input" id="tv" type="checkbox" />
+        <label className="filter-checkbox__label" htmlFor="tv">
+          Телевизоры
+        </label>
+      </div>
+      <div>
+        <input
+          onChange={(e) => {
+            console.log(e.target);
+          }}
+          className="filter-checkbox__input"
+          id="phones"
+          type="checkbox"
+        />
+        <label className="filter-checkbox__label" htmlFor="phones">
+          Телефоны
+        </label>
+      </div>
+    </div>
+  );
+};
