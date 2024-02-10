@@ -1,9 +1,11 @@
 import React, { memo } from 'react';
 import s from './Select.module.scss';
+import { classNames } from 'shared/lib/classNames';
 
-const Select = memo(({ value, setValue, options, defaultValue }) => {
+const Select = memo((props) => {
+  const { className, value, setValue, options, defaultValue } = props;
   return (
-    <select className={s.select} value={value} onChange={(e) => setValue(e.target.value)}>
+    <select className={classNames(s.select, {}, [className])} value={value} onChange={(e) => setValue(e.target.value)}>
       <option className={s.option} value="" disabled>
         {defaultValue}
       </option>

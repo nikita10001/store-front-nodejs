@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import Select from './UI/select/Select';
-import { useInput } from '../hooks/useInput';
-import { BrandService } from '../api/BrandService';
-import { useDispatch } from 'react-redux';
+import Select from 'shared/ui/select/Select';
+import { useDispatch, useSelector } from 'react-redux';
 import { filterActions } from '../store/slices/filterSlice';
+
+import { fetchBrands, getAllBrandsSelector } from 'store/slices/brandSlice';
 
 const Filters = () => {
   const dispatch = useDispatch();
@@ -13,14 +13,13 @@ const Filters = () => {
     from: '',
     to: '',
   });
+
   const [brandValue, setBrandValue] = useState('');
-  const [brands, setBrands] = useState([]);
-  const fetchBrands = async () => {
-    const data = await BrandService.getAllBrands();
-    setBrands(data);
-  };
+
+  const brands = useSelector(getAllBrandsSelector);
+
   useEffect(() => {
-    fetchBrands();
+    dispatch(fetchBrands());
   }, []);
 
   const options = useMemo(

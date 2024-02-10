@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchDevices, selectAllDevices } from '../store/slices/deviceSlice.js';
 import { selectFilter } from '../store/slices/filterSlice.js';
 import Pagination from '../components/pagination/Pagination.jsx';
-import MainSelect from '../components/UI/select/MainSelect.jsx';
+import MainSelect from 'shared/ui/select/MainSelect.jsx';
 import { useSortedDevices } from '../hooks/useDevices.js';
 
 const options = [

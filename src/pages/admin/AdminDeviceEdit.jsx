@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createDevice, fetchSingleDevice, updateDevice } from '../store/slices/deviceSlice';
-import PageTop from '../components/PageTop';
+import { createDevice, fetchSingleDevice, updateDevice } from '../../store/slices/deviceSlice';
+import PageTop from '../../components/PageTop';
 import { useLocation, useParams } from 'react-router-dom';
+import Select from 'shared/ui/select/Select';
+import { getAllBrandsSelector } from 'store/slices/brandSlice';
 
 const EMPTY_DEVICE_STATE = {
   name: '',
@@ -20,6 +22,9 @@ const AdminDeviceEdit = () => {
 
   const { item: savedDevice, isLoading, error } = useSelector((state) => state.devices.device);
   const [values, setValues] = useState(EMPTY_DEVICE_STATE);
+
+  const [brandValue, setBrandValue] = useState('');
+  const brands = useSelector(getAllBrandsSelector);
 
   useEffect(() => {
     if (!isCreate) {
@@ -39,7 +44,7 @@ const AdminDeviceEdit = () => {
 
   const handleDeviceSubmit = (e, action) => {
     e.preventDefault();
-    if (Object.values(values).every(Boolean)) {
+    if (Object.values(values).every(Boolean) && brandValue) {
       dispatch(action(values));
       setValues(EMPTY_DEVICE_STATE);
     }
@@ -50,6 +55,15 @@ const AdminDeviceEdit = () => {
   const handleSave = (e) => {
     handleDeviceSubmit(e, updateDevice);
   };
+  const options = useMemo(
+    () =>
+      brands.map((brand, i) => ({
+        id: brand._id,
+        name: brand.name,
+        value: brand.value,
+      })),
+    [brands]
+  );
   return (
     <div className="page__admin admin-edit">
       <div className="admin-edit__container">
@@ -94,6 +108,14 @@ const AdminDeviceEdit = () => {
             placeholder="Описание"
             className="input"
             type="text"
+          />
+
+          <Select
+            className="form-admin__select"
+            options={options}
+            value={brandValue}
+            setValue={setBrandValue}
+            defaultValue={'Производитель'}
           />
 
           {!isCreate ? (

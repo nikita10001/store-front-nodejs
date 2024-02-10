@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { CommentService } from '../api/CommentService';
-import Preloader from '../components/UI/Preloader';
-import CommentsList from '../components/CommentsList';
+import { CommentService } from '../../api/CommentService';
+import Preloader from '../../components/UI/Preloader';
+import CommentsList from '../../components/CommentsList';
 
 const AdminComments = () => {
   const [commentsLoading, setCommentsLoading] = useState(true);

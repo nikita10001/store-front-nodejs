@@ -1,4 +1,4 @@
-export function classNames(cls, mods, additional) {
+export function classNames(cls = '', mods = {}, additional = []) {
   return [
     cls,
     ...additional.filter(Boolean),
@@ -7,6 +7,3 @@ export function classNames(cls, mods, additional) {
       .map(([className]) => className),
   ].join(' ');
 }
-
-//example
-// classNames('remove-btn', {hovered: true, selectable: true}, ['some']);

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { $host } from '../api/service';
-import Preloader from '../components/UI/Preloader';
-import { formatDate } from '../utils/formatDate';
+import { $host } from '../../api/service';
+import Preloader from '../../components/UI/Preloader';
+import { formatDate } from '../../utils/formatDate';
 
 const AdminUsers = () => {
   const [isLoading, setIsLoading] = useState(true);

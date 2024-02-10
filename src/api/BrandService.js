@@ -1,8 +1,12 @@
 import { $host } from './service';
 
 export class BrandService {
-  static async getAllBrands() {
+  static async getAll() {
     const response = await $host.get(`/brand/all`);
+    return response.data;
+  }
+  static async createBrand(newBrand) {
+    const response = await $host.post(`/brand/create`, newBrand);
     return response.data;
   }
 }

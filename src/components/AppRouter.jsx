@@ -3,11 +3,11 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ROUTE_PATHS, privateRoutes, publicRoutes } from '../router';
 import { useSelector } from 'react-redux';
 import { selectAuth } from '../store/slices/authSlice';
-import AdminDeviceEdit from '../pages/AdminDeviceEdit';
-import AdminComments from '../pages/AdminComments';
-import AdminDevices from '../pages/AdminDevices';
+import AdminDeviceEdit from '../pages/admin/AdminDeviceEdit';
+import AdminComments from '../pages/admin/AdminComments';
+import AdminDevices from '../pages/admin/AdminDevices';
 import CheckEmailPage from '../pages/CheckEmailPage';
-import AdminUsers from '../pages/AdminUsers';
+import AdminUsers from '../pages/admin/AdminUsers';
 const renderRoutes = (routes) => {
   return routes.map(({ path, Component }) => <Route key={path} path={path} element={<Component />} />);
 };
