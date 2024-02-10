@@ -87,34 +87,35 @@ const deviceSlice = createSlice({
   },
   extraReducers: (builder) => {
     //fetch all devices
-    builder.addCase(fetchDevices.pending, (state) => {
-      state.devices.isLoading = true;
-      state.devices.error = null;
-    });
-    builder.addCase(fetchDevices.fulfilled, (state, action) => {
-      state.devices.isLoading = false;
-      state.devices.items = action.payload.devices;
-      state.devices.totalItems = action.payload.totalItems;
-      state.devices.totalPages = action.payload.totalPages;
-    });
-    builder.addCase(fetchDevices.rejected, (state, action) => {
-      state.devices.isLoading = false;
-      state.devices.error = action.payload;
-    });
-
+    builder
+      .addCase(fetchDevices.pending, (state) => {
+        state.devices.isLoading = true;
+        state.devices.error = null;
+      })
+      .addCase(fetchDevices.fulfilled, (state, action) => {
+        state.devices.isLoading = false;
+        state.devices.items = action.payload.devices;
+        state.devices.totalItems = action.payload.totalItems;
+        state.devices.totalPages = action.payload.totalPages;
+      })
+      .addCase(fetchDevices.rejected, (state, action) => {
+        state.devices.isLoading = false;
+        state.devices.error = action.payload;
+      });
     //fetch single device
-    builder.addCase(fetchSingleDevice.pending, (state) => {
-      state.device.isLoading = true;
-      state.device.error = null;
-    });
-    builder.addCase(fetchSingleDevice.fulfilled, (state, action) => {
-      state.device.isLoading = false;
-      state.device.item = action.payload;
-    });
-    builder.addCase(fetchSingleDevice.rejected, (state, action) => {
-      state.device.isLoading = false;
-      state.device.error = action.payload;
-    });
+    builder
+      .addCase(fetchSingleDevice.pending, (state) => {
+        state.device.isLoading = true;
+        state.device.error = null;
+      })
+      .addCase(fetchSingleDevice.fulfilled, (state, action) => {
+        state.device.isLoading = false;
+        state.device.item = action.payload;
+      })
+      .addCase(fetchSingleDevice.rejected, (state, action) => {
+        state.device.isLoading = false;
+        state.device.error = action.payload;
+      });
   },
 });
 

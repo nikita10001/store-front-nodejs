@@ -52,18 +52,19 @@ const commentSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchDevicesComments.pending, (state) => {
-      state.isLoading = true;
-      state.items = null;
-    });
-    builder.addCase(fetchDevicesComments.fulfilled, (state, action) => {
-      state.isLoading = false;
-      state.items = action.payload;
-    });
-    builder.addCase(fetchDevicesComments.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    });
+    builder
+      .addCase(fetchDevicesComments.pending, (state) => {
+        state.isLoading = true;
+        state.items = null;
+      })
+      .addCase(fetchDevicesComments.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.items = action.payload;
+      })
+      .addCase(fetchDevicesComments.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   },
 });
 

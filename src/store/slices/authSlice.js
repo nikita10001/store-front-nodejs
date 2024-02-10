@@ -66,46 +66,52 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(loginAction.fulfilled, (state, action) => {
-      state.isAuth = true;
-      state.user = action.payload;
-      state.error = null;
-    });
-    builder.addCase(loginAction.rejected, (state, action) => {
-      state.isAuth = false;
-      state.user = null;
-      state.error = action.payload;
-    });
+    //login
+    builder
+      .addCase(loginAction.fulfilled, (state, action) => {
+        state.isAuth = true;
+        state.user = action.payload;
+        state.error = null;
+      })
+      .addCase(loginAction.rejected, (state, action) => {
+        state.isAuth = false;
+        state.user = null;
+        state.error = action.payload;
+      });
+    //check is auth
     builder.addCase(registerAction.fulfilled, (state, action) => {
       state.isAuth = true;
       state.user = action.payload;
     });
-    builder.addCase(checkAuth.pending, (state, action) => {
-      state.isLoading = true;
-    });
-    builder.addCase(checkAuth.fulfilled, (state, action) => {
-      state.user = action.payload;
-      state.isLoading = false;
-      state.isAuth = true;
-    });
-    builder.addCase(checkAuth.rejected, (state, action) => {
-      state.user = null;
-      state.isAuth = false;
-      state.isLoading = false;
-      state.error = action.payload;
-    });
+    //register
+    builder
+      .addCase(checkAuth.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(checkAuth.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.isLoading = false;
+        state.isAuth = true;
+      })
+      .addCase(checkAuth.rejected, (state, action) => {
+        state.user = null;
+        state.isAuth = false;
+        state.isLoading = false;
+        state.error = action.payload;
+      });
     //check email
-    builder.addCase(checkEmail.pending, (state, action) => {
-      state.isLoading = true;
-    });
-    builder.addCase(checkEmail.fulfilled, (state, action) => {
-      state.user.isVerified = true;
-      state.isLoading = false;
-    });
-    builder.addCase(checkEmail.rejected, (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    });
+    builder
+      .addCase(checkEmail.pending, (state, action) => {
+        state.isLoading = true;
+      })
+      .addCase(checkEmail.fulfilled, (state, action) => {
+        state.user.isVerified = true;
+        state.isLoading = false;
+      })
+      .addCase(checkEmail.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      });
   },
 });
 
