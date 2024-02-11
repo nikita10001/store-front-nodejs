@@ -1,5 +1,7 @@
 import React, { memo } from 'react';
-import { ROUTE_PATHS } from '../../router';
+
+import { ROUTE_PATHS } from 'shared/config/router';
+
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { removeDevice } from '../../store/slices/deviceSlice';

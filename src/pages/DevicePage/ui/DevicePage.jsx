@@ -2,24 +2,25 @@ import React, { useEffect, useState } from 'react';
 
 import { Rating } from 'react-simple-star-rating';
 
-import Preloader from '../components/UI/Preloader';
+import Preloader from '../../../components/UI/Preloader';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchSingleDevice, selectSingleDevice } from '../store/slices/deviceSlice';
-import { addProductToCart } from '../store/slices/cartSlice';
-import { selectAuth } from '../store/slices/authSlice';
-import { fetchDevicesComments } from '../store/slices/commentSlice';
-import CommentForm from '../components/CommentForm';
-import CommentsList from '../components/CommentsList';
-import { ROUTE_PATHS } from '../router';
-import { ReactComponent as CartIcon } from '../shared/assets/icons/cart-icon.svg';
+import { fetchSingleDevice, selectSingleDevice } from '../../../store/slices/deviceSlice';
+import { addProductToCart } from '../../../store/slices/cartSlice';
+import { selectAuth } from '../../../store/slices/authSlice';
+import { fetchDevicesComments } from '../../../store/slices/commentSlice';
+import CommentForm from '../../../components/CommentForm';
+import CommentsList from '../../../components/CommentsList';
 
-import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
+import { ROUTE_PATHS } from 'shared/config/router';
+
+import { ReactComponent as CartIcon } from 'shared/assets/icons/cart-icon.svg';
+
 import 'react-tabs/style/react-tabs.css';
-import DeviceInfoList from '../components/DeviceInfoList';
+import DeviceInfoList from '../../../components/DeviceInfoList';
 
 // const tempImagesArray = [1, 2, 3];
-const DevicePage = () => {
+export const DevicePage = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const navigate = useNavigate();
@@ -34,49 +35,7 @@ const DevicePage = () => {
   //temp tabs logic
   const tabsItems = ['Отзывы', 'Характеристики'];
   const [activeTab, setActiveTab] = useState(0);
-  // const infoList = [
-  //   {
-  //     id: 1,
-  //     label: 'Тип',
-  //     text: 'Телевизор',
-  //   },
-  //   {
-  //     id: 2,
-  //     label: 'Диагональ',
-  //     text: '50',
-  //   },
-  //   {
-  //     id: 3,
-  //     label: 'Соотношение сторон экрана',
-  //     text: '16:9',
-  //   },
-  //   {
-  //     id: 4,
-  //     label: 'Цвет корпуса',
-  //     text: 'серый',
-  //   },
-  //   {
-  //     id: 5,
-  //     label: 'Интерактивное управление',
-  //     text: 'голосове',
-  //   },
-  //   {
-  //     id: 6,
-  //     label: 'Вес',
-  //     text: '10 кг.',
-  //   },
-  //   {
-  //     id: 7,
-  //     label: 'Ширина',
-  //     text: '2 м.',
-  //   },
-  //   {
-  //     id: 7,
-  //     label: 'Высота',
-  //     text: '100 см.',
-  //   },
-  // ];
-  ////
+  ///
 
   useEffect(() => {
     dispatch(fetchSingleDevice(id));
@@ -104,6 +63,7 @@ const DevicePage = () => {
           <div className="block-device__content content-device">
             <h3 className="content-device__title">{device.name}</h3>
             <p className="content-device__descr">{device.description}</p>
+            {device?.brand && <p className="content-device__descr">Производитель: {device?.brand.name}</p>}
             <div className="content-device__rating rating">
               <Rating size="22" readonly allowFraction initialValue={device.rating} />
               <span className="rating__info">{device.rating.toFixed(1)}</span>
@@ -150,8 +110,6 @@ const DevicePage = () => {
     </div>
   );
 };
-
-export default DevicePage;
 
 {
   /* <div className="images-device__list">

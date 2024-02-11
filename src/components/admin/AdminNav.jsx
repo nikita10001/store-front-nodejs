@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
-import { ROUTE_PATHS } from '../../router';
+import { ROUTE_PATHS } from 'shared/config/router';
+
 import { NavLink } from 'react-router-dom';
 
 const AdminNav = memo(({ isAdmin }) => {

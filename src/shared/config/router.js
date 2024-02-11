@@ -1,9 +1,9 @@
 // import AdminPage from '../pages/AdminPage';
-import DevicePage from '../pages/DevicePage';
-import MainPage from '../pages/MainPage';
-import AuthPage from '../pages/AuthPage';
-import CartPage from '../pages/CartPage';
-import CheckEmailPage from '../pages/CheckEmailPage';
+import { DevicePage } from 'pages/DevicePage';
+import { MainPage } from 'pages/MainPage';
+import { AuthPage } from 'pages/AuthPage';
+import { CartPage } from 'pages/CartPage';
+import { CheckEmailPage } from 'pages/CheckEmilPage';
 
 export const ROUTE_PATHS = {
   MAIN: '/devices',

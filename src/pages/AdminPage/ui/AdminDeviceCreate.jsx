@@ -1,7 +1,5 @@
 import React from 'react';
 
-const AdminDeviceCreate = () => {
+export const AdminDeviceCreate = () => {
   return <div>admin/devices/create</div>;
 };
-
-export default AdminDeviceCreate;

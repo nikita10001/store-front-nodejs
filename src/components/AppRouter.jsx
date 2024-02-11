@@ -1,13 +1,13 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
-import { ROUTE_PATHS, privateRoutes, publicRoutes } from '../router';
+
+import { ROUTE_PATHS, privateRoutes, publicRoutes } from 'shared/config/router';
+
 import { useSelector } from 'react-redux';
 import { selectAuth } from '../store/slices/authSlice';
-import AdminDeviceEdit from '../pages/admin/AdminDeviceEdit';
-import AdminComments from '../pages/admin/AdminComments';
-import AdminDevices from '../pages/admin/AdminDevices';
-import CheckEmailPage from '../pages/CheckEmailPage';
-import AdminUsers from '../pages/admin/AdminUsers';
+import { AdminComments, AdminDeviceEdit, AdminDevices } from 'pages/AdminPage';
+import { AdminUsers } from 'pages/AdminPage/ui/AdminUsers';
+
 const renderRoutes = (routes) => {
   return routes.map(({ path, Component }) => <Route key={path} path={path} element={<Component />} />);
 };

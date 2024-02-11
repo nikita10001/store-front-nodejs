@@ -3,12 +3,15 @@ import { useCallback } from 'react';
 import { Rating } from 'react-simple-star-rating';
 
 import { NavLink, useNavigate } from 'react-router-dom';
-import { ROUTE_PATHS } from '../router';
+
+import { ROUTE_PATHS } from 'shared/config/router';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { addProductToCart } from '../store/slices/cartSlice';
-import { ReactComponent as CartIcon } from '../shared/assets/icons/cart-icon.svg';
 
-import CommentIcon from './icons/CommentIcon';
+import { ReactComponent as CartIcon } from 'shared/assets/icons/cart-icon.svg';
+import { ReactComponent as CommentIcon } from 'shared/assets/icons/comment-icon.svg';
+
 import { selectAuth } from '../store/slices/authSlice';
 
 const DeviceItem = React.memo(({ id, name, price, rating, commentsAmount, img, description }) => {

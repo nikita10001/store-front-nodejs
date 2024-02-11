@@ -101,10 +101,10 @@ const authSlice = createSlice({
       });
     //check email
     builder
-      .addCase(checkEmail.pending, (state, action) => {
+      .addCase(checkEmail.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(checkEmail.fulfilled, (state, action) => {
+      .addCase(checkEmail.fulfilled, (state) => {
         state.user.isVerified = true;
         state.isLoading = false;
       })
@@ -117,4 +117,5 @@ const authSlice = createSlice({
 
 export const selectAuth = (state) => state.auth;
 export const selecAuthIsLoading = (state) => state.auth.isLoading;
+
 export const { reducer: authReducer, actions: authActions } = authSlice;

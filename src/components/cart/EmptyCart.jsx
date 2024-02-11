@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { ROUTE_PATHS } from '../../router';
-import emptyCartIcon from '../../assets/empty.png';
+import { ROUTE_PATHS } from 'shared/config/router';
+
+import emptyCartIcon from 'shared/assets/images/empty.png';
+
 const EmptyCart = () => {
   return (
     <div className="empty-cart">

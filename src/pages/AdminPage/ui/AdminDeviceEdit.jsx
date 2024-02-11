@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { createDevice, fetchSingleDevice, updateDevice } from '../../store/slices/deviceSlice';
-import PageTop from '../../components/PageTop';
+import { createDevice, fetchSingleDevice, updateDevice } from '../../../store/slices/deviceSlice';
+import PageTop from '../../../components/PageTop';
 import { useLocation, useParams } from 'react-router-dom';
 import Select from 'shared/ui/select/Select';
-import { getAllBrandsSelector } from 'store/slices/brandSlice';
+import { fetchBrands, getAllBrandsSelector } from 'store/slices/brandSlice';
 
 const EMPTY_DEVICE_STATE = {
   name: '',
@@ -14,7 +14,7 @@ const EMPTY_DEVICE_STATE = {
   description: '',
 };
 
-const AdminDeviceEdit = () => {
+export const AdminDeviceEdit = () => {
   const location = useLocation();
   const isCreate = location.pathname == '/admin/devices/create/';
   const { deviceId } = useParams();
@@ -27,6 +27,7 @@ const AdminDeviceEdit = () => {
   const brands = useSelector(getAllBrandsSelector);
 
   useEffect(() => {
+    dispatch(fetchBrands());
     if (!isCreate) {
       dispatch(fetchSingleDevice(deviceId));
     }
@@ -34,7 +35,17 @@ const AdminDeviceEdit = () => {
 
   useEffect(() => {
     if (!isCreate && savedDevice) {
-      setValues(savedDevice);
+      const { _id, name, price, rating, img, description } = savedDevice;
+      console.log('savedDevice', savedDevice);
+      setValues({
+        id: _id,
+        name,
+        price,
+        rating,
+        img,
+        description,
+      });
+      setBrandValue(savedDevice?.brand?.name);
     }
   }, [savedDevice]);
 
@@ -45,8 +56,9 @@ const AdminDeviceEdit = () => {
   const handleDeviceSubmit = (e, action) => {
     e.preventDefault();
     if (Object.values(values).every(Boolean) && brandValue) {
-      dispatch(action(values));
+      dispatch(action({ ...values, brandValue }));
       setValues(EMPTY_DEVICE_STATE);
+      setBrandValue('');
     }
   };
   const handleAdd = (e) => {
@@ -132,5 +144,3 @@ const AdminDeviceEdit = () => {
     </div>
   );
 };
-
-export default AdminDeviceEdit;

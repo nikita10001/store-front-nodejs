@@ -1,13 +1,13 @@
 import React, { useMemo, useState } from 'react';
-import CartList from '../components/cart/CartList';
-import EmptyCart from '../components/cart/EmptyCart';
-import Order from '../components/Order';
-import Preloader from '../components/UI/Preloader';
-import PageTop from '../components/PageTop';
+import CartList from '../../../components/cart/CartList';
+import EmptyCart from '../../../components/cart/EmptyCart';
+import Order from '../../../components/Order';
+import Preloader from '../../../components/UI/Preloader';
+import PageTop from '../../../components/PageTop';
 import { useDispatch, useSelector } from 'react-redux';
-import { orderActions } from '../store/slices/orderSlice';
+import { orderActions } from '../../../store/slices/orderSlice';
 
-const CartPage = () => {
+export const CartPage = () => {
   const dispatch = useDispatch();
   const { isLoading, cart } = useSelector((state) => state.cart);
   const [isOrder, setIsOrder] = useState(false);
@@ -50,5 +50,3 @@ const CartPage = () => {
     </div>
   );
 };
-
-export default CartPage;

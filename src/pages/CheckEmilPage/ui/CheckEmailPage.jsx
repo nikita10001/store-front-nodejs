@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
-import { ROUTE_PATHS } from '../router';
-import { checkEmail, selectAuth } from '../store/slices/authSlice';
-import Preloader from '../components/UI/Preloader';
+import { ROUTE_PATHS } from 'shared/config/router';
 
-const CheckEmailPage = () => {
+import { checkEmail, selectAuth } from '../../../store/slices/authSlice';
+
+import Preloader from '../../../components/UI/Preloader';
+
+export const CheckEmailPage = () => {
   const dispatch = useDispatch();
   const { user, isLoading, error } = useSelector(selectAuth);
 
@@ -54,5 +56,3 @@ const CheckEmailPage = () => {
     </div>
   );
 };
-
-export default CheckEmailPage;

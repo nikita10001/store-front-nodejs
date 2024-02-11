@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { ROUTE_PATHS } from '../router';
+import { ROUTE_PATHS } from 'shared/config/router';
+
 import { cartActions, getProductsFromCart } from '../store/slices/cartSlice';
 import { authActions, selectAuth } from '../store/slices/authSlice';
 import AdminNav from './admin/AdminNav';
 import VerifyLine from './VerifyLine';
-import CatalogIcon from './icons/CatalogIcon';
-import { ReactComponent as CartIcon } from '../shared/assets/icons/cart-icon.svg';
+
+import { ReactComponent as CartIcon } from 'shared/assets/icons/cart-icon.svg';
+import { ReactComponent as CatalogIcon } from 'shared/assets/icons/catalog-icon.svg';
 
 const Header = () => {
   const dispatch = useDispatch();

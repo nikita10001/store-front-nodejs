@@ -28,16 +28,18 @@ export class DeviceService {
       rating: Number(device.rating),
       img: device.img,
       description: device.description,
+      brand: device.brand,
     });
     return response.data;
   }
-  static async updateDevice(id, newDevice) {
+  static async updateDevice(id, newDevice, brand) {
     const response = await $host.put(`/devices/${id}`, {
       name: newDevice.name,
       price: Number(newDevice.price),
       rating: Number(newDevice.rating),
       img: newDevice.img,
       description: newDevice.description,
+      brand,
     });
     return response.data;
   }

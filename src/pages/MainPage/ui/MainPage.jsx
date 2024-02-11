@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import Preloader from '../components/UI/Preloader.jsx';
-import SearchDevice from '../components/SearchDevice.jsx';
-import Filters from '../components/Filters.jsx';
-import DevicesList from '../components/DevicesList.jsx';
+import Preloader from '../../../components/UI/Preloader.jsx';
+import SearchDevice from '../../../components/SearchDevice.jsx';
+import Filters from '../../../components/Filters.jsx';
+import DevicesList from '../../../components/DevicesList.jsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchDevices, selectAllDevices } from '../store/slices/deviceSlice.js';
-import { selectFilter } from '../store/slices/filterSlice.js';
-import Pagination from '../components/pagination/Pagination.jsx';
+import { fetchDevices, selectAllDevices } from '../../../store/slices/deviceSlice.js';
+import { selectFilter } from '../../../store/slices/filterSlice.js';
+import Pagination from '../../../components/pagination/Pagination.jsx';
 import MainSelect from 'shared/ui/select/MainSelect.jsx';
-import { useSortedDevices } from '../hooks/useDevices.js';
+
+import { useSortedDevices } from 'shared/lib/hooks/useDevices.js';
 
 const options = [
   { id: 1, value: 'name', name: 'По названию' },
@@ -17,7 +18,7 @@ const options = [
   { id: 4, value: 'commentsAmount', name: 'С отзывами' },
 ];
 
-const MainPage = () => {
+export const MainPage = () => {
   const dispatch = useDispatch();
   const { items, isLoading, totalItems } = useSelector(selectAllDevices);
   const { query, range, brand } = useSelector(selectFilter);
@@ -79,5 +80,3 @@ const MainPage = () => {
     </div>
   );
 };
-
-export default MainPage;

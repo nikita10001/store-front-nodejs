@@ -1,10 +1,9 @@
 import React from 'react';
-import preloader from '../../assets/preloader.svg';
-
+import { ReactComponent as PreloaderIcon } from 'shared/assets/icons/preloader.svg';
 const Preloader = () => {
   return (
     <div className="page-preloader">
-      <img className="page-preloader__image" src={preloader} alt="" />
+      <PreloaderIcon className="page-preloader__image" />
     </div>
   );
 };

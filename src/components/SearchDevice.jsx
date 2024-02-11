@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
 import { filterActions } from '../store/slices/filterSlice';
-import SearchClearIcon from './icons/SearchClearIcon';
+import { ReactComponent as SearchClearIcon } from 'shared/assets/icons/search-clear-icon.svg';
 
 const SearchDevice = () => {
   const dispatch = useDispatch();

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { ROUTE_PATHS } from '../router';
+import { ROUTE_PATHS } from 'shared/config/router';
 import { NavLink, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { checkEmail, loginAction, registerAction, selectAuth } from '../store/slices/authSlice';
+import { checkEmail, loginAction, registerAction, selectAuth } from '../../../store/slices/authSlice';
 
 const MAX_LOGIN_LENGTH = 60;
 const MAX_NAME_LENTGH = 15;
 const MAX_PASSWORD_LENTGH = 30;
 
-const AuthPage = () => {
+export const AuthPage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
@@ -102,5 +102,3 @@ const AuthPage = () => {
     </div>
   );
 };
-
-export default AuthPage;

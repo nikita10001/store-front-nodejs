@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { ROUTE_PATHS } from '../../router';
+import { ROUTE_PATHS } from 'shared/config/router';
+
 import { useDispatch } from 'react-redux';
 import { cartActions, deleteProductFromCart } from '../../store/slices/cartSlice';
 
