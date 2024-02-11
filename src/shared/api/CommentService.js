@@ -1,4 +1,4 @@
-import { $host } from './service';
+import { $host } from './api';
 
 export class CommentService {
   static async getDevicesComments(deviceId) {

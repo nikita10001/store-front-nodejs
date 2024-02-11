@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { $host } from '../../api/service';
+import { $host } from 'shared/api/api';
 
 export const sendOrderData = createAsyncThunk(
   'auth/sendOrderData', //

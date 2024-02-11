@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { BrandService } from 'api/BrandService';
+import { BrandService } from 'shared/api/BrandService';
 
 export const fetchBrands = createAsyncThunk(
   'brand/fetchBrands', //

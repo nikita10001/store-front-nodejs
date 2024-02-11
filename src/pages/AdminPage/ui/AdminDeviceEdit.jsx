@@ -67,15 +67,15 @@ export const AdminDeviceEdit = () => {
   const handleSave = (e) => {
     handleDeviceSubmit(e, updateDevice);
   };
-  const options = useMemo(
-    () =>
-      brands.map((brand, i) => ({
-        id: brand._id,
-        name: brand.name,
-        value: brand.value,
-      })),
-    [brands]
-  );
+  // const options = useMemo(
+  //   () =>
+  //     brands.map((brand, i) => ({
+  //       id: brand._id,
+  //       name: brand.name,
+  //       value: brand.value,
+  //     })),
+  //   [brands]
+  // );
   return (
     <div className="page__admin admin-edit">
       <div className="admin-edit__container">
@@ -124,7 +124,7 @@ export const AdminDeviceEdit = () => {
 
           <Select
             className="form-admin__select"
-            options={options}
+            options={brands}
             value={brandValue}
             setValue={setBrandValue}
             defaultValue={'Производитель'}

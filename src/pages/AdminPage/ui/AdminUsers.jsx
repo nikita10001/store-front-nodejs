@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { $host } from '../../../api/service';
-import Preloader from '../../../components/UI/Preloader';
-import { formatDate } from '../../../utils/formatDate';
+import Preloader from '../../../shared/ui/Preloader';
+import { formatDate } from '../../../shared/lib/formatDate';
+import { $host } from 'shared/api/api';
 
 export const AdminUsers = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [users, setUsers] = useState([]);
+
   const fetchAllUsers = async () => {
     try {
       setIsLoading(true);

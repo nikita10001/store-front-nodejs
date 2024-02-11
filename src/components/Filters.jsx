@@ -22,15 +22,15 @@ const Filters = () => {
     dispatch(fetchBrands());
   }, []);
 
-  const options = useMemo(
-    () =>
-      brands.map((brand, i) => ({
-        id: brand._id,
-        name: brand.name,
-        value: brand.value,
-      })),
-    [brands]
-  );
+  // const options = useMemo(
+  //   () =>
+  //     brands.map((brand, i) => ({
+  //       id: brand._id,
+  //       name: brand.name,
+  //       value: brand.value,
+  //     })),
+  //   [brands]
+  // );
 
   const onClickApplyFilters = () => {
     dispatch(
@@ -76,7 +76,7 @@ const Filters = () => {
             <Select //
               value={brandValue}
               setValue={handleSelectBrand}
-              options={options}
+              options={brands}
               defaultValue="Выберете производителя"
             />
           </div>

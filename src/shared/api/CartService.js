@@ -1,4 +1,4 @@
-import { $host } from './service';
+import { $host } from './api';
 
 export class CartService {
   static async getCart(userId) {

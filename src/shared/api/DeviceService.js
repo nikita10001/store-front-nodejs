@@ -1,4 +1,4 @@
-import { $host } from './service';
+import { $host } from './api';
 
 export class DeviceService {
   static async getAllDevices(query = '', page, limit, rangeFrom, rangeTo, brand) {

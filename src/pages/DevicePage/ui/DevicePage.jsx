@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { Rating } from 'react-simple-star-rating';
 
-import Preloader from '../../../components/UI/Preloader';
+import Preloader from '../../../shared/ui/Preloader';
 import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSingleDevice, selectSingleDevice } from '../../../store/slices/deviceSlice';

@@ -4,7 +4,7 @@ import { Navigate, Route, Routes } from 'react-router-dom';
 import { ROUTE_PATHS, privateRoutes, publicRoutes } from 'shared/config/router';
 
 import { useSelector } from 'react-redux';
-import { selectAuth } from '../store/slices/authSlice';
+import { selectAuth } from '../../../../store/slices/authSlice';
 import { AdminComments, AdminDeviceEdit, AdminDevices } from 'pages/AdminPage';
 import { AdminUsers } from 'pages/AdminPage/ui/AdminUsers';
 

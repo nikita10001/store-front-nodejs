@@ -1,4 +1,4 @@
-import { $host } from './service';
+import { $host } from './api';
 import { jwtDecode } from 'jwt-decode';
 
 export class AuthService {

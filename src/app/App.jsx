@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import AppRouter from './components/AppRouter';
-import Header from './components/Header';
-import { checkAuth, selecAuthIsLoading, selectAuth } from './store/slices/authSlice';
 import { useEffect } from 'react';
-import Footer from './components/Footer';
-import Preloader from './components/UI/Preloader';
+import { checkAuth, selecAuthIsLoading, selectAuth } from '../store/slices/authSlice';
+import AppRouter from './providers/router/ui/AppRouter';
+
+import { Header } from 'widgets/Header';
+import { Footer } from 'widgets/Footer';
+// import Preloader from '../components/UI/Preloader';
 
 function App() {
   const isLoading = useSelector(selecAuthIsLoading);

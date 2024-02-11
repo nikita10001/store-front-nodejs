@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatDate } from '../utils/formatDate';
+import { formatDate } from '../shared/lib/formatDate';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAuth } from '../store/slices/authSlice';
 import { removeComment } from '../store/slices/commentSlice';

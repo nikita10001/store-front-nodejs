@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactPaginate from 'react-paginate';
 import './Pagination.scss';
 
-const Pagination = ({ currentPage, onChagePage, totalCount, limit }) => {
+export const Pagination = ({ currentPage, onChagePage, totalCount, limit }) => {
   return (
     <>
       {/* <Items currentItems={divices} /> */}
@@ -30,5 +30,3 @@ const Pagination = ({ currentPage, onChagePage, totalCount, limit }) => {
     </>
   );
 };
-
-export default Pagination;

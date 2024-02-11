@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { DeviceService } from '../../api/DeviceService';
+import { DeviceService } from 'shared/api/DeviceService';
 
 export const fetchDevices = createAsyncThunk(
   'devices/fetchDevices', //

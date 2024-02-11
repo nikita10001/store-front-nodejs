@@ -10,7 +10,7 @@ const Select = memo((props) => {
         {defaultValue}
       </option>
       {options.map((o) => (
-        <option className={s.option} key={o.id} value={o.name}>
+        <option className={s.option} key={o.value} value={o.value}>
           {o.name}
         </option>
       ))}

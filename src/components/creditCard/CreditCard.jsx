@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from 'react-credit-cards-2';
 
-import { formatCreditCardNumber, formatCVC, formatExpirationDate, formatFormData } from '../../utils/utils';
+import { formatCreditCardNumber, formatCVC, formatExpirationDate, formatFormData } from '../../shared/lib/utils';
 
 import 'react-credit-cards-2/dist/es/styles.scss';
 import { orderActions } from '../../store/slices/orderSlice';
