@@ -4,9 +4,9 @@ import { ROUTE_PATHS } from 'shared/config/router';
 
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { removeDevice } from '../../store/slices/deviceSlice';
+import { removeDevice } from '../../../store/slices/deviceSlice';
 
-const AdminItem = ({ id, name, img, price, rating }) => {
+export const AdminItem = ({ id, name, img, price, rating }) => {
   const dispatch = useDispatch();
 
   const handleRemove = (e) => {
@@ -37,5 +37,3 @@ const AdminItem = ({ id, name, img, price, rating }) => {
     </div>
   );
 };
-
-export default AdminItem;

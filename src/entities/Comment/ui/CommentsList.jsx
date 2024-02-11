@@ -1,7 +1,7 @@
 import React from 'react';
-import CommentItem from './CommentItem';
+import { CommentItem } from './CommentItem';
 
-const CommentsList = ({ comments }) => {
+export const CommentsList = ({ comments }) => {
   if (!comments?.length) {
     return;
   }
@@ -18,5 +18,3 @@ const CommentsList = ({ comments }) => {
     </div>
   );
 };
-
-export default CommentsList;

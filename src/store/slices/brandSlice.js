@@ -13,7 +13,7 @@ export const fetchBrands = createAsyncThunk(
 );
 
 export const createNewBrand = createAsyncThunk(
-  'brand/fetchBrands', //
+  'brand/createNewBrand', //
   async function (newBrand, { rejectWithValue }) {
     try {
       return await BrandService.createBrand(newBrand);
@@ -32,10 +32,7 @@ const initialState = {
 export const brandSlice = createSlice({
   name: 'brand',
   initialState,
-  reducers: {
-    setBrands(state, action) {},
-  },
-
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchBrands.pending, (state) => {

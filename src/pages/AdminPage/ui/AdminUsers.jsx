@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import Preloader from '../../../shared/ui/Preloader';
-import { formatDate } from '../../../shared/lib/formatDate';
+import Preloader from 'shared/ui/Preloader';
+import { formatDate } from 'shared/lib/formatDate';
 import { $host } from 'shared/api/api';
 
 export const AdminUsers = () => {

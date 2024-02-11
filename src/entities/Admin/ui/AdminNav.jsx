@@ -3,7 +3,7 @@ import { ROUTE_PATHS } from 'shared/config/router';
 
 import { NavLink } from 'react-router-dom';
 
-const AdminNav = memo(({ isAdmin }) => {
+export const AdminNav = memo(({ isAdmin }) => {
   if (!isAdmin) {
     return null;
   }
@@ -31,5 +31,3 @@ const AdminNav = memo(({ isAdmin }) => {
     </div>
   );
 });
-
-export default AdminNav;

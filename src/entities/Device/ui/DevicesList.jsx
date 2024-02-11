@@ -1,7 +1,7 @@
 import React from 'react';
-import DeviceItem from './DeviceItem';
+import { DeviceItem } from './DeviceItem';
 
-const DevicesList = ({ devices }) => {
+export const DevicesList = ({ devices }) => {
   if (!devices?.length) {
     return <h4 className="error-title">Устройств нет!</h4>;
   }
@@ -15,5 +15,3 @@ const DevicesList = ({ devices }) => {
     </div>
   );
 };
-
-export default DevicesList;

@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import Preloader from '../../../shared/ui/Preloader.jsx';
+import Preloader from 'shared/ui/Preloader.jsx';
+
 import SearchDevice from '../../../components/SearchDevice.jsx';
 import Filters from '../../../components/Filters.jsx';
-import DevicesList from '../../../components/DevicesList.jsx';
+
 import { useDispatch, useSelector } from 'react-redux';
+
 import { fetchDevices, selectAllDevices } from '../../../store/slices/deviceSlice.js';
 import { selectFilter } from '../../../store/slices/filterSlice.js';
 import { Pagination } from 'shared/ui/pagination/Pagination.jsx';
 import MainSelect from 'shared/ui/select/MainSelect.jsx';
 
 import { useSortedDevices } from 'shared/lib/hooks/useDevices.js';
+import { DevicesList } from 'entities/Device';
 
 const options = [
   { id: 1, value: 'name', name: 'По названию' },

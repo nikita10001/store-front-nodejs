@@ -2,9 +2,10 @@ import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Rating } from 'react-simple-star-rating';
-import { createComment } from '../store/slices/commentSlice';
+import { createComment } from '../../../store/slices/commentSlice';
 const MIN_COMMENT_LENGTH = 20;
-const CommentForm = ({ deviceId, isAuth }) => {
+
+export const CommentForm = ({ deviceId, isAuth }) => {
   const dispatch = useDispatch();
   const [isComment, setIsComment] = useState(false);
   const [commentText, setCommentText] = useState('');
@@ -59,5 +60,3 @@ const CommentForm = ({ deviceId, isAuth }) => {
     </div>
   );
 };
-
-export default CommentForm;

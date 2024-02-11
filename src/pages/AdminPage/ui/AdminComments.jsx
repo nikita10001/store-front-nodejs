@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Preloader from '../../../shared/ui/Preloader';
-import CommentsList from '../../../components/CommentsList';
+import { CommentsList } from 'entities/Comment';
 import { CommentService } from 'shared/api/CommentService';
 
 export const AdminComments = () => {

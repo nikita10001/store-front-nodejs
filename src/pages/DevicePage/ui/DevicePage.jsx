@@ -9,15 +9,13 @@ import { fetchSingleDevice, selectSingleDevice } from '../../../store/slices/dev
 import { addProductToCart } from '../../../store/slices/cartSlice';
 import { selectAuth } from '../../../store/slices/authSlice';
 import { fetchDevicesComments } from '../../../store/slices/commentSlice';
-import CommentForm from '../../../components/CommentForm';
-import CommentsList from '../../../components/CommentsList';
+import { CommentForm } from 'entities/Comment';
+import { CommentsList } from 'entities/Comment';
+import { DeviceInfoList } from 'entities/Device';
 
 import { ROUTE_PATHS } from 'shared/config/router';
 
 import { ReactComponent as CartIcon } from 'shared/assets/icons/cart-icon.svg';
-
-import 'react-tabs/style/react-tabs.css';
-import DeviceInfoList from '../../../components/DeviceInfoList';
 
 // const tempImagesArray = [1, 2, 3];
 export const DevicePage = () => {

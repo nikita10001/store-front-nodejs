@@ -1,12 +1,12 @@
 import React from 'react';
-import { formatDate } from '../shared/lib/formatDate';
+import { formatDate } from '../../../shared/lib/formatDate';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAuth } from '../store/slices/authSlice';
-import { removeComment } from '../store/slices/commentSlice';
+import { selectAuth } from '../../../store/slices/authSlice';
+import { removeComment } from '../../../store/slices/commentSlice';
 import { useCallback } from 'react';
 import { Rating } from 'react-simple-star-rating';
 
-const CommentItem = React.memo(({ comment }) => {
+export const CommentItem = React.memo(({ comment }) => {
   const { user } = useSelector(selectAuth);
   const isAdmin = user?.role === 'admin';
   const dispatch = useDispatch();
@@ -31,5 +31,3 @@ const CommentItem = React.memo(({ comment }) => {
     </li>
   );
 });
-
-export default CommentItem;

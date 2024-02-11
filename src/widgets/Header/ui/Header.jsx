@@ -5,7 +5,9 @@ import { ROUTE_PATHS } from 'shared/config/router';
 
 import { cartActions, getProductsFromCart } from '../../../store/slices/cartSlice';
 import { authActions, selectAuth } from '../../../store/slices/authSlice';
-import AdminNav from '../../../components/admin/AdminNav';
+
+import { AdminNav } from 'entities/Admin';
+
 import VerifyLine from '../../../components/VerifyLine';
 
 import { ReactComponent as CartIcon } from 'shared/assets/icons/cart-icon.svg';

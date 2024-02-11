@@ -1,7 +1,7 @@
 import React from 'react';
-import AdminItem from './AdminItem';
+import { AdminItem } from './AdminItem';
 
-const AdminList = ({ items }) => {
+export const AdminList = ({ items }) => {
   return (
     <div className="admin__list ">
       {!items.length && <h4 className="error-title">Устройств нет!</h4>}
@@ -15,5 +15,3 @@ const AdminList = ({ items }) => {
     </div>
   );
 };
-
-export default AdminList;

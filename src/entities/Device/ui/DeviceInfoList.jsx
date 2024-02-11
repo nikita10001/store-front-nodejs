@@ -1,7 +1,7 @@
 import React from 'react';
 import { memo } from 'react';
 
-const DeviceInfoList = memo(({ list }) => {
+export const DeviceInfoList = memo(({ list }) => {
   return (
     <ul className="info-device__list">
       {list.map(({ _id, name, value }) => (
@@ -13,5 +13,3 @@ const DeviceInfoList = memo(({ list }) => {
     </ul>
   );
 });
-
-export default DeviceInfoList;

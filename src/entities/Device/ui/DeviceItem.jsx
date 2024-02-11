@@ -7,14 +7,15 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { ROUTE_PATHS } from 'shared/config/router';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { addProductToCart } from '../store/slices/cartSlice';
+import { addProductToCart } from '../../../store/slices/cartSlice';
 
 import { ReactComponent as CartIcon } from 'shared/assets/icons/cart-icon.svg';
 import { ReactComponent as CommentIcon } from 'shared/assets/icons/comment-icon.svg';
 
-import { selectAuth } from '../store/slices/authSlice';
+import { selectAuth } from '../../../store/slices/authSlice';
 
-const DeviceItem = React.memo(({ id, name, price, rating, commentsAmount, img, description }) => {
+export const DeviceItem = React.memo((props) => {
+  const { id, name, price, rating, commentsAmount, img, description } = props;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { isAuth } = useSelector(selectAuth);
@@ -64,5 +65,3 @@ const DeviceItem = React.memo(({ id, name, price, rating, commentsAmount, img, d
     </article>
   );
 });
-
-export default DeviceItem;
