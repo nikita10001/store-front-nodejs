@@ -13,6 +13,7 @@ import MainSelect from 'shared/ui/select/MainSelect.jsx';
 
 import { useSortedDevices } from 'shared/lib/hooks/useDevices.js';
 import { DevicesList } from 'entities/Device';
+import Select from 'shared/ui/select/Select.jsx';
 
 const options = [
   { id: 1, value: 'name', name: 'По названию' },
@@ -68,7 +69,7 @@ export const MainPage = () => {
         <div className="catalog__body">
           <div className="catalog__top">
             <SearchDevice />
-            <MainSelect defaultValue={'По умолчанию'} value={filterValue} setValue={setFilterValue} options={options} />
+            <Select defaultValue={'По умолчанию'} value={filterValue} setValue={setFilterValue} options={options} />
           </div>
           {isLoading ? ( //
             <Preloader />
