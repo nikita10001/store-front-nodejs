@@ -5,7 +5,7 @@ import { ROUTE_PATHS } from 'shared/config/router';
 
 import { checkEmail, selectAuth } from '../../../store/slices/authSlice';
 
-import Preloader from '../../../shared/ui/Preloader';
+import Preloader from 'shared/ui/Preloader';
 
 export const CheckEmailPage = () => {
   const dispatch = useDispatch();

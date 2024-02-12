@@ -4,7 +4,7 @@ import { ROUTE_PATHS } from 'shared/config/router';
 
 import { NavLink } from 'react-router-dom';
 
-const VerifyLine = () => {
+export const VerifyLine = () => {
   return (
     <div className="verify-info">
       <div className="verify-info__container">
@@ -26,5 +26,3 @@ const VerifyLine = () => {
     </div>
   );
 };
-
-export default VerifyLine;

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createDevice, fetchSingleDevice, updateDevice } from '../../../store/slices/deviceSlice';
-import PageTop from '../../../components/PageTop';
+import { PageTop } from 'widgets/PageTop/ui/PageTop';
 import { useLocation, useParams } from 'react-router-dom';
 import { fetchBrands } from 'store/slices/brandSlice';
 import { Form } from './Form';

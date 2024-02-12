@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Preloader from '../../../shared/ui/Preloader';
+import Preloader from 'shared/ui/Preloader';
 import { CommentsList } from 'entities/Comment';
 import { CommentService } from 'shared/api/CommentService';
 

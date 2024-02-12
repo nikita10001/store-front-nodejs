@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PageTop from 'components/PageTop';
+import { PageTop } from 'widgets/PageTop';
 import { useDispatch } from 'react-redux';
 import { createDevice } from 'store/slices/deviceSlice';
 import { Form } from './Form';

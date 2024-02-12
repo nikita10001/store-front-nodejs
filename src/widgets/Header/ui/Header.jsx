@@ -8,7 +8,7 @@ import { authActions, selectAuth } from '../../../store/slices/authSlice';
 
 import { AdminNav } from 'entities/Admin';
 
-import VerifyLine from '../../../components/VerifyLine';
+import { VerifyLine } from 'widgets/VerifyLine';
 
 import { ReactComponent as CartIcon } from 'shared/assets/icons/cart-icon.svg';
 import { ReactComponent as CatalogIcon } from 'shared/assets/icons/catalog-icon.svg';

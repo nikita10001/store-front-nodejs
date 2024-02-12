@@ -5,7 +5,7 @@ import AppRouter from './providers/router/ui/AppRouter';
 
 import { Header } from 'widgets/Header';
 import { Footer } from 'widgets/Footer';
-// import Preloader from '../components/UI/Preloader';
+import Preloader from 'shared/ui/Preloader';
 
 function App() {
   const isLoading = useSelector(selecAuthIsLoading);
@@ -15,14 +15,14 @@ function App() {
     dispatch(checkAuth());
   }, []);
 
-  // if (isLoading) {
-  //   return (
-  //     <div>
-  //       <div className="loader-title">Загрузка...</div>
-  //       <Preloader />
-  //     </div>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <div>
+        <div className="loader-title">Загрузка...</div>
+        <Preloader />
+      </div>
+    );
+  }
   return (
     <div className="app">
       <Header />

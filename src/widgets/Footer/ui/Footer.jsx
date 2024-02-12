@@ -8,7 +8,7 @@ export const Footer = () => {
         <a className="footer__link" href="https://t.me/r_nikita1 ">
           @r_nikita1
         </a>
-        <span>Copyright © 2023</span>
+        <span>Copyright © 2024</span>
       </div>
     </footer>
   );

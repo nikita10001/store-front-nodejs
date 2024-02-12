@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
-import CartList from '../../../components/cart/CartList';
-import EmptyCart from '../../../components/cart/EmptyCart';
+import { CartList } from 'entities/Cart/ui/CartList';
+import { EmptyCart } from 'entities/Cart/ui/EmptyCart';
 import Order from '../../../components/Order';
-import Preloader from '../../../shared/ui/Preloader';
-import PageTop from '../../../components/PageTop';
+import Preloader from 'shared/ui/Preloader';
+import { PageTop } from 'widgets/PageTop/ui/PageTop';
 import { useDispatch, useSelector } from 'react-redux';
 import { orderActions } from '../../../store/slices/orderSlice';
 

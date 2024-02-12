@@ -3,14 +3,15 @@ import { NavLink } from 'react-router-dom';
 import { ROUTE_PATHS } from 'shared/config/router';
 
 import { useDispatch } from 'react-redux';
-import { cartActions, deleteProductFromCart } from '../../store/slices/cartSlice';
+import { cartActions, deleteProductFromCart } from '../../../store/slices/cartSlice';
 
-const CartItem = ({ id, name, img, price, rating }) => {
+export const CartItem = ({ id, name, img, price, rating }) => {
   const dispatch = useDispatch();
 
   const handleDelete = (e) => {
     dispatch(deleteProductFromCart(id));
   };
+
   return (
     <div className="list-cart__item item-cart">
       <div className="item-cart__wrapper">
@@ -34,5 +35,3 @@ const CartItem = ({ id, name, img, price, rating }) => {
     </div>
   );
 };
-
-export default CartItem;

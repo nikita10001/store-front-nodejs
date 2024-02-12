@@ -1,7 +1,7 @@
 import React from 'react';
-import CartItem from './CartItem';
+import { CartItem } from './CartItem';
 
-const CartList = ({ items }) => {
+export const CartList = ({ items }) => {
   return (
     <div className="list-cart ">
       {!items.length && <h4 className="error-title">Корзина пуста!</h4>}
@@ -15,5 +15,3 @@ const CartList = ({ items }) => {
     </div>
   );
 };
-
-export default CartList;

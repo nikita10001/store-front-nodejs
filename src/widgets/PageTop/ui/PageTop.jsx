@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const PageTop = ({ title }) => {
+export const PageTop = ({ title }) => {
   const navigate = useNavigate();
   return (
     <div className="section-page__top">
@@ -12,5 +12,3 @@ const PageTop = ({ title }) => {
     </div>
   );
 };
-
-export default PageTop;

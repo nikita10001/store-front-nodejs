@@ -4,7 +4,7 @@ import { ROUTE_PATHS } from 'shared/config/router';
 
 import emptyCartIcon from 'shared/assets/images/empty.png';
 
-const EmptyCart = () => {
+export const EmptyCart = () => {
   return (
     <div className="empty-cart">
       <div className="empty-cart__image">
@@ -18,5 +18,3 @@ const EmptyCart = () => {
     </div>
   );
 };
-
-export default EmptyCart;
