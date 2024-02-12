@@ -1,13 +1,16 @@
-.inputWrapper:not(:last-child) {
-  margin: 0px 0px 8px 0px;
+.inputWrapper {
+  display: flex;
+  width: 100%;
 }
 .input {
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease 0s;
   width: 100%;
-  background-color: transparent;
   cursor: pointer;
+  background-color: transparent;
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid #d5d6dc;
   background: #fff;
-  color: #acadb9;
 }

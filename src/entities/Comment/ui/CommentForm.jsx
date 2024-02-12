@@ -16,7 +16,6 @@ export const CommentForm = ({ deviceId, isAuth }) => {
   };
   const handleAddComment = (e) => {
     e.preventDefault();
-    console.log(rating);
     if (commentText.length < MIN_COMMENT_LENGTH) return;
     dispatch(createComment({ deviceId, text: commentText, rating }));
     setCommentText('');

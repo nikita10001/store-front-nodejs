@@ -3,6 +3,7 @@ import { ROUTE_PATHS } from 'shared/config/router';
 import { NavLink, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkEmail, loginAction, registerAction, selectAuth } from '../../../store/slices/authSlice';
+import { Input } from 'shared/ui/input/Input';
 
 const MAX_LOGIN_LENGTH = 60;
 const MAX_NAME_LENTGH = 15;
@@ -40,8 +41,14 @@ export const AuthPage = () => {
     });
   };
 
-  const handleChange = (e) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+  const onChangeUsername = (value) => {
+    setData({ ...data, name: value });
+  };
+  const onChangeLogin = (value) => {
+    setData({ ...data, login: value });
+  };
+  const onChangePassword = (value) => {
+    setData({ ...data, password: value });
   };
 
   if (user) {
@@ -53,34 +60,30 @@ export const AuthPage = () => {
         <div className="login__block">
           <form className="login__form" onSubmit={onSubmit}>
             {!isLogin && (
-              <input //
-                onChange={handleChange}
-                name="name"
-                value={data.name}
+              <Input //
                 required
+                onChange={onChangeUsername}
+                value={data.name}
                 maxLength={MAX_NAME_LENTGH}
-                className="form__input input"
-                type="text"
+                className="form__input"
                 placeholder="Имя"
               />
             )}
-            <input //
+            <Input //
               required
-              onChange={handleChange}
+              onChange={onChangeLogin}
               value={data.login}
-              name="login"
               maxLength={MAX_LOGIN_LENGTH}
-              className="form__input input"
+              className="form__input"
               type="email"
               placeholder="E-mail"
             />
-            <input //
+            <Input //
               required
-              onChange={handleChange}
-              name="password"
+              onChange={onChangePassword}
               value={data.password}
               maxLength={MAX_PASSWORD_LENTGH}
-              className="form__input input"
+              className="form__input"
               type="password"
               placeholder="Пароль"
             />

@@ -15,7 +15,6 @@ export const Form = memo((props) => {
   const { isEdit = false, onSubmit, savedDevice } = props;
 
   const brands = useSelector(getAllBrandsSelector);
-  console.log('brands', brands);
 
   const [values, setValues] = useState(savedDevice ? savedDevice : EMPTY_DEVICE_STATE);
 
