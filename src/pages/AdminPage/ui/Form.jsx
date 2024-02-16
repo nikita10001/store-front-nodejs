@@ -10,6 +10,7 @@ import { classNames } from 'shared/lib/classNames';
 import { selectDevice, selectIsLoading } from '../model/selectors/adminSelectors';
 import { adminActions } from '../model/slice/adminSlice';
 import Preloader from 'shared/ui/Preloader';
+import { InfoList } from './InfoList';
 
 export const Form = memo((props) => {
   const { isEdit = false, onSubmit } = props;
@@ -91,80 +92,5 @@ export const Form = memo((props) => {
         {buttonText}
       </button>
     </form>
-  );
-});
-
-///temp !!!
-const InfoList = memo(({ list }) => {
-  const dispatch = useDispatch();
-
-  const [newItem, setNewItem] = useState({
-    name: '',
-    value: '',
-  });
-
-  const handleRemoveItem = (name) => {
-    dispatch(
-      adminActions.updateDevice({
-        characteristics: [...list.filter((item) => item.name !== name)],
-      })
-    );
-  };
-
-  const handleAddItem = () => {
-    if (!newItem.name.trim() || !newItem.value.trim()) {
-      return;
-    }
-    dispatch(
-      adminActions.updateDevice({
-        characteristics: [
-          ...list,
-          {
-            ...newItem,
-          },
-        ],
-      })
-    );
-    setNewItem({
-      name: '',
-      value: '',
-    });
-  };
-
-  return (
-    <div className={cls.listBlock}>
-      <DeviceInfoList //
-        isEdit={true}
-        handleRemoveItem={handleRemoveItem}
-        className={cls.deviceInfoList}
-        list={list}
-      />
-      <div className={cls.listItem}>
-        <Input
-          value={newItem.name}
-          placeholder={'Название'}
-          onChange={(value) =>
-            setNewItem({
-              ...newItem,
-              name: value,
-            })
-          }
-          className={cls.name}
-        />
-        <Input
-          value={newItem.value}
-          placeholder={'Значение'}
-          onChange={(value) =>
-            setNewItem({
-              ...newItem,
-              value: value,
-            })
-          }
-        />
-        <Button onClick={handleAddItem} className={classNames(cls.addBtn, {}, ['btn'])}>
-          Добавить
-        </Button>
-      </div>
-    </div>
   );
 });
