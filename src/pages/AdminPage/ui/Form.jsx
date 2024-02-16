@@ -133,7 +133,12 @@ const InfoList = memo(({ list }) => {
 
   return (
     <div className={cls.listBlock}>
-      <DeviceInfoList handleRemoveItem={handleRemoveItem} className={cls.deviceInfoList} list={list} />
+      <DeviceInfoList //
+        isEdit={true}
+        handleRemoveItem={handleRemoveItem}
+        className={cls.deviceInfoList}
+        list={list}
+      />
       <div className={cls.listItem}>
         <Input
           value={newItem.name}
