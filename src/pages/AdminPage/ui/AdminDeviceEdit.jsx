@@ -33,11 +33,3 @@ export const AdminDeviceEdit = () => {
     </div>
   );
 };
-// const handleDeviceSubmit = (e, action) => {
-//   e.preventDefault();
-//   if (Object.values(values).every(Boolean) && brandValue) {
-//     dispatch(action({ ...values, brandValue }));
-//     setValues(EMPTY_DEVICE_STATE);
-//     setBrandValue('');
-//   }
-// };

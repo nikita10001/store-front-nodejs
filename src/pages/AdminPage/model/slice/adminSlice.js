@@ -75,8 +75,8 @@ const adminSlice = createSlice({
         ...action.payload,
       };
     },
-    clearDevice(state, action) {
-      state.device = null;
+    clearDevice(state) {
+      state.device = EMPTY_DEVICE_STATE;
     },
   },
   extraReducers: (builder) => {

@@ -17,7 +17,6 @@ export const Form = memo((props) => {
   const brands = useSelector(getAllBrandsSelector);
   const device = useSelector(selectDevice);
   const isLoading = useSelector(selectIsLoading);
-
   const handleBrand = (value) => {
     dispatch(adminActions.updateDevice({ brand: value }));
   };
@@ -104,6 +103,14 @@ const InfoList = memo(({ list }) => {
     value: '',
   });
 
+  const handleRemoveItem = (name) => {
+    dispatch(
+      adminActions.updateDevice({
+        characteristics: [...list.filter((item) => item.name !== name)],
+      })
+    );
+  };
+
   const handleAddItem = () => {
     if (!newItem.name.trim() || !newItem.value.trim()) {
       return;
@@ -126,7 +133,7 @@ const InfoList = memo(({ list }) => {
 
   return (
     <div className={cls.listBlock}>
-      <DeviceInfoList className={cls.deviceInfoList} list={list} />
+      <DeviceInfoList handleRemoveItem={handleRemoveItem} className={cls.deviceInfoList} list={list} />
       <div className={cls.listItem}>
         <Input
           value={newItem.name}

@@ -3,13 +3,14 @@ import { PageTop } from 'widgets/PageTop';
 import { useDispatch } from 'react-redux';
 import { Form } from './Form';
 import { fetchBrands } from 'store/slices/brandSlice';
-import { createDevice } from '../model/slice/adminSlice';
+import { adminActions, createDevice } from '../model/slice/adminSlice';
 
 export const AdminDeviceCreate = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchBrands());
+    dispatch(adminActions.clearDevice());
   }, []);
 
   const handleAdd = useCallback((device) => {
