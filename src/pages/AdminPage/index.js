@@ -5,6 +5,8 @@ import { AdminDeviceEdit } from './ui/AdminDeviceEdit';
 import { AdminUsers } from './ui/AdminUsers';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
+export { adminActions } from './model/slice/adminSlice';
+export { adminReducer } from './model/slice/adminSlice';
 
 export const AdminRouting = () => {
   return (

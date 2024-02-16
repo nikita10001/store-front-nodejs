@@ -1,0 +1,28 @@
+.listBlock {
+  margin: 5px 0px;
+}
+.listTitle {
+  margin: 0px 0px 10px 0px;
+}
+.listHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 5px;
+}
+
+.listItem {
+  display: flex;
+  gap: 5px;
+  .name {
+    min-width: 220px;
+    max-width: 260px;
+  }
+}
+
+.addBtn {
+  width: auto !important;
+}
+.deviceInfoList {
+  margin: 0px 0px 5px 0px;
+}

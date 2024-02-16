@@ -1,46 +1,47 @@
 import React, { memo, useState, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Input } from 'shared/ui/input/Input';
 import Select from 'shared/ui/select/Select';
 import { getAllBrandsSelector } from 'store/slices/brandSlice';
-
-const EMPTY_DEVICE_STATE = {
-  name: '',
-  price: '',
-  rating: '',
-  img: '',
-  description: '',
-};
+import cls from './Form.module.scss';
+import { DeviceInfoList } from 'entities/Device';
+import Button from 'shared/ui/button/Button';
+import { classNames } from 'shared/lib/classNames';
+import { selectDevice, selectIsLoading } from '../model/selectors/adminSelectors';
+import { adminActions } from '../model/slice/adminSlice';
+import Preloader from 'shared/ui/Preloader';
 
 export const Form = memo((props) => {
-  const { isEdit = false, onSubmit, savedDevice } = props;
-
+  const { isEdit = false, onSubmit } = props;
+  const dispatch = useDispatch();
   const brands = useSelector(getAllBrandsSelector);
+  const device = useSelector(selectDevice);
+  const isLoading = useSelector(selectIsLoading);
 
-  const [values, setValues] = useState(savedDevice ? savedDevice : EMPTY_DEVICE_STATE);
-
-  const [brandValue, setBrandValue] = useState(savedDevice ? savedDevice?.brand?.value : '');
-
-  const handleChange = useCallback((e) => {
-    setValues({ ...values, [e.target.name]: e.target.value });
-  }, []);
-
-  const handleForm = useCallback((e) => {
+  const handleBrand = (value) => {
+    dispatch(adminActions.updateDevice({ brand: value }));
+  };
+  const handleChange = (e) => {
+    dispatch(adminActions.updateDevice({ [e.target.name]: e.target.value }));
+  };
+  const handleForm = (e) => {
     e.preventDefault();
-    if (Object.values(values).every(Boolean) && brandValue) {
-      onSubmit(values, brandValue);
-      setValues(EMPTY_DEVICE_STATE);
-      setBrandValue('');
+    const { characteristics, commentsAmount, ...toCheck } = device;
+    if (Object.values(toCheck).every(Boolean)) {
+      onSubmit(device);
     }
-  }, []);
+  };
 
   const buttonText = isEdit ? 'Сохранить' : 'Добавить';
-
+  if (isLoading) {
+    return <Preloader />;
+  }
   return (
     <form className="form-admin" action="">
       <input //
         name="name"
         onChange={handleChange}
-        value={values.name}
+        value={device.name}
         placeholder="Название"
         className="input"
         type="text"
@@ -48,7 +49,7 @@ export const Form = memo((props) => {
       <input //
         name="price"
         onChange={handleChange}
-        value={values.price}
+        value={device.price}
         placeholder="Цена"
         className="input"
         type="number"
@@ -56,7 +57,7 @@ export const Form = memo((props) => {
       <input //
         name="rating"
         onChange={handleChange}
-        value={values.rating}
+        value={device.rating}
         placeholder="Рейтинг"
         className="input"
         type="number"
@@ -64,7 +65,7 @@ export const Form = memo((props) => {
       <input //
         name="img"
         onChange={handleChange}
-        value={values.img}
+        value={device.img}
         placeholder="Ссылка на изображение"
         className="input"
         type="text"
@@ -72,7 +73,7 @@ export const Form = memo((props) => {
       <input //
         name="description"
         onChange={handleChange}
-        value={values.description}
+        value={device.description}
         placeholder="Описание"
         className="input"
         type="text"
@@ -81,14 +82,77 @@ export const Form = memo((props) => {
       <Select //
         className="form-admin__select"
         options={brands}
-        value={brandValue}
-        setValue={setBrandValue}
+        value={device?.brand}
+        setValue={handleBrand}
         defaultValue={'Производитель'}
       />
 
+      <InfoList list={device.characteristics} />
       <button onClick={handleForm} className="btn">
         {buttonText}
       </button>
     </form>
+  );
+});
+
+///temp !!!
+const InfoList = memo(({ list }) => {
+  const dispatch = useDispatch();
+
+  const [newItem, setNewItem] = useState({
+    name: '',
+    value: '',
+  });
+
+  const handleAddItem = () => {
+    if (!newItem.name.trim() || !newItem.value.trim()) {
+      return;
+    }
+    dispatch(
+      adminActions.updateDevice({
+        characteristics: [
+          ...list,
+          {
+            ...newItem,
+          },
+        ],
+      })
+    );
+    setNewItem({
+      name: '',
+      value: '',
+    });
+  };
+
+  return (
+    <div className={cls.listBlock}>
+      <DeviceInfoList className={cls.deviceInfoList} list={list} />
+      <div className={cls.listItem}>
+        <Input
+          value={newItem.name}
+          placeholder={'Название'}
+          onChange={(value) =>
+            setNewItem({
+              ...newItem,
+              name: value,
+            })
+          }
+          className={cls.name}
+        />
+        <Input
+          value={newItem.value}
+          placeholder={'Значение'}
+          onChange={(value) =>
+            setNewItem({
+              ...newItem,
+              value: value,
+            })
+          }
+        />
+        <Button onClick={handleAddItem} className={classNames(cls.addBtn, {}, ['btn'])}>
+          Добавить
+        </Button>
+      </div>
+    </div>
   );
 });

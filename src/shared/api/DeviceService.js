@@ -23,23 +23,21 @@ export class DeviceService {
 
   static async addDevice(device) {
     const response = await $host.post('/devices', {
-      name: device.name,
+      ...device,
       price: Number(device.price),
       rating: Number(device.rating),
-      img: device.img,
-      description: device.description,
-      brand: device.brand,
     });
     return response.data;
   }
-  static async updateDevice(id, newDevice, brand) {
+  static async updateDevice(id, newDevice, brandId) {
     const response = await $host.put(`/devices/${id}`, {
       name: newDevice.name,
       price: Number(newDevice.price),
       rating: Number(newDevice.rating),
       img: newDevice.img,
       description: newDevice.description,
-      brand,
+      brand: brandId,
+      characteristics: newDevice.characteristics,
     });
     return response.data;
   }

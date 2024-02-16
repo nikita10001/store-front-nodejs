@@ -6,6 +6,7 @@ import { authReducer } from './slices/authSlice';
 import { commentReducer } from './slices/commentSlice';
 import { orderReducer } from './slices/orderSlice';
 import { brandReducer } from './slices/brandSlice';
+import { adminReducer } from 'pages/AdminPage';
 
 export const rootReducer = combineReducers({
   devices: deviceReducer,
@@ -15,4 +16,5 @@ export const rootReducer = combineReducers({
   comment: commentReducer,
   order: orderReducer,
   brand: brandReducer,
+  admin: adminReducer,
 });

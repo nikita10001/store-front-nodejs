@@ -22,33 +22,6 @@ export const fetchSingleDevice = createAsyncThunk(
   }
 );
 
-//!!!!need to kill КОСТЫЛЬ!!!!!!!!
-export const createDevice = createAsyncThunk(
-  'devices/createDevice', //
-  async function (device, { rejectWithValue, dispatch, getState }) {
-    try {
-      const { _id: brand } = getState().brand.items.find((br) => br.name == device.brandValue);
-      const data = await DeviceService.addDevice({ ...device, brand });
-      dispatch(deviceActions.addDevice(data));
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
-export const updateDevice = createAsyncThunk(
-  'devices/updateDevice', //
-  async function (device, { rejectWithValue, dispatch, getState }) {
-    try {
-      console.log(device);
-      const { _id: brand } = getState().brand.items.find((br) => br.name == device.brandValue);
-
-      const data = await DeviceService.updateDevice(device.id, device, brand);
-      dispatch(deviceActions.updateDevice(data));
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
-  }
-);
 export const removeDevice = createAsyncThunk(
   'devices/removeDevice', //
   async function (id, { rejectWithValue, dispatch }) {

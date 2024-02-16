@@ -31,7 +31,7 @@ export const DevicePage = () => {
   const { isAuth } = useSelector(selectAuth);
 
   //temp tabs logic
-  const tabsItems = ['Отзывы', 'Характеристики'];
+  const tabsItems = ['Характеристики', 'Отзывы'];
   const [activeTab, setActiveTab] = useState(0);
   ///
 
@@ -87,7 +87,7 @@ export const DevicePage = () => {
               </div>
             ))}
           </div>
-          {activeTab == 0 ? (
+          {activeTab == 1 ? (
             <div className="tabs-device__tab">
               <CommentForm deviceId={id} isAuth={isAuth} />
               {commentsLoading ? (

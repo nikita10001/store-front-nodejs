@@ -261,6 +261,7 @@
   &__item {
     display: flex;
     gap: 10px;
+    position: relative;
     padding: 5px;
     transition: all 0.3s ease 0s;
     cursor: default;
@@ -279,6 +280,16 @@
   }
   &__text {
     flex: 0 1 60%;
+  }
+  &__delete {
+    display: flex;
+    position: absolute;
+    max-width: 15px;
+    height: 15px;
+    padding: 0px;
+    right: 0;
+    align-items: center;
+    justify-content: center;
   }
 }
 .block-device {

@@ -1,0 +1,30 @@
+// .btn {
+//   font-size: 14px;
+//   font-weight: 500;
+//   transition: all 0.3s ease 0s;
+//   width: 100%;
+//   cursor: pointer;
+
+//   width: inherit;
+//   background-color: $secondary;
+//   color: $lightColor;
+//   border-radius: 10px;
+//   padding: 8px;
+//   border: 1px solid $secondary;
+//   transition: all 0.2s ease 0s;
+//   @media (max-width: 600px) {
+//     padding: 6px;
+//   }
+//   &:hover {
+//     background-color: transparent;
+//     color: $secondary;
+//   }
+//   &.outline {
+//     background-color: transparent;
+//     color: $secondary;
+//     &:hover {
+//       box-shadow: 0px 0px 5px $secondary;
+//       border-color: transparent;
+//     }
+//   }
+// }
