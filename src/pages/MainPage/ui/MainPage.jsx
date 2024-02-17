@@ -24,9 +24,11 @@ export const MainPage = () => {
   const dispatch = useDispatch();
   const { items, isLoading, totalItems } = useSelector(selectAllDevices);
   const { query, range, brand } = useSelector(selectFilter);
-  const [limit, setLimit] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [limit, setLimit] = useState(6);
+  const limitList = [10, 20, 30];
+  console.log(limit);
   const [filterValue, setFilterValue] = useState('');
 
   const onChangePage = (page) => {
@@ -45,7 +47,7 @@ export const MainPage = () => {
         brand,
       })
     );
-  }, [range, currentPage, brand]);
+  }, [range, currentPage, brand, limit]);
   //test use effect only when query
   useEffect(() => {
     setCurrentPage(1);
@@ -68,6 +70,18 @@ export const MainPage = () => {
           <div className="catalog__top">
             <SearchDevice />
             <Select defaultValue={'По умолчанию'} value={filterValue} setValue={setFilterValue} options={options} />
+            <div>
+              {limitList.map((l) => (
+                <button
+                  onClick={() => {
+                    setLimit(l);
+                  }}
+                  className="btn"
+                >
+                  {l}
+                </button>
+              ))}
+            </div>
           </div>
           {isLoading ? ( //
             <Preloader />
