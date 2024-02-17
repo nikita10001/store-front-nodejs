@@ -38,6 +38,9 @@ export const Form = memo((props) => {
   }
   return (
     <form className="form-admin" action="">
+      <div className="form-admin__preview">
+        <img src={device.img} alt="Картинка товара" />
+      </div>
       <input //
         name="name"
         onChange={handleChange}

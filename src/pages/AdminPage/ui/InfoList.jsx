@@ -74,7 +74,7 @@ export const InfoList = memo(({ list }) => {
           }
         />
         <Button onClick={handleAddItem} className={classNames(cls.addBtn, {}, ['btn'])}>
-          Добавить
+          +
         </Button>
       </div>
     </div>

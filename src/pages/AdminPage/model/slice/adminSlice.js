@@ -7,7 +7,7 @@ export const createDevice = createAsyncThunk(
     try {
       const { _id: brand } = getState().brand.items.find((br) => br.value == device.brand);
       const data = await DeviceService.addDevice({ ...device, brand });
-      // dispatch(deviceActions.addDevice(data));
+      // dispatch(adminActions.updateDevice(data));
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -41,7 +41,7 @@ export const fetchAdminDevice = createAsyncThunk(
       const device = await DeviceService.getDevice(id);
       return {
         ...device,
-        brand: device.brand.value,
+        brand: device.brand ? device.brand.value : '',
       };
     } catch (error) {
       return rejectWithValue(error.message);
@@ -97,6 +97,7 @@ const adminSlice = createSlice({
 
       //fetch single device
       .addCase(fetchAdminDevice.pending, (state) => {
+        state.device = EMPTY_DEVICE_STATE;
         state.isLoading = true;
         state.error = null;
       })

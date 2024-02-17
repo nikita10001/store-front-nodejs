@@ -67,7 +67,7 @@ export const Filter = memo((props) => {
               value={brandValue}
               setValue={handleSelectBrand}
               options={brands}
-              defaultValue="Выберете производителя"
+              defaultValue="Выберите производителя"
             />
           </div>
 

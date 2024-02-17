@@ -13,15 +13,25 @@
 
 .listItem {
   display: flex;
-  gap: 5px;
-  .name {
-    min-width: 220px;
-    max-width: 260px;
+  align-items: center;
+  gap: 3px;
+  @media (min-width: 550px) {
+    .name {
+      min-width: 220px;
+      max-width: 260px;
+    }
   }
 }
 
 .addBtn {
-  width: auto !important;
+  flex: 0 0 26px;
+  height: 26px !important;
+  font-weight: 500;
+  font-size: 16px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .deviceInfoList {
   margin: 0px 0px 5px 0px;
