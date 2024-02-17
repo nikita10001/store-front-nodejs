@@ -1,8 +1,8 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
-import { filterActions } from '../store/slices/filterSlice';
 import { ReactComponent as SearchClearIcon } from 'shared/assets/icons/search-clear-icon.svg';
+import { filterActions } from 'features/Filter';
 
 const SearchDevice = () => {
   const dispatch = useDispatch();

@@ -13,6 +13,7 @@ export const ROUTE_PATHS = {
   CHECKMAIL: '/auth/check',
   ADMIN_COMMENTS: '/admin/comments',
   ADMIN_USERS: '/admin/users',
+  ADMIN_BRANDS: '/admin/brands',
   ADMIN: '/admin/devices',
 };
 

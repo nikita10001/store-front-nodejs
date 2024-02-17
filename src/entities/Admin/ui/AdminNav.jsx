@@ -25,6 +25,11 @@ export const AdminNav = memo(({ isAdmin }) => {
             <NavLink to={ROUTE_PATHS.ADMIN_USERS} className="admin-nav__link">
               Пользователи
             </NavLink>
+          </li>{' '}
+          <li className="admin-nav__item">
+            <NavLink to={ROUTE_PATHS.ADMIN_BRANDS} className="admin-nav__link">
+              Производители
+            </NavLink>
           </li>
         </ul>
       </div>

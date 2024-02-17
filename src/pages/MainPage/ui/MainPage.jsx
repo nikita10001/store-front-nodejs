@@ -2,18 +2,16 @@ import React, { useEffect, useState } from 'react';
 import Preloader from 'shared/ui/Preloader.jsx';
 
 import SearchDevice from '../../../components/SearchDevice.jsx';
-import Filters from '../../../components/Filters.jsx';
 
 import { useDispatch, useSelector } from 'react-redux';
 
 import { fetchDevices, selectAllDevices } from '../../../store/slices/deviceSlice.js';
-import { selectFilter } from '../../../store/slices/filterSlice.js';
 import { Pagination } from 'shared/ui/pagination/Pagination.jsx';
-import MainSelect from 'shared/ui/select/MainSelect.jsx';
 
 import { useSortedDevices } from 'shared/lib/hooks/useDevices.js';
 import { DevicesList } from 'entities/Device';
 import Select from 'shared/ui/select/Select.jsx';
+import { Filter, selectFilter } from 'features/Filter';
 
 const options = [
   { id: 1, value: 'name', name: 'По названию' },
@@ -64,7 +62,7 @@ export const MainPage = () => {
     <div className="page__catalog catalog">
       <div className="catalog__container">
         <div className="catalog__filters">
-          <Filters />
+          <Filter />
         </div>
         <div className="catalog__body">
           <div className="catalog__top">

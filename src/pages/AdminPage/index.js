@@ -5,6 +5,7 @@ import { AdminDeviceEdit } from './ui/AdminDeviceEdit';
 import { AdminUsers } from './ui/AdminUsers';
 
 import { Navigate, Route, Routes } from 'react-router-dom';
+import { AdminBrands } from './ui/AdminBrands';
 export { adminActions } from './model/slice/adminSlice';
 export { adminReducer } from './model/slice/adminSlice';
 
@@ -16,6 +17,7 @@ export const AdminRouting = () => {
       <Route path="devices" element={<AdminDevices />} />
       <Route path="comments" element={<AdminComments />} />
       <Route path="users" element={<AdminUsers />} />
+      <Route path="brands" element={<AdminBrands />} />
       <Route path="*" element={<Navigate to="/admin/devices" />} />
     </Routes>
   );

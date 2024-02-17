@@ -8,10 +8,12 @@ import { fetchDevices, selectAllDevices } from '../../../store/slices/deviceSlic
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { selectFilter } from '../../../store/slices/filterSlice';
 import { NavLink } from 'react-router-dom';
 
 import { Pagination } from 'shared/ui/pagination/Pagination.jsx';
+
+//нельзя
+import { selectFilter } from 'features/Filter';
 
 export const AdminDevices = () => {
   const dispatch = useDispatch();
