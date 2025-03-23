@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectFilter } from '../../store/slices/filterSlice';
 import { NavLink } from 'react-router-dom';
 import { selectAuth } from '../../store/slices/authSlice';
-import Pagination from '../../components/pagination/Pagination';
+import Pagination from 'components/Pagination/Pagination';
 
 const AdminDevices = () => {
   const dispatch = useDispatch();

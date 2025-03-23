@@ -6,9 +6,9 @@ import DevicesList from '../components/DevicesList.jsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDevices, selectAllDevices } from '../store/slices/deviceSlice.js';
 import { selectFilter } from '../store/slices/filterSlice.js';
-import Pagination from '../components/pagination/Pagination.jsx';
 import MainSelect from 'shared/ui/select/MainSelect.jsx';
 import { useSortedDevices } from '../hooks/useDevices.js';
+import Pagination from 'components/Pagination/Pagination.jsx';
 
 const options = [
   { id: 1, value: 'name', name: 'По названию' },
